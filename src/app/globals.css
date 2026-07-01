@@ -1,0 +1,109 @@
+@import "tailwindcss";
+
+@theme {
+  --color-background: #050816;
+  --color-secondaryBackground: #0F172A;
+  --color-cardBackground: #111827;
+  --color-primaryAccent: #22D3EE;
+  --color-primaryText: #F8FAFC;
+  --color-secondaryText: #94A3B8;
+  --color-mutedText: #64748B;
+  --color-border: rgba(255, 255, 255, 0.08);
+  --color-glow: rgba(34, 211, 238, 0.15);
+
+  --font-heading: Sora, sans-serif;
+  --font-body: Inter, sans-serif;
+
+  --animate-fade-in: fadeIn 0.5s ease-in-out;
+  --animate-slide-up: slideUp 0.6s ease-out;
+  --animate-pulse-slow: pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+/* Import fonts */
+@import url('https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap');
+
+:root {
+  --foreground-rgb: 248, 250, 252;
+  --background-rgb: 5, 8, 22;
+  --secondary-background-rgb: 15, 23, 42;
+  --card-background-rgb: 17, 24, 39;
+  --primary-accent-rgb: 34, 211, 238;
+  --primary-text-rgb: 248, 250, 252;
+  --secondary-text-rgb: 148, 163, 184;
+  --muted-text-rgb: 100, 116, 139;
+  --border-rgb: 255, 255, 255, 0.08;
+  --glow-rgb: 34, 211, 238, 0.15;
+}
+
+body {
+  color: rgb(var(--foreground-rgb));
+  background: rgb(var(--background-rgb));
+  font-family: 'Inter', sans-serif;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Sora', sans-serif;
+  font-weight: 600;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(var(--secondary-background-rgb), 0.5);
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(var(--primary-accent-rgb), 0.5);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(var(--primary-accent-rgb), 0.7);
+}
+
+/* Animation utilities */
+.animate-fade-in {
+  animation: fadeIn 0.5s ease-in-out;
+}
+
+.animate-slide-up {
+  animation: slideUp 0.6s ease-out;
+}
+
+/* Card hover effect */
+.card-hover {
+  transition: all 0.3s ease;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.card-hover:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 25px rgba(34, 211, 238, 0.15);
+  border-color: rgba(34, 211, 238, 0.3);
+}
+
+/* Button hover effect */
+.btn-hover {
+  transition: all 0.3s ease;
+}
+
+.btn-hover:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(34, 211, 238, 0.2);
+}
+
+/* Glow effect */
+.glow {
+  box-shadow: 0 0 15px rgba(34, 211, 238, 0.3);
+}
+
+/* Text gradient */
+.text-gradient {
+  background: linear-gradient(90deg, #22D3EE, #60A5FA);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
