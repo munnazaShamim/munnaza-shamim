@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
+import ImagePlaceholder from './ImagePlaceholder';
 
 export default function Testimonials() {
   const [isMounted, setIsMounted] = useState(false);
@@ -10,24 +11,18 @@ export default function Testimonials() {
     setIsMounted(true);
   }, []);
 
-  const testimonials = [
+  const proofPoints = [
     {
-      name: "Sarah Johnson",
-      role: "CEO, European Retail Brand",
-      content: "The performance improvements were incredible. Our conversion rates increased by 42% after the optimization. Munnaza's technical expertise is unmatched.",
-      avatar: "SJ"
+      title: "Real-time vehicle auction platform",
+      note: "Custom PHP/MySQL auction engine, Node.js WebSockets, in production."
     },
     {
-      name: "Michael Chen",
-      role: "CTO, North American SaaS Startup",
-      content: "Working with Munnaza transformed our technical infrastructure. The Next.js migration was seamless and the performance gains were immediate.",
-      avatar: "MC"
+      title: "Commercial vehicle marketplace network",
+      note: "Five sites, custom listing and search infrastructure, serving the European trade."
     },
     {
-      name: "Emma Rodriguez",
-      role: "E-commerce Director, UK Brand",
-      content: "The WordPress optimization project exceeded all expectations. Our site now loads in under 1.2 seconds with perfect Core Web Vitals scores.",
-      avatar: "ER"
+      title: "Two custom Laravel CMS platforms",
+      note: "Purpose-built content and admin workflows."
     }
   ];
 
@@ -35,59 +30,42 @@ export default function Testimonials() {
     <section className="py-20 bg-secondaryBackground">
       <div className="container mx-auto px-4">
         <div className="max-w-4xl mx-auto text-center mb-16">
-          <motion.h2 
+          <motion.h2
             className="text-3xl md:text-4xl font-bold mb-4"
             initial={{ opacity: 0, y: 20 }}
             animate={isMounted ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.6 }}
           >
-            Client Testimonials
+            Where This Has Shipped
           </motion.h2>
-          <motion.p 
+          <motion.p
             className="text-xl text-secondaryText max-w-2xl mx-auto"
             initial={{ opacity: 0, y: 20 }}
             animate={isMounted ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.6, delay: 0.2 }}
           >
-            What international clients say about working with us
+            Client testimonials are being collected — until then, here&apos;s what&apos;s actually in production
           </motion.p>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          {testimonials.map((testimonial, index) => (
+          {proofPoints.map((point, index) => (
             <motion.div
               key={index}
-              className="card-hover bg-cardBackground p-8 rounded-2xl border border-border"
+              className="card-hover bg-cardBackground rounded-2xl border border-border overflow-hidden"
               initial={{ opacity: 0, y: 20 }}
               animate={isMounted ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.6, delay: 0.1 * index }}
             >
-              <div className="flex items-center mb-6">
-                <div className="w-12 h-12 rounded-full bg-primaryAccent flex items-center justify-center text-background font-bold mr-4">
-                  {testimonial.avatar}
-                </div>
-                <div>
-                  <div className="font-bold">{testimonial.name}</div>
-                  <div className="text-sm text-secondaryText">{testimonial.role}</div>
-                </div>
+              <div className="p-6 pb-0">
+                <ImagePlaceholder label="Client logo / project screenshot" aspect="aspect-[3/2]" />
               </div>
-              <p className="text-secondaryText italic">"{testimonial.content}"</p>
+              <div className="p-6">
+                <div className="font-bold mb-2">{point.title}</div>
+                <p className="text-secondaryText text-sm">{point.note}</p>
+              </div>
             </motion.div>
           ))}
-        </div>
-
-        <div className="mt-16 text-center">
-          <motion.div
-            className="inline-flex items-center px-6 py-3 bg-cardBackground border border-border rounded-lg"
-            initial={{ opacity: 0, y: 20 }}
-            animate={isMounted ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.6, delay: 0.4 }}
-          >
-            <div className="flex text-yellow-400 mr-2">
-              {'★'.repeat(5)}
-            </div>
-            <span className="text-secondaryText">5/5 Star Rating from 50+ Clients</span>
-          </motion.div>
         </div>
       </div>
     </section>

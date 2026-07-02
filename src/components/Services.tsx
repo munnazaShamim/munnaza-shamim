@@ -12,49 +12,49 @@ export default function Services() {
 
   const services = [
     {
-      title: "High-Performance Websites",
-      description: "Lightning-fast websites optimized for speed, SEO, and user experience with modern technologies.",
-      icon: "⚡"
-    },
-    {
-      title: "Next.js Development",
-      description: "Production-ready Next.js applications with server-side rendering, static site generation, and API routes.",
+      title: "Next.js Application Development",
+      description: "Production applications built around rendering strategy from the start — static generation where content allows it, server rendering where it doesn't, and caching that keeps both fast under real traffic.",
       icon: "⚛️"
     },
     {
-      title: "WordPress Performance Optimization",
-      description: "Transform legacy WordPress sites into high-performance, scalable solutions with caching and optimization.",
+      title: "WordPress Engineering & Performance",
+      description: "Custom plugin and theme development, hook/filter-level customization, and performance rebuilds for WordPress sites that have outgrown their original build — including WooCommerce stores under real checkout load.",
       icon: "🌿"
     },
     {
-      title: "Technical SEO",
-      description: "Complete SEO strategy implementation including technical audits, schema markup, and performance optimization.",
-      icon: "🔍"
-    },
-    {
-      title: "MERN Stack Applications",
-      description: "Full-stack applications using MongoDB, Express, React, and Node.js with modern architecture patterns.",
-      icon: "🌐"
-    },
-    {
-      title: "Full-Stack Architecture",
-      description: "Scalable, maintainable architecture for complex web applications with clean separation of concerns.",
+      title: "Laravel CMS Development",
+      description: "Custom CMS platforms built on Laravel for businesses that need structured content management beyond what WordPress or off-the-shelf tools offer.",
       icon: "🏗️"
     },
     {
-      title: "Core Web Vitals Optimization",
-      description: "Complete optimization of Core Web Vitals metrics for improved user experience and search rankings.",
-      icon: "📈"
+      title: "Technical SEO & Core Web Vitals",
+      description: "Site audits, schema implementation, and Core Web Vitals remediation aimed at the metrics that actually move rankings — not a generic checklist.",
+      icon: "🔍"
     },
     {
-      title: "SaaS Development",
-      description: "Enterprise-grade SaaS applications with modern UI/UX, authentication, and scalable backend systems.",
-      icon: "🚀"
+      title: "Real-Time Systems",
+      description: "WebSocket-based features for platforms that need instant state updates: live bidding, live chat, live dashboards — built on Node.js.",
+      icon: "⚡"
+    },
+    {
+      title: "MERN Stack Development",
+      description: "Full-stack applications on MongoDB, Express, React, and Node.js, architected for maintainability as much as for shipping speed.",
+      icon: "🌐"
+    },
+    {
+      title: "API Design & Integrations",
+      description: "REST API design for mobile apps, dealer/vendor systems, and third-party data feeds, including custom search and filtering layers over external data.",
+      icon: "🔌"
+    },
+    {
+      title: "Site Migration & Modernization",
+      description: "Moving legacy WordPress or hand-rolled systems onto modern architecture without losing search rankings in the process.",
+      icon: "📈"
     }
   ];
 
   return (
-    <section className="py-20">
+    <section id="services" className="py-20">
       <div className="container mx-auto px-4">
         <div className="max-w-4xl mx-auto text-center mb-16">
           <motion.h2 

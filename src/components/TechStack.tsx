@@ -14,26 +14,32 @@ export default function TechStack() {
     { name: "Next.js", category: "Frontend Framework" },
     { name: "React", category: "Frontend Library" },
     { name: "TypeScript", category: "Language" },
+    { name: "Tailwind CSS", category: "CSS Framework" },
     { name: "Node.js", category: "Backend Runtime" },
     { name: "Express", category: "Backend Framework" },
+    { name: "PHP", category: "Backend Language" },
+    { name: "Laravel", category: "CMS Framework" },
+    { name: "WordPress", category: "CMS" },
+    { name: "WooCommerce", category: "E-Commerce" },
+    { name: "MySQL / MariaDB", category: "Database" },
     { name: "MongoDB", category: "Database" },
-    { name: "PostgreSQL", category: "Database" },
-    { name: "Tailwind CSS", category: "CSS Framework" },
-    { name: "Framer Motion", category: "Animation" },
-    { name: "GSAP", category: "Animation" },
-    { name: "Lenis", category: "Scrolling" },
+    { name: "WebSockets", category: "Real-Time" },
+    { name: "REST APIs", category: "Integration" },
+    { name: "cPanel / Apache", category: "Server Management" },
     { name: "Vercel", category: "Deployment" },
   ];
 
   const categories = [
     { name: "Frontend", count: 4 },
-    { name: "Backend", count: 3 },
+    { name: "Backend", count: 4 },
+    { name: "CMS & E-Commerce", count: 2 },
     { name: "Database", count: 2 },
-    { name: "Tools", count: 3 }
+    { name: "Real-Time & APIs", count: 2 },
+    { name: "Infrastructure", count: 2 }
   ];
 
   return (
-    <section className="py-20">
+    <section id="tech-stack" className="py-20">
       <div className="container mx-auto px-4">
         <div className="max-w-4xl mx-auto text-center mb-16">
           <motion.h2 
@@ -79,7 +85,7 @@ export default function TechStack() {
               transition={{ duration: 0.6, delay: 0.05 * index }}
               whileHover={{ y: -5 }}
             >
-              <div className="text-2xl mb-2">{tech.name}</div>
+              <div className="text-base font-semibold mb-2">{tech.name}</div>
               <div className="text-xs text-secondaryText">{tech.category}</div>
             </motion.div>
           ))}

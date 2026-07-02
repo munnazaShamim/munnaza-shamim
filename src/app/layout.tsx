@@ -1,42 +1,71 @@
 import './globals.css';
 import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
+import Navbar from '@/components/Navbar';
 
 const inter = Inter({ subsets: ['latin'] });
 
+const SITE_URL = 'https://munnaza-portfolio.vercel.app';
+const SITE_TITLE = 'Munnaza Shamim — Full-Stack Developer & Performance Engineer';
+const SITE_DESCRIPTION =
+  'Full-stack developer specializing in Next.js, WordPress, and Laravel systems engineered for speed and technical SEO. Available for projects across Europe, the UK, UAE, and North America.';
+
 export const metadata: Metadata = {
-  title: 'Munnaza - Premium Developer Portfolio',
-  description: 'High-performance web development services for international clients',
-  keywords: 'web development, next.js, wordpress, mern, performance optimization, technical seo, core web vitals',
-  authors: [{ name: 'Munnaza' }],
-  creator: 'Munnaza',
+  metadataBase: new URL(SITE_URL),
+  title: SITE_TITLE,
+  description: SITE_DESCRIPTION,
+  keywords:
+    'next.js developer, wordpress performance optimization, laravel cms development, core web vitals, technical seo, mern stack developer, real-time web applications',
+  authors: [{ name: 'Munnaza Shamim' }],
+  creator: 'Munnaza Shamim',
   openGraph: {
     type: 'website',
     locale: 'en_US',
-    url: 'https://munnaza-portfolio.vercel.app',
-    title: 'Munnaza - Premium Developer Portfolio',
-    description: 'High-performance web development services for international clients',
+    url: SITE_URL,
+    title: SITE_TITLE,
+    description: SITE_DESCRIPTION,
     images: [
       {
+        // TODO: add /public/og-image.jpg (1200x630) once available
         url: '/og-image.jpg',
         width: 1200,
         height: 630,
-        alt: 'Munnaza Portfolio',
+        alt: 'Munnaza Shamim — Full-Stack Developer & Performance Engineer',
       },
     ],
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Munnaza - Premium Developer Portfolio',
-    description: 'High-performance web development services for international clients',
+    title: SITE_TITLE,
+    description: SITE_DESCRIPTION,
   },
   robots: {
     index: true,
     follow: true,
   },
   alternates: {
-    canonical: 'https://munnaza-portfolio.vercel.app',
+    canonical: SITE_URL,
   },
+};
+
+const personJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'Person',
+  name: 'Munnaza Shamim',
+  jobTitle: 'Full-Stack Developer & Performance Engineer',
+  url: SITE_URL,
+  worksFor: {
+    '@type': 'Organization',
+    name: 'Daikimedia',
+  },
+  knowsAbout: [
+    'Next.js',
+    'WordPress',
+    'Laravel',
+    'MERN Stack',
+    'Technical SEO',
+    'Core Web Vitals',
+  ],
 };
 
 export default function RootLayout({
@@ -46,7 +75,14 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={inter.className}>{children}</body>
+      <body className={inter.className}>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(personJsonLd) }}
+        />
+        <Navbar />
+        {children}
+      </body>
     </html>
   );
 }

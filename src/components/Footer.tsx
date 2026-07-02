@@ -2,6 +2,8 @@
 
 import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
+import SocialLink from './SocialLink';
+import { socialLinks, PHONE_DISPLAY } from '@/lib/socialLinks';
 
 export default function Footer() {
   const [isMounted, setIsMounted] = useState(false);
@@ -19,19 +21,13 @@ export default function Footer() {
             animate={isMounted ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.6 }}
           >
-            <div className="text-2xl font-bold mb-4">Munnaza</div>
+            <div className="text-2xl font-bold mb-4">Munnaza Shamim</div>
             <p className="text-secondaryText mb-4">
-              Building high-performance, scalable web systems for international businesses.
+              Full-stack development, engineered around speed — for clients across Europe, the UK, UAE, and North America.
             </p>
             <div className="flex space-x-4">
-              {['LinkedIn', 'GitHub', 'Twitter'].map((platform, index) => (
-                <a
-                  key={index}
-                  href="#"
-                  className="w-10 h-10 rounded-full bg-cardBackground border border-border flex items-center justify-center hover:bg-primaryAccent hover:text-background transition-colors"
-                >
-                  {platform.charAt(0)}
-                </a>
+              {socialLinks.map((social) => (
+                <SocialLink key={social.label} {...social} size="sm" />
               ))}
             </div>
           </motion.div>
@@ -44,9 +40,9 @@ export default function Footer() {
             <h3 className="font-bold mb-4">Services</h3>
             <ul className="space-y-2 text-secondaryText">
               {[
-                "High-Performance Websites",
                 "Next.js Development",
-                "WordPress Optimization",
+                "WordPress Engineering",
+                "Laravel CMS Development",
                 "Technical SEO",
                 "MERN Stack Apps"
               ].map((item, index) => (
@@ -85,6 +81,7 @@ export default function Footer() {
           >
             <h3 className="font-bold mb-4">Contact</h3>
             <ul className="space-y-2 text-secondaryText">
+              <li>{PHONE_DISPLAY}</li>
               <li>contact@munnaza.dev</li>
               <li>Lahore, Pakistan</li>
               <li>GMT+5 | Mon-Fri: 9AM-6PM</li>
@@ -93,7 +90,7 @@ export default function Footer() {
         </div>
 
         <div className="border-t border-border mt-12 pt-8 text-center text-secondaryText">
-          <p>&copy; {new Date().getFullYear()} Munnaza. All rights reserved.</p>
+          <p>&copy; {new Date().getFullYear()} Munnaza Shamim. All rights reserved.</p>
         </div>
       </div>
     </footer>

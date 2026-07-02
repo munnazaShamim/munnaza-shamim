@@ -2,6 +2,14 @@
 
 import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
+import { FaEnvelope, FaMapMarkerAlt, FaClock, FaWhatsapp } from 'react-icons/fa';
+import SocialLink from './SocialLink';
+import { socialLinks, PHONE_DISPLAY, WHATSAPP_URL } from '@/lib/socialLinks';
+
+const iconBadgeMotion = {
+  whileHover: { scale: 1.12, rotate: 8 },
+  transition: { type: 'spring' as const, stiffness: 400, damping: 12 },
+};
 
 export default function Contact() {
   const [isMounted, setIsMounted] = useState(false);
@@ -28,7 +36,7 @@ export default function Contact() {
   };
 
   return (
-    <section className="py-20">
+    <section id="contact" className="py-20">
       <div className="container mx-auto px-4">
         <div className="max-w-4xl mx-auto">
           <div className="text-center mb-16">
@@ -38,15 +46,15 @@ export default function Contact() {
               animate={isMounted ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.6 }}
             >
-              Let's Build Something Amazing
+              Let&apos;s Scope the Work
             </motion.h2>
-            <motion.p 
+            <motion.p
               className="text-xl text-secondaryText max-w-2xl mx-auto"
               initial={{ opacity: 0, y: 20 }}
               animate={isMounted ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.6, delay: 0.2 }}
             >
-              Ready to elevate your digital presence? Get in touch for a consultation.
+              Tell me what you&apos;re building or what&apos;s slow, and I&apos;ll tell you honestly whether it&apos;s a quick fix or a real rebuild.
             </motion.p>
           </div>
 
@@ -118,15 +126,37 @@ export default function Contact() {
                 <div>
                   <h3 className="text-xl font-bold mb-4">Get in Touch</h3>
                   <p className="text-secondaryText mb-6">
-                    I'm available for international projects and consulting. Let's discuss how we can help your business grow.
+                    Available for projects across Europe, the UK, UAE, and North America — full builds, performance audits, or ongoing support.
                   </p>
                 </div>
 
                 <div className="space-y-4">
-                  <div className="flex items-start">
-                    <div className="w-8 h-8 rounded-full bg-primaryAccent flex items-center justify-center text-background mr-4 flex-shrink-0">
-                      📧
+                  <motion.a
+                    href={WHATSAPP_URL}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-start group"
+                    whileHover={{ x: 4 }}
+                  >
+                    <motion.div
+                      className="w-10 h-10 rounded-full bg-primaryAccent flex items-center justify-center text-background mr-4 flex-shrink-0"
+                      {...iconBadgeMotion}
+                    >
+                      <FaWhatsapp className="w-4 h-4" />
+                    </motion.div>
+                    <div>
+                      <div className="font-semibold group-hover:text-primaryAccent transition-colors">Phone / WhatsApp</div>
+                      <div className="text-secondaryText">{PHONE_DISPLAY}</div>
                     </div>
+                  </motion.a>
+
+                  <div className="flex items-start">
+                    <motion.div
+                      className="w-10 h-10 rounded-full bg-primaryAccent flex items-center justify-center text-background mr-4 flex-shrink-0"
+                      {...iconBadgeMotion}
+                    >
+                      <FaEnvelope className="w-4 h-4" />
+                    </motion.div>
                     <div>
                       <div className="font-semibold">Email</div>
                       <div className="text-secondaryText">contact@munnaza.dev</div>
@@ -134,9 +164,12 @@ export default function Contact() {
                   </div>
 
                   <div className="flex items-start">
-                    <div className="w-8 h-8 rounded-full bg-primaryAccent flex items-center justify-center text-background mr-4 flex-shrink-0">
-                      🌍
-                    </div>
+                    <motion.div
+                      className="w-10 h-10 rounded-full bg-primaryAccent flex items-center justify-center text-background mr-4 flex-shrink-0"
+                      {...iconBadgeMotion}
+                    >
+                      <FaMapMarkerAlt className="w-4 h-4" />
+                    </motion.div>
                     <div>
                       <div className="font-semibold">Location</div>
                       <div className="text-secondaryText">Lahore, Pakistan (Remote)</div>
@@ -144,9 +177,12 @@ export default function Contact() {
                   </div>
 
                   <div className="flex items-start">
-                    <div className="w-8 h-8 rounded-full bg-primaryAccent flex items-center justify-center text-background mr-4 flex-shrink-0">
-                      🕐
-                    </div>
+                    <motion.div
+                      className="w-10 h-10 rounded-full bg-primaryAccent flex items-center justify-center text-background mr-4 flex-shrink-0"
+                      {...iconBadgeMotion}
+                    >
+                      <FaClock className="w-4 h-4" />
+                    </motion.div>
                     <div>
                       <div className="font-semibold">Working Hours</div>
                       <div className="text-secondaryText">Mon-Fri: 9AM - 6PM (GMT+5)</div>
@@ -157,16 +193,8 @@ export default function Contact() {
                 <div>
                   <h4 className="font-bold mb-4">Connect With Me</h4>
                   <div className="flex space-x-4">
-                    {['LinkedIn', 'GitHub', 'Twitter'].map((platform, index) => (
-                      <motion.a
-                        key={index}
-                        href="#"
-                        className="w-12 h-12 rounded-full bg-cardBackground border border-border flex items-center justify-center hover:bg-primaryAccent hover:text-background transition-colors"
-                        whileHover={{ y: -3 }}
-                        whileTap={{ scale: 0.95 }}
-                      >
-                        {platform.charAt(0)}
-                      </motion.a>
+                    {socialLinks.map((social) => (
+                      <SocialLink key={social.label} {...social} />
                     ))}
                   </div>
                 </div>

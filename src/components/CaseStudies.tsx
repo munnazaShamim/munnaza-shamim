@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import Link from 'next/link';
+import ImagePlaceholder from './ImagePlaceholder';
 
 export default function CaseStudies() {
   const [isMounted, setIsMounted] = useState(false);
@@ -14,83 +14,79 @@ export default function CaseStudies() {
   const caseStudies = [
     {
       id: 1,
-      title: "E-commerce Platform Optimization",
-      client: "European Retail Brand",
-      challenge: "Slow load times and poor Core Web Vitals affecting conversion rates",
-      solution: "Implemented Next.js with ISR, optimized images, and lazy loading",
-      results: {
-        lighthouse: "98/100",
-        loadTime: "1.2s",
-        conversion: "+42% increase in conversions"
-      },
-      metrics: [
-        { label: "Lighthouse Score", value: "98/100" },
-        { label: "Page Load Time", value: "1.2s" },
-        { label: "Conversion Rate", value: "+42%" },
-        { label: "SEO Growth", value: "+65%" }
-      ]
+      title: "Real-Time Vehicle Auction Platform",
+      client: "Live bidding & auction marketplace",
+      challenge: "Standard WordPress has no concept of live, concurrent bidding — no real-time state, no role-based dashboard separation, no verification workflow for high-value transactions.",
+      solution: "Built complete custom auction logic in PHP and MySQL, including real-time bid calculations and role-based permissions. Layered Node.js WebSockets on top of WordPress to push live bid updates instantly, with purpose-built dashboards for Dealers, Sellers, and Admins.",
+      features: [
+        "Real-time bid engine, no page reload",
+        "Dealer / Seller / Admin dashboards",
+        "AI-powered outbound verification calls",
+        "AI live chat for instant support"
+      ],
+      imageLabel: "Auction platform — desktop screenshot (1600x1000)"
     },
     {
       id: 2,
-      title: "SaaS Dashboard Redesign",
-      client: "North American SaaS Startup",
-      challenge: "Legacy WordPress site with poor performance and scalability issues",
-      solution: "Migrated to Next.js with modern architecture and performance optimizations",
-      results: {
-        lighthouse: "95/100",
-        loadTime: "0.8s",
-        conversion: "+38% increase in sign-ups"
-      },
-      metrics: [
-        { label: "Lighthouse Score", value: "95/100" },
-        { label: "Page Load Time", value: "0.8s" },
-        { label: "Conversion Rate", value: "+38%" },
-        { label: "SEO Growth", value: "+52%" }
-      ]
+      title: "Commercial Vehicle Marketplace Network",
+      client: "5-site European commercial vehicle trade network",
+      challenge: "Commercial vehicle inventory doesn't fit generic listing plugins — buyers filter by trade-specific fields, and off-the-shelf search doesn't hold up once inventory and traffic scale across five properties.",
+      solution: "Built custom vehicle listing systems with advanced filtering, sorting, and search tailored to commercial vehicle attributes, backed by custom API integrations, dynamic search modules, and centralized data management dashboards across the network.",
+      features: [
+        "Multi-attribute filtering & sorting",
+        "Custom API integrations",
+        "Trade-specific search modules",
+        "Centralized inventory dashboards"
+      ],
+      imageLabel: "Vehicle marketplace network — desktop screenshot (1600x1000)"
     },
     {
       id: 3,
-      title: "WordPress Performance Audit",
-      client: "UK E-commerce Store",
-      challenge: "Slow WordPress site affecting user experience and search rankings",
-      solution: "Complete performance audit, caching implementation, and optimization",
-      results: {
-        lighthouse: "92/100",
-        loadTime: "1.5s",
-        conversion: "+28% increase in sales"
-      },
-      metrics: [
-        { label: "Lighthouse Score", value: "92/100" },
-        { label: "Page Load Time", value: "1.5s" },
-        { label: "Conversion Rate", value: "+28%" },
-        { label: "SEO Growth", value: "+41%" }
-      ]
+      title: "Custom Laravel CMS Platforms",
+      client: "Two production CMS builds",
+      challenge: "Content and workflow requirements that outgrew WordPress's plugin-based approach, needing a structured, purpose-built admin layer.",
+      solution: "Built custom CMS platforms on Laravel with tailored content models and admin workflows, rather than forcing the requirements into a general-purpose CMS.",
+      features: [
+        "Custom content modeling",
+        "Purpose-built admin workflows",
+        "Laravel backend architecture"
+      ],
+      imageLabel: "Laravel CMS platform — screenshot (1600x1000)"
+    },
+    {
+      id: 4,
+      title: "Next.js Application Development",
+      client: "Daikimedia — current work",
+      challenge: "Ongoing Next.js application development as Senior Developer at Daikimedia.",
+      solution: "Full detail coming as projects ship — this card is reserved for the next production write-up.",
+      features: [],
+      imageLabel: "Next.js project — screenshot (1600x1000)"
     }
   ];
 
   return (
-    <section className="py-20 bg-secondaryBackground">
+    <section id="case-studies" className="py-20 bg-secondaryBackground">
       <div className="container mx-auto px-4">
         <div className="max-w-4xl mx-auto text-center mb-16">
-          <motion.h2 
+          <motion.h2
             className="text-3xl md:text-4xl font-bold mb-4"
             initial={{ opacity: 0, y: 20 }}
             animate={isMounted ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.6 }}
           >
-            Featured Case Studies
+            Featured Work
           </motion.h2>
-          <motion.p 
+          <motion.p
             className="text-xl text-secondaryText max-w-2xl mx-auto"
             initial={{ opacity: 0, y: 20 }}
             animate={isMounted ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.6, delay: 0.2 }}
           >
-            Measurable results for real-world challenges
+            Real systems, built for real constraints
           </motion.p>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
           {caseStudies.map((study, index) => (
             <motion.div
               key={study.id}
@@ -100,49 +96,40 @@ export default function CaseStudies() {
               transition={{ duration: 0.6, delay: 0.1 * index }}
             >
               <div className="p-8">
+                <ImagePlaceholder label={study.imageLabel} className="mb-6" />
+
                 <div className="text-primaryAccent text-sm font-semibold mb-2">
                   {study.client}
                 </div>
                 <h3 className="text-xl font-bold mb-4">{study.title}</h3>
-                
+
                 <div className="space-y-4 mb-6">
                   <div>
                     <h4 className="font-semibold text-secondaryText mb-1">Challenge</h4>
                     <p className="text-sm text-secondaryText">{study.challenge}</p>
                   </div>
-                  
+
                   <div>
                     <h4 className="font-semibold text-secondaryText mb-1">Solution</h4>
                     <p className="text-sm text-secondaryText">{study.solution}</p>
                   </div>
                 </div>
 
-                <div className="grid grid-cols-2 gap-4 mb-6">
-                  {study.metrics.map((metric, idx) => (
-                    <div key={idx} className="bg-secondaryBackground p-3 rounded-lg">
-                      <div className="text-xs text-secondaryText">{metric.label}</div>
-                      <div className="font-bold text-primaryAccent">{metric.value}</div>
-                    </div>
-                  ))}
-                </div>
-
-                <Link href="#" className="text-primaryAccent text-sm font-semibold hover:underline">
-                  View Full Case Study →
-                </Link>
+                {study.features.length > 0 && (
+                  <div className="flex flex-wrap gap-2">
+                    {study.features.map((feature, idx) => (
+                      <span
+                        key={idx}
+                        className="text-xs bg-secondaryBackground text-secondaryText px-3 py-1.5 rounded-full"
+                      >
+                        {feature}
+                      </span>
+                    ))}
+                  </div>
+                )}
               </div>
             </motion.div>
           ))}
-        </div>
-
-        <div className="text-center mt-12">
-          <motion.button
-            className="btn-hover px-8 py-3 border border-border text-primaryText font-semibold rounded-lg hover:bg-cardBackground transition-colors"
-            initial={{ opacity: 0, y: 20 }}
-            animate={isMounted ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.6, delay: 0.4 }}
-          >
-            View All Case Studies
-          </motion.button>
         </div>
       </div>
     </section>

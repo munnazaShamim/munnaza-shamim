@@ -13,27 +13,27 @@ export default function PerformanceExpertise() {
   const expertiseAreas = [
     {
       title: "Core Web Vitals Optimization",
-      description: "Expertise in improving LCP, FID, and CLS metrics for superior user experience and search rankings.",
+      description: "Diagnosing and fixing what actually drags down LCP, INP, and CLS — not a generic checklist, but the specific bottleneck on your stack.",
       icon: "⚡",
-      metrics: ["LCP < 1.2s", "FID < 50ms", "CLS < 0.1"]
+      metrics: ["Database & query-level fixes", "Image optimization & lazy loading", "Render-blocking asset cleanup"]
     },
     {
       title: "Technical SEO",
-      description: "Comprehensive SEO implementation including schema markup, canonical tags, sitemaps, and crawl optimization.",
+      description: "Schema markup, canonical tags, crawl structure, and migration-safe SEO for sites that can't afford to lose rankings.",
       icon: "🔍",
-      metrics: ["95%+ SEO Score", "Zero crawl errors", "Rich snippets implemented"]
+      metrics: ["Schema & structured data", "Crawl & indexation audits", "Migration-safe redirects"]
     },
     {
       title: "Performance Engineering",
-      description: "Advanced techniques for reducing bundle size, implementing code splitting, and optimizing asset delivery.",
+      description: "Code splitting, caching strategy, and asset delivery decisions made at the architecture level, not bolted on after launch.",
       icon: "🚀",
-      metrics: ["< 50KB JS bundle", "98%+ PageSpeed", "Optimized images"]
+      metrics: ["Code splitting & lazy loading", "Caching & minification", "Rendering strategy (SSG/SSR/ISR)"]
     },
     {
-      title: "Scalable Architecture",
-      description: "Designing systems that handle traffic spikes with serverless functions, edge caching, and CDN optimization.",
+      title: "Real-Time & Scalable Systems",
+      description: "Architecture for systems that need to hold state under concurrent load — live bidding, live chat, multi-role dashboards.",
       icon: "🏗️",
-      metrics: ["100k+ concurrent users", "99.99% uptime", "Auto-scaling"]
+      metrics: ["WebSocket-based real-time state", "Role-based architecture", "Database optimization for scale"]
     }
   ];
 

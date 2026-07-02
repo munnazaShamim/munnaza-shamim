@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
+import ImagePlaceholder from './ImagePlaceholder';
 
 export default function TrustMetrics() {
   const [isMounted, setIsMounted] = useState(false);
@@ -12,24 +13,24 @@ export default function TrustMetrics() {
 
   const metrics = [
     {
-      value: "98%",
-      label: "Lighthouse Score",
-      description: "Average performance across all projects"
+      value: "100+",
+      label: "Websites & Systems Shipped",
+      description: "WordPress, Next.js, and Laravel builds across four years"
     },
     {
-      value: "95%",
-      label: "Core Web Vitals",
-      description: "User experience optimization"
+      value: "4+ yrs",
+      label: "Full-Stack Development",
+      description: "Junior WordPress developer to senior Next.js engineer"
     },
     {
-      value: "1.2s",
-      label: "Avg. Load Time",
-      description: "Fastest page loads in industry"
+      value: "5",
+      label: "Commercial Vehicle Marketplaces",
+      description: "Custom listing, filtering, and search infrastructure"
     },
     {
-      value: "50+",
-      label: "Projects Completed",
-      description: "International client success stories"
+      value: "Real-Time",
+      label: "Live Bidding Platform",
+      description: "Custom PHP/MySQL auction engine with Node.js WebSockets"
     }
   ];
 
@@ -37,21 +38,21 @@ export default function TrustMetrics() {
     <section className="py-20 bg-secondaryBackground">
       <div className="container mx-auto px-4">
         <div className="max-w-4xl mx-auto text-center mb-16">
-          <motion.h2 
+          <motion.h2
             className="text-3xl md:text-4xl font-bold mb-4"
             initial={{ opacity: 0, y: 20 }}
             animate={isMounted ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.6 }}
           >
-            Trusted by Global Clients
+            Track Record
           </motion.h2>
-          <motion.p 
+          <motion.p
             className="text-xl text-secondaryText max-w-2xl mx-auto"
             initial={{ opacity: 0, y: 20 }}
             animate={isMounted ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.6, delay: 0.2 }}
           >
-            Performance, reliability, and results that exceed expectations
+            Real systems, in production, carrying real traffic
           </motion.p>
         </div>
 
@@ -78,34 +79,31 @@ export default function TrustMetrics() {
           ))}
         </div>
 
-        <div className="mt-16 grid grid-cols-1 md:grid-cols-3 gap-8">
-          <motion.div
-            className="text-center"
+        <div className="mt-16">
+          <motion.h3
+            className="text-xl font-bold mb-6 text-center"
             initial={{ opacity: 0, y: 20 }}
             animate={isMounted ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.6, delay: 0.4 }}
           >
-            <div className="text-2xl font-bold text-primaryAccent mb-2">Europe</div>
-            <div className="text-secondaryText">15+ clients</div>
-          </motion.div>
-          <motion.div
-            className="text-center"
-            initial={{ opacity: 0, y: 20 }}
-            animate={isMounted ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.6, delay: 0.5 }}
-          >
-            <div className="text-2xl font-bold text-primaryAccent mb-2">UK</div>
-            <div className="text-secondaryText">12+ clients</div>
-          </motion.div>
-          <motion.div
-            className="text-center"
-            initial={{ opacity: 0, y: 20 }}
-            animate={isMounted ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.6, delay: 0.6 }}
-          >
-            <div className="text-2xl font-bold text-primaryAccent mb-2">UAE & North America</div>
-            <div className="text-secondaryText">23+ clients</div>
-          </motion.div>
+            Core Web Vitals Proof
+          </motion.h3>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={isMounted ? { opacity: 1, y: 0 } : {}}
+              transition={{ duration: 0.6, delay: 0.5 }}
+            >
+              <ImagePlaceholder label="PageSpeed Insights — auction platform (before/after)" />
+            </motion.div>
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={isMounted ? { opacity: 1, y: 0 } : {}}
+              transition={{ duration: 0.6, delay: 0.6 }}
+            >
+              <ImagePlaceholder label="PageSpeed Insights — commercial vehicle marketplace network" />
+            </motion.div>
+          </div>
         </div>
       </div>
     </section>

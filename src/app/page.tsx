@@ -1,5 +1,5 @@
-import { Metadata } from 'next';
 import Hero from '@/components/Hero';
+import About from '@/components/About';
 import TrustMetrics from '@/components/TrustMetrics';
 import Services from '@/components/Services';
 import CaseStudies from '@/components/CaseStudies';
@@ -12,15 +12,11 @@ import Testimonials from '@/components/Testimonials';
 import Contact from '@/components/Contact';
 import Footer from '@/components/Footer';
 
-export const metadata: Metadata = {
-  title: 'Munnaza - Premium Developer Portfolio',
-  description: 'High-performance web development services for international clients',
-};
-
 export default function Home() {
   return (
     <main className="min-h-screen">
       <Hero />
+      <About />
       <TrustMetrics />
       <Services />
       <CaseStudies />

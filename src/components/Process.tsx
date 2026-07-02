@@ -39,7 +39,7 @@ export default function Process() {
   ];
 
   return (
-    <section className="py-20">
+    <section id="process" className="py-20">
       <div className="container mx-auto px-4">
         <div className="max-w-4xl mx-auto text-center mb-16">
           <motion.h2 
@@ -48,15 +48,15 @@ export default function Process() {
             animate={isMounted ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.6 }}
           >
-            Our Process
+            How This Works
           </motion.h2>
-          <motion.p 
+          <motion.p
             className="text-xl text-secondaryText max-w-2xl mx-auto"
             initial={{ opacity: 0, y: 20 }}
             animate={isMounted ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.6, delay: 0.2 }}
           >
-            A structured approach to delivering exceptional results
+            No work starts until the actual bottleneck or requirement is understood
           </motion.p>
         </div>
 

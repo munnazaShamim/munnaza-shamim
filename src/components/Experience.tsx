@@ -12,46 +12,35 @@ export default function Experience() {
 
   const experiences = [
     {
-      year: "2024 - Present",
-      title: "Senior Full-Stack Developer",
-      company: "Global Tech Solutions",
+      year: "Jan 2026 - Present",
+      title: "Senior Developer",
+      company: "Daikimedia",
       location: "Lahore, Pakistan (Remote)",
-      description: "Leading development of high-performance web applications for international clients, specializing in Next.js, MERN stack, and performance optimization."
+      description: "Building Next.js applications with a focus on performance and technical SEO."
     },
     {
-      year: "2022 - 2024",
-      title: "Frontend Developer",
-      company: "Digital Accelerators",
+      year: "2022 - 2025",
+      title: "Junior Developer",
+      company: "ultrasolz",
       location: "Lahore, Pakistan",
-      description: "Built and optimized complex web applications with React, Next.js, and TypeScript, improving client site performance by 40-60%."
-    },
-    {
-      year: "2020 - 2022",
-      title: "Web Developer",
-      company: "Tech Innovations",
-      location: "Lahore, Pakistan",
-      description: "Developed WordPress and custom web solutions for local businesses, with focus on performance optimization and SEO best practices."
+      description: "Built and maintained WordPress websites across automotive, business, and e-commerce industries. Designed REST APIs for mobile apps and third-party integrations, developed real-time WebSocket features for auction and live-bidding systems, and managed server configurations, databases, and site migrations."
     }
   ];
 
-  const skills = [
-    { name: "Next.js", level: 95 },
-    { name: "React", level: 92 },
-    { name: "TypeScript", level: 90 },
-    { name: "Node.js", level: 88 },
-    { name: "WordPress", level: 85 },
-    { name: "MongoDB", level: 82 },
-    { name: "Technical SEO", level: 94 },
-    { name: "Core Web Vitals", level: 96 },
-    { name: "Performance Engineering", level: 98 },
-    { name: "SaaS Architecture", level: 90 }
+  const skillGroups = [
+    { category: "Frontend", skills: ["Next.js", "React", "TypeScript"] },
+    { category: "Backend", skills: ["Node.js", "PHP", "Laravel"] },
+    { category: "CMS", skills: ["WordPress (custom plugins & themes)", "WooCommerce"] },
+    { category: "Database", skills: ["MySQL / MariaDB", "MongoDB"] },
+    { category: "Performance & SEO", skills: ["Core Web Vitals", "Caching & Minification", "Technical SEO"] },
+    { category: "Real-Time & Infra", skills: ["WebSockets", "REST APIs", "cPanel / Apache"] },
   ];
 
   return (
     <section className="py-20 bg-secondaryBackground">
       <div className="container mx-auto px-4">
         <div className="max-w-4xl mx-auto text-center mb-16">
-          <motion.h2 
+          <motion.h2
             className="text-3xl md:text-4xl font-bold mb-4"
             initial={{ opacity: 0, y: 20 }}
             animate={isMounted ? { opacity: 1, y: 0 } : {}}
@@ -59,13 +48,13 @@ export default function Experience() {
           >
             Professional Experience
           </motion.h2>
-          <motion.p 
+          <motion.p
             className="text-xl text-secondaryText max-w-2xl mx-auto"
             initial={{ opacity: 0, y: 20 }}
             animate={isMounted ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.6, delay: 0.2 }}
           >
-            Years of expertise in building high-performance web systems
+            Four years, two roles, one focus on shipping fast systems
           </motion.p>
         </div>
 
@@ -103,8 +92,8 @@ export default function Experience() {
 
         <div className="mt-20">
           <h3 className="text-2xl font-bold mb-8 text-center">Technical Skills</h3>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-6">
-            {skills.map((skill, index) => (
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            {skillGroups.map((group, index) => (
               <motion.div
                 key={index}
                 className="bg-cardBackground p-6 rounded-xl border border-border"
@@ -112,15 +101,16 @@ export default function Experience() {
                 animate={isMounted ? { opacity: 1, y: 0 } : {}}
                 transition={{ duration: 0.6, delay: 0.05 * index }}
               >
-                <div className="flex justify-between items-center mb-2">
-                  <span className="font-semibold">{skill.name}</span>
-                  <span className="text-secondaryText">{skill.level}%</span>
-                </div>
-                <div className="w-full bg-secondaryBackground rounded-full h-2">
-                  <div 
-                    className="h-2 rounded-full bg-primaryAccent transition-all duration-1000"
-                    style={{ width: `${skill.level}%` }}
-                  ></div>
+                <div className="font-semibold text-primaryAccent mb-3">{group.category}</div>
+                <div className="flex flex-wrap gap-2">
+                  {group.skills.map((skill, idx) => (
+                    <span
+                      key={idx}
+                      className="text-xs bg-secondaryBackground text-secondaryText px-3 py-1.5 rounded-full"
+                    >
+                      {skill}
+                    </span>
+                  ))}
                 </div>
               </motion.div>
             ))}
