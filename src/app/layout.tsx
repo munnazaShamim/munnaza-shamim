@@ -5,7 +5,7 @@ import Navbar from '@/components/Navbar';
 
 const inter = Inter({ subsets: ['latin'] });
 
-const SITE_URL = 'https://munnaza-portfolio.vercel.app';
+const SITE_URL = 'http://munnaza-shamim.vercel.app/';
 const SITE_TITLE = 'Munnaza Shamim — Full-Stack Developer & Performance Engineer';
 const SITE_DESCRIPTION =
   'Full-stack developer specializing in Next.js, WordPress, and Laravel systems engineered for speed and technical SEO. Available for projects across Europe, the UK, UAE, and North America.';
@@ -26,8 +26,7 @@ export const metadata: Metadata = {
     description: SITE_DESCRIPTION,
     images: [
       {
-        // TODO: add /public/og-image.jpg (1200x630) once available
-        url: '/og-image.jpg',
+        url: '/Munnaza.jpg',
         width: 1200,
         height: 630,
         alt: 'Munnaza Shamim — Full-Stack Developer & Performance Engineer',

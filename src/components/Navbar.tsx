@@ -41,7 +41,7 @@ export default function Navbar() {
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between h-16">
           <Link href="#" className="flex items-center gap-3">
-            <div className="w-9 h-9 rounded-lg bg-gradient-to-br from-primaryAccent to-[#60A5FA] flex items-center justify-center font-bold text-background">
+            <div className="w-9 h-9 rounded-lg bg-gradient-to-br from-primaryAccent to-primaryAccentLight flex items-center justify-center font-bold text-background">
               M
             </div>
             <span className="text-xl font-bold text-gradient">Munnaza</span>
@@ -61,7 +61,7 @@ export default function Navbar() {
 
           <Link
             href="#contact"
-            className="hidden md:inline-block btn-hover px-5 py-2.5 bg-primaryAccent text-background font-semibold rounded-lg hover:bg-[#1fb9d0] transition-colors"
+            className="hidden md:inline-block btn-hover-cta px-5 py-2.5 bg-ctaAccent text-background font-semibold rounded-lg hover:bg-ctaAccentHover transition-colors"
           >
             Start Your Project
           </Link>
@@ -116,7 +116,7 @@ export default function Navbar() {
               <Link
                 href="#contact"
                 onClick={() => setIsMenuOpen(false)}
-                className="btn-hover px-5 py-2.5 bg-primaryAccent text-background font-semibold rounded-lg text-center hover:bg-[#1fb9d0] transition-colors"
+                className="btn-hover-cta px-5 py-2.5 bg-ctaAccent text-background font-semibold rounded-lg text-center hover:bg-ctaAccentHover transition-colors"
               >
                 Start Your Project
               </Link>

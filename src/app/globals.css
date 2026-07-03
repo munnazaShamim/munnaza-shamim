@@ -5,12 +5,15 @@
   --color-background: #050816;
   --color-secondaryBackground: #0F172A;
   --color-cardBackground: #111827;
-  --color-primaryAccent: #22D3EE;
+  --color-primaryAccent: #5C7CFA;
+  --color-primaryAccentLight: #8AA4FF;
+  --color-ctaAccent: #D4A853;
+  --color-ctaAccentHover: #BF9142;
   --color-primaryText: #F8FAFC;
   --color-secondaryText: #94A3B8;
   --color-mutedText: #64748B;
   --color-border: rgba(255, 255, 255, 0.08);
-  --color-glow: rgba(34, 211, 238, 0.15);
+  --color-glow: rgba(92, 124, 250, 0.15);
 
   --font-heading: Sora, sans-serif;
   --font-body: Inter, sans-serif;
@@ -25,12 +28,13 @@
   --background-rgb: 5, 8, 22;
   --secondary-background-rgb: 15, 23, 42;
   --card-background-rgb: 17, 24, 39;
-  --primary-accent-rgb: 34, 211, 238;
+  --primary-accent-rgb: 92, 124, 250;
+  --cta-accent-rgb: 212, 168, 83;
   --primary-text-rgb: 248, 250, 252;
   --secondary-text-rgb: 148, 163, 184;
   --muted-text-rgb: 100, 116, 139;
   --border-rgb: 255, 255, 255, 0.08;
-  --glow-rgb: 34, 211, 238, 0.15;
+  --glow-rgb: 92, 124, 250, 0.15;
 }
 
 body {
@@ -79,8 +83,8 @@ h1, h2, h3, h4, h5, h6 {
 
 .card-hover:hover {
   transform: translateY(-5px);
-  box-shadow: 0 10px 25px rgba(34, 211, 238, 0.15);
-  border-color: rgba(34, 211, 238, 0.3);
+  box-shadow: 0 10px 25px rgba(92, 124, 250, 0.15);
+  border-color: rgba(92, 124, 250, 0.3);
 }
 
 /* Button hover effect */
@@ -90,17 +94,27 @@ h1, h2, h3, h4, h5, h6 {
 
 .btn-hover:hover {
   transform: translateY(-2px);
-  box-shadow: 0 5px 15px rgba(34, 211, 238, 0.2);
+  box-shadow: 0 5px 15px rgba(92, 124, 250, 0.2);
+}
+
+/* Primary CTA hover effect — warm gold glow, reserved for the main conversion actions */
+.btn-hover-cta {
+  transition: all 0.3s ease;
+}
+
+.btn-hover-cta:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(212, 168, 83, 0.35);
 }
 
 /* Glow effect */
 .glow {
-  box-shadow: 0 0 15px rgba(34, 211, 238, 0.3);
+  box-shadow: 0 0 15px rgba(92, 124, 250, 0.3);
 }
 
 /* Text gradient */
 .text-gradient {
-  background: linear-gradient(90deg, #22D3EE, #60A5FA);
+  background: linear-gradient(90deg, #5C7CFA, #8AA4FF);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;

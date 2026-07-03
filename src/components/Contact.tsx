@@ -2,7 +2,8 @@
 
 import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { FaEnvelope, FaMapMarkerAlt, FaClock, FaWhatsapp } from 'react-icons/fa';
+import { Mail, MapPin, Clock } from 'lucide-react';
+import { WhatsappIcon } from './icons/BrandIcons';
 import SocialLink from './SocialLink';
 import { socialLinks, PHONE_DISPLAY, WHATSAPP_URL } from '@/lib/socialLinks';
 
@@ -107,7 +108,7 @@ export default function Contact() {
                 
                 <motion.button
                   type="submit"
-                  className="btn-hover w-full px-8 py-4 bg-primaryAccent text-background font-semibold rounded-lg hover:bg-[#1fb9d0] transition-colors"
+                  className="btn-hover-cta w-full px-8 py-4 bg-ctaAccent text-background font-semibold rounded-lg hover:bg-ctaAccentHover transition-colors"
                   whileHover={{ scale: 1.02 }}
                   whileTap={{ scale: 0.98 }}
                 >
@@ -142,7 +143,7 @@ export default function Contact() {
                       className="w-10 h-10 rounded-full bg-primaryAccent flex items-center justify-center text-background mr-4 flex-shrink-0"
                       {...iconBadgeMotion}
                     >
-                      <FaWhatsapp className="w-4 h-4" />
+                      <WhatsappIcon className="w-4 h-4" />
                     </motion.div>
                     <div>
                       <div className="font-semibold group-hover:text-primaryAccent transition-colors">Phone / WhatsApp</div>
@@ -155,7 +156,7 @@ export default function Contact() {
                       className="w-10 h-10 rounded-full bg-primaryAccent flex items-center justify-center text-background mr-4 flex-shrink-0"
                       {...iconBadgeMotion}
                     >
-                      <FaEnvelope className="w-4 h-4" />
+                      <Mail className="w-4 h-4" />
                     </motion.div>
                     <div>
                       <div className="font-semibold">Email</div>
@@ -168,7 +169,7 @@ export default function Contact() {
                       className="w-10 h-10 rounded-full bg-primaryAccent flex items-center justify-center text-background mr-4 flex-shrink-0"
                       {...iconBadgeMotion}
                     >
-                      <FaMapMarkerAlt className="w-4 h-4" />
+                      <MapPin className="w-4 h-4" />
                     </motion.div>
                     <div>
                       <div className="font-semibold">Location</div>
@@ -181,7 +182,7 @@ export default function Contact() {
                       className="w-10 h-10 rounded-full bg-primaryAccent flex items-center justify-center text-background mr-4 flex-shrink-0"
                       {...iconBadgeMotion}
                     >
-                      <FaClock className="w-4 h-4" />
+                      <Clock className="w-4 h-4" />
                     </motion.div>
                     <div>
                       <div className="font-semibold">Working Hours</div>

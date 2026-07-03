@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import ImagePlaceholder from './ImagePlaceholder';
+import Image from 'next/image';
 
 export default function About() {
   const [isMounted, setIsMounted] = useState(false);
@@ -20,11 +20,16 @@ export default function About() {
             animate={isMounted ? { opacity: 1, x: 0 } : {}}
             transition={{ duration: 0.6 }}
           >
-            <ImagePlaceholder
-              label="Headshot — square or 4:5 crop, plain background"
-              aspect="aspect-square"
-              className="rounded-2xl"
-            />
+            <div className="relative aspect-square rounded-2xl overflow-hidden border border-border">
+              <Image
+                src="/Munnaza.jpg"
+                alt="Munnaza Shamim"
+                fill
+                sizes="(min-width: 1024px) 280px, 60vw"
+                className="object-cover"
+                priority
+              />
+            </div>
           </motion.div>
 
           <motion.div

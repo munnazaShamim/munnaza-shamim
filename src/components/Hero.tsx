@@ -3,7 +3,7 @@
 import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import Link from 'next/link';
-import ImagePlaceholder from './ImagePlaceholder';
+import Image from 'next/image';
 
 export default function Hero() {
   const [isMounted, setIsMounted] = useState(false);
@@ -16,7 +16,7 @@ export default function Hero() {
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden pt-16">
       {/* Animated background particles */}
       <div className="absolute inset-0 z-0">
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(34,211,238,0.1),transparent_50%)]"></div>
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(92,124,250,0.12),transparent_50%)]"></div>
       </div>
 
       <div className="container mx-auto px-4 py-20 relative z-10">
@@ -57,7 +57,7 @@ export default function Hero() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.6 }}
             >
-              <Link href="#contact" className="btn-hover px-8 py-4 bg-primaryAccent text-background font-semibold rounded-lg text-center hover:bg-[#1fb9d0] transition-colors">
+              <Link href="#contact" className="btn-hover-cta px-8 py-4 bg-ctaAccent text-background font-semibold rounded-lg text-center hover:bg-ctaAccentHover transition-colors">
                 Start Your Project
               </Link>
               <Link href="#case-studies" className="btn-hover px-8 py-4 border border-border text-primaryText font-semibold rounded-lg text-center hover:bg-cardBackground transition-colors">
@@ -85,11 +85,16 @@ export default function Hero() {
             transition={{ duration: 0.8, delay: 0.4 }}
           >
             <div className="relative">
-              <ImagePlaceholder
-                label="PageSpeed Insights / Core Web Vitals screenshot — drop a real report here (recommended: 1200x750, PNG)"
-                aspect="aspect-[4/3]"
-                className="shadow-2xl"
-              />
+              <div className="relative aspect-[1200/692] w-full rounded-xl overflow-hidden border border-border shadow-2xl">
+                <Image
+                  src="/PageSpeed-hero.webp"
+                  alt="PageSpeed Insights performance report"
+                  fill
+                  sizes="(min-width: 1024px) 50vw, 90vw"
+                  className="object-cover"
+                  priority
+                />
+              </div>
 
               {/* Floating elements */}
               <div className="absolute -top-4 -right-4 w-24 h-24 bg-primaryAccent rounded-full opacity-10 blur-xl"></div>
