@@ -1,15 +1,15 @@
-import Hero from '@/components/Hero';
-import About from '@/components/About';
-import TrustMetrics from '@/components/TrustMetrics';
-import Services from '@/components/Services';
-import CaseStudies from '@/components/CaseStudies';
-import TechStack from '@/components/TechStack';
-import Experience from '@/components/Experience';
-import PerformanceExpertise from '@/components/PerformanceExpertise';
-import Blog from '@/components/Blog';
-import Process from '@/components/Process';
-import Testimonials from '@/components/Testimonials';
-import Contact from '@/components/Contact';
+import Hero from '@/components/homepage/Hero';
+import About from '@/components/homepage/About';
+import TrustMetrics from '@/components/homepage/TrustMetrics';
+import Services from '@/components/homepage/Services';
+import CaseStudies from '@/components/homepage/CaseStudies';
+import TechStack from '@/components/homepage/TechStack';
+import Experience from '@/components/homepage/Experience';
+import PerformanceExpertise from '@/components/homepage/PerformanceExpertise';
+import Blog from '@/components/homepage/Blog';
+import Process from '@/components/homepage/Process';
+import Testimonials from '@/components/homepage/Testimonials';
+import Contact from '@/components/homepage/Contact';
 import Footer from '@/components/Footer';
 
 export default function Home() {

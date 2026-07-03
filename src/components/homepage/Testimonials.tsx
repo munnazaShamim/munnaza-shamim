@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import ImagePlaceholder from './ImagePlaceholder';
+import ImagePlaceholder from '@/components/ImagePlaceholder';
 
 export default function Testimonials() {
   const [isMounted, setIsMounted] = useState(false);

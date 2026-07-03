@@ -3,8 +3,8 @@
 import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { Mail, MapPin, Clock } from 'lucide-react';
-import { WhatsappIcon } from './icons/BrandIcons';
-import SocialLink from './SocialLink';
+import { WhatsappIcon } from '@/components/icons/BrandIcons';
+import SocialLink from '@/components/SocialLink';
 import { socialLinks, PHONE_DISPLAY, WHATSAPP_URL } from '@/lib/socialLinks';
 
 const iconBadgeMotion = {

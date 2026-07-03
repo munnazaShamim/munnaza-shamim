@@ -37,13 +37,13 @@ export default function Hero() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.2 }}
             >
-              <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold leading-tight">
+              <h1 className="text-[32px] md:text-[40px] font-bold leading-tight">
                 Full-stack development, <span className="text-gradient">engineered around speed</span>
               </h1>
             </motion.div>
 
             <motion.p
-              className="text-xl md:text-2xl text-secondaryText max-w-2xl"
+              className="text-l md:text-xl text-secondaryText max-w-2xl"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.4 }}
@@ -72,7 +72,7 @@ export default function Hero() {
               transition={{ duration: 0.6, delay: 0.8 }}
             >
               <p className="text-sm text-secondaryText">
-                Live in production: a real-time vehicle auction platform and a network of commercial vehicle marketplace sites built for the European market.
+                Live in production: a real-time vehicle auction platform with live bidding across dealer, seller, and admin dashboards, plus a network of high-traffic commercial marketplace sites.
               </p>
             </motion.div>
           </motion.div>

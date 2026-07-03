@@ -37,7 +37,7 @@ export default function About() {
             animate={isMounted ? { opacity: 1, x: 0 } : {}}
             transition={{ duration: 0.6, delay: 0.2 }}
           >
-            <h2 className="text-3xl md:text-4xl font-bold mb-6">About</h2>
+            <h2 className="text-l md:text-xl font-bold mb-6">About</h2>
             <div className="space-y-4 text-secondaryText text-lg">
               <p>
                 I&apos;m Munnaza Shamim, a full-stack developer based in Lahore, Pakistan, working with clients across Europe, the UK, UAE, and North America. My focus sits where most agencies split the work in two: building the system, and making it fast.
