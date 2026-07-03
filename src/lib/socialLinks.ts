@@ -2,7 +2,18 @@ import { ComponentType } from 'react';
 import { WhatsappIcon, FacebookIcon, InstagramIcon, LinkedinIcon } from '@/components/icons/BrandIcons';
 
 export const PHONE_DISPLAY = '+92 303 8489822';
-export const WHATSAPP_URL = 'https://wa.me/923038489822';
+export const WHATSAPP_NUMBER = '923038489822';
+export const PHONE_LINK = `tel:+${WHATSAPP_NUMBER}`;
+export const EMAIL = 'munnazashamim786@gmail.com';
+export const EMAIL_LINK = `mailto:${EMAIL}`;
+export const WHATSAPP_DEFAULT_MESSAGE =
+  "Hi Munnaza, I found your portfolio and I'd like to talk about a project.";
+
+export function getWhatsAppLink(message: string = WHATSAPP_DEFAULT_MESSAGE): string {
+  return `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`;
+}
+
+export const WHATSAPP_URL = getWhatsAppLink();
 
 export interface SocialLinkData {
   label: string;
@@ -22,16 +33,14 @@ export const socialLinks: SocialLinkData[] = [
   },
   {
     label: 'Facebook',
-    // TODO: replace with real Facebook page URL
-    href: '#',
+    href: 'https://www.facebook.com/munnaza.shamim.7',
     icon: FacebookIcon,
     glowColor: 'rgba(24, 119, 242, 0.45)',
     hoverClass: 'hover:bg-[#1877F2] hover:border-[#1877F2]',
   },
   {
     label: 'Instagram',
-    // TODO: replace with real Instagram profile URL
-    href: '#',
+    href: 'https://www.instagram.com/munnaza.shamim/',
     icon: InstagramIcon,
     glowColor: 'rgba(238, 42, 123, 0.45)',
     hoverClass:
@@ -39,8 +48,7 @@ export const socialLinks: SocialLinkData[] = [
   },
   {
     label: 'LinkedIn',
-    // TODO: replace with real LinkedIn profile URL
-    href: '#',
+    href: 'https://www.linkedin.com/in/munnaza-shamim/',
     icon: LinkedinIcon,
     glowColor: 'rgba(10, 102, 194, 0.45)',
     hoverClass: 'hover:bg-[#0A66C2] hover:border-[#0A66C2]',

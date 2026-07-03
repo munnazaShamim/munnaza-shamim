@@ -85,7 +85,7 @@ export const caseStudies: CaseStudy[] = [
       'Admin panel built around how the team actually works, instead of a retrofitted generic CMS',
     ],
     imageLabel: 'Laravel CMS platform — screenshot (1600x1000)',
-    featured: true,
+    featured: false,
   },
 ];
 

@@ -3,7 +3,7 @@
 import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import SocialLink from './SocialLink';
-import { socialLinks, PHONE_DISPLAY } from '@/lib/socialLinks';
+import { socialLinks, PHONE_DISPLAY, PHONE_LINK, EMAIL, EMAIL_LINK } from '@/lib/socialLinks';
 
 export default function Footer() {
   const [isMounted, setIsMounted] = useState(false);
@@ -81,10 +81,17 @@ export default function Footer() {
           >
             <h3 className="font-bold mb-4">Contact</h3>
             <ul className="space-y-2 text-secondaryText">
-              <li>{PHONE_DISPLAY}</li>
-              <li>contact@munnaza.dev</li>
+              <li>
+                <a href={PHONE_LINK} className="hover:text-primaryAccent transition-colors">
+                  {PHONE_DISPLAY}
+                </a>
+              </li>
+              <li>
+                <a href={EMAIL_LINK} className="hover:text-primaryAccent transition-colors">
+                  {EMAIL}
+                </a>
+              </li>
               <li>Lahore, Pakistan</li>
-              <li>GMT+5 | Mon-Fri: 9AM-6PM</li>
             </ul>
           </motion.div>
         </div>

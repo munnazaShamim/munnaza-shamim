@@ -2,10 +2,10 @@
 
 import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { Mail, MapPin, Clock } from 'lucide-react';
+import { Mail, MapPin, Phone } from 'lucide-react';
 import { WhatsappIcon } from '@/components/icons/BrandIcons';
 import SocialLink from '@/components/SocialLink';
-import { socialLinks, PHONE_DISPLAY, WHATSAPP_URL } from '@/lib/socialLinks';
+import { socialLinks, PHONE_DISPLAY, PHONE_LINK, EMAIL, EMAIL_LINK, WHATSAPP_URL } from '@/lib/socialLinks';
 
 const iconBadgeMotion = {
   whileHover: { scale: 1.12, rotate: 8 },
@@ -146,12 +146,33 @@ export default function Contact() {
                       <WhatsappIcon className="w-4 h-4" />
                     </motion.div>
                     <div>
-                      <div className="font-semibold group-hover:text-primaryAccent transition-colors">Phone / WhatsApp</div>
+                      <div className="font-semibold group-hover:text-primaryAccent transition-colors">WhatsApp</div>
                       <div className="text-secondaryText">{PHONE_DISPLAY}</div>
                     </div>
                   </motion.a>
 
-                  <div className="flex items-start">
+                  <motion.a
+                    href={PHONE_LINK}
+                    className="flex items-start group"
+                    whileHover={{ x: 4 }}
+                  >
+                    <motion.div
+                      className="w-10 h-10 rounded-full bg-primaryAccent flex items-center justify-center text-background mr-4 flex-shrink-0"
+                      {...iconBadgeMotion}
+                    >
+                      <Phone className="w-4 h-4" />
+                    </motion.div>
+                    <div>
+                      <div className="font-semibold group-hover:text-primaryAccent transition-colors">Phone</div>
+                      <div className="text-secondaryText">{PHONE_DISPLAY}</div>
+                    </div>
+                  </motion.a>
+
+                  <motion.a
+                    href={EMAIL_LINK}
+                    className="flex items-start group"
+                    whileHover={{ x: 4 }}
+                  >
                     <motion.div
                       className="w-10 h-10 rounded-full bg-primaryAccent flex items-center justify-center text-background mr-4 flex-shrink-0"
                       {...iconBadgeMotion}
@@ -159,10 +180,10 @@ export default function Contact() {
                       <Mail className="w-4 h-4" />
                     </motion.div>
                     <div>
-                      <div className="font-semibold">Email</div>
-                      <div className="text-secondaryText">contact@munnaza.dev</div>
+                      <div className="font-semibold group-hover:text-primaryAccent transition-colors">Email</div>
+                      <div className="text-secondaryText">{EMAIL}</div>
                     </div>
-                  </div>
+                  </motion.a>
 
                   <div className="flex items-start">
                     <motion.div
@@ -174,19 +195,6 @@ export default function Contact() {
                     <div>
                       <div className="font-semibold">Location</div>
                       <div className="text-secondaryText">Lahore, Pakistan (Remote)</div>
-                    </div>
-                  </div>
-
-                  <div className="flex items-start">
-                    <motion.div
-                      className="w-10 h-10 rounded-full bg-primaryAccent flex items-center justify-center text-background mr-4 flex-shrink-0"
-                      {...iconBadgeMotion}
-                    >
-                      <Clock className="w-4 h-4" />
-                    </motion.div>
-                    <div>
-                      <div className="font-semibold">Working Hours</div>
-                      <div className="text-secondaryText">Mon-Fri: 9AM - 6PM (GMT+5)</div>
                     </div>
                   </div>
                 </div>
