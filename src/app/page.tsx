@@ -1,6 +1,5 @@
 import Hero from '@/components/homepage/Hero';
 import About from '@/components/homepage/About';
-import TrustMetrics from '@/components/homepage/TrustMetrics';
 import Services from '@/components/homepage/Services';
 import CaseStudies from '@/components/homepage/CaseStudies';
 import TechStack from '@/components/homepage/TechStack';
