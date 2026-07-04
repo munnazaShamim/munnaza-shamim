@@ -1,8 +1,8 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
-import ImagePlaceholder from '@/components/ImagePlaceholder';
 import Footer from '@/components/Footer';
-import { caseStudies } from '@/lib/caseStudies';
+import CaseStudiesGrid from '@/components/CaseStudiesGrid';
+import { caseStudies, getAllCategories } from '@/lib/caseStudies';
 
 const PAGE_TITLE = 'Case Studies — Real-Time, WordPress & Laravel Systems in Production';
 const PAGE_DESCRIPTION =
@@ -35,23 +35,7 @@ export default function CaseStudiesIndexPage() {
           </p>
         </div>
 
-        <div className="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-8">
-          {caseStudies.map((study) => (
-            <Link
-              key={study.slug}
-              href={`/case-studies/${study.slug}`}
-              className="card-hover bg-cardBackground rounded-2xl border border-border overflow-hidden block"
-            >
-              <div className="p-8">
-                <ImagePlaceholder label={study.imageLabel} className="mb-6" />
-                <div className="text-primaryAccent text-sm font-semibold mb-2">{study.client}</div>
-                <h2 className="text-xl font-bold mb-3">{study.title}</h2>
-                <p className="text-sm text-secondaryText mb-4">{study.summary}</p>
-                <span className="text-primaryAccent font-semibold text-sm">Read full case study →</span>
-              </div>
-            </Link>
-          ))}
-        </div>
+        <CaseStudiesGrid caseStudies={caseStudies} categories={getAllCategories()} />
       </div>
       <Footer />
     </main>

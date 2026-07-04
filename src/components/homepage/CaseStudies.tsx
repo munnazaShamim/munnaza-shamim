@@ -3,7 +3,7 @@
 import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import Link from 'next/link';
-import ImagePlaceholder from '@/components/ImagePlaceholder';
+import CaseStudyThumbnail from '@/components/CaseStudyThumbnail';
 import { getFeaturedCaseStudies } from '@/lib/caseStudies';
 
 export default function CaseStudies() {
@@ -46,38 +46,14 @@ export default function CaseStudies() {
               animate={isMounted ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.6, delay: 0.1 * index }}
             >
-              <div className="p-8 flex flex-col flex-1">
-                <ImagePlaceholder label={study.imageLabel} className="mb-6" />
+              <div className="p-6 flex flex-col flex-1">
+                <CaseStudyThumbnail study={study} fit="cover" className="mb-5" />
 
                 <div className="text-primaryAccent text-sm font-semibold mb-2">
                   {study.client}
                 </div>
-                <h3 className="text-xl font-bold mb-4">{study.title}</h3>
-
-                <div className="space-y-4 mb-6">
-                  <div>
-                    <h4 className="font-semibold text-secondaryText mb-1">Challenge</h4>
-                    <p className="text-sm text-secondaryText">{study.challenge}</p>
-                  </div>
-
-                  <div>
-                    <h4 className="font-semibold text-secondaryText mb-1">Solution</h4>
-                    <p className="text-sm text-secondaryText">{study.solution}</p>
-                  </div>
-                </div>
-
-                {study.features.length > 0 && (
-                  <div className="flex flex-wrap gap-2 mb-6">
-                    {study.features.map((feature, idx) => (
-                      <span
-                        key={idx}
-                        className="text-xs bg-secondaryBackground text-secondaryText px-3 py-1.5 rounded-full"
-                      >
-                        {feature}
-                      </span>
-                    ))}
-                  </div>
-                )}
+                <h3 className="text-xl font-bold mb-2">{study.title}</h3>
+                <p className="text-sm text-secondaryText mb-5">{study.summary}</p>
 
                 <Link
                   href={`/case-studies/${study.slug}`}

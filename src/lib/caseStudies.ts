@@ -1,14 +1,21 @@
+export interface CaseStudyImage {
+  src: string;
+  label: string;
+}
+
 export interface CaseStudy {
   slug: string;
   title: string;
   client: string;
   summary: string;
+  categories: string[];
   challenge: string;
   solution: string;
   features: string[];
   techStack: string[];
   proof: string[];
   imageLabel: string;
+  gallery?: CaseStudyImage[];
   featured: boolean;
 }
 
@@ -16,76 +23,181 @@ export const caseStudies: CaseStudy[] = [
   {
     slug: 'real-time-vehicle-auction-platform',
     title: 'Real-Time Vehicle Auction Platform',
-    client: 'Live bidding & auction marketplace',
+    client: 'Live bidding & auction marketplace — German client',
     summary:
-      'A custom-built real-time bidding platform with instant bid updates and three purpose-built role dashboards.',
+      'A custom-built real-time bidding platform with instant, authenticated bid updates, three purpose-built role dashboards, and a full transactional email system tying the whole auction lifecycle together.',
+    categories: ['Live Bidding & Real-Time'],
     challenge:
-      "Standard WordPress has no concept of live, concurrent bidding — no real-time state, no role-based dashboard separation, no verification workflow for high-value transactions.",
+      "Standard WordPress has no concept of live, concurrent bidding — no real-time state, no per-listing access control, no role-based dashboard separation, and no notification workflow for a multi-party, high-value transaction. The client needed all of this built from scratch on top of WordPress, matched pixel-for-pixel to a design delivered as an XD file, including the live in-page bidding animation.",
     solution:
-      'Built complete custom auction logic in PHP and MySQL, including real-time bid calculations and role-based permissions. Layered Node.js WebSockets on top of WordPress to push live bid updates instantly, with purpose-built dashboards for Sellers, Dealers, and Admins, and implemented the full visual design — including live animation — pixel-for-pixel from the provided design files.',
+      'Built the entire auction engine as custom PHP and MySQL logic inside a custom-coded WordPress plugin — bid calculations, role-based permissions, and auction state are all handled server-side, not through a page builder or an off-the-shelf auction plugin. Layered Node.js WebSockets on top so every active auction gets its own authenticated room: bid updates are pushed only to the logged-in users actually watching that listing, not broadcast site-wide. Built three separate dashboards — Seller, Dealer, Admin — each scoped to just the data and actions relevant to that role, with every new registration manually verified by an admin before dashboard access is granted. Wired a full transactional email system into every step of the auction lifecycle, and added an authenticated, admin-verified live chat plus AI-powered outbound verification calls for high-value transactions. The full visual design — including the live bidding animation — was implemented pixel-for-pixel from the client\'s XD files.',
     features: [
-      'Real-time bid engine, no page reload',
-      'Seller / Dealer / Admin dashboards',
+      'Real-time bid engine — no page reload',
+      'Per-auction WebSocket rooms, authenticated & scoped per client',
+      'Seller / Dealer / Admin dashboards with admin-verified access',
+      'Full auction-lifecycle transactional email system',
+      'Authenticated live chat (registered, verified users only)',
       'AI-powered outbound verification calls',
-      'AI live chat for instant support',
     ],
     techStack: ['WordPress (custom plugin)', 'PHP', 'MySQL', 'Node.js', 'WebSockets'],
     proof: [
-      'Every bid is pushed to all connected users instantly — no refresh, no polling delay',
-      'Three separate dashboards (Seller, Dealer, Admin), each with distinct permissions and workflows',
-      'Full design system — including live in-page animation — implemented pixel-for-pixel from the agency design',
-      'AI-powered verification calls and live chat layered directly into the bidding flow',
+      'Every bid is pushed live over WebSockets — no refresh, no polling — scoped to an authenticated room per auction, not a public broadcast',
+      'Three role-based dashboards (Seller, Dealer, Admin), each showing only the data and actions relevant to that role, with every account manually verified by an admin before dashboard access',
+      'Bidding activity and bid details are gated entirely behind login — no anonymous visibility',
+      'Transactional emails fire at every stage of the workflow: new registration (user + admin), new vehicle listed for auction (seller + admin), and auction completed (seller, admin, and the highest bidder)',
+      'Authenticated, admin-verified live chat and AI-powered outbound verification calls layered directly into the bidding flow',
+      "Full design system — including the live in-page bidding animation — implemented pixel-for-pixel from the client's XD files",
     ],
     imageLabel: 'Auction platform — desktop screenshot (1600x1000)',
+    gallery: [
+      { src: '/autoauction-hompage.png', label: 'Homepage — live auction listings' },
+      { src: '/autoauciton-hompage2.png', label: 'Homepage — featured auctions' },
+      { src: '/autoauction-homepage3.png', label: 'Homepage — how bidding works' },
+      { src: '/autoauction-vehical-listing.png', label: 'Vehicle listing page' },
+      { src: '/autoauction-vehical-detail-page.png', label: 'Vehicle detail page — live bidding' },
+      { src: '/autoauction-seller-dashboard.png', label: 'Seller dashboard' },
+      { src: '/autoauction-dealer-dashboard.png', label: 'Dealer dashboard' },
+      { src: '/autoauciton-admin-dahsboard.png', label: 'Admin dashboard' },
+    ],
     featured: true,
   },
   {
     slug: 'commercial-vehicle-marketplace-network',
     title: 'Commercial Vehicle Marketplace Network',
-    client: 'Multi-site commercial vehicle trade network',
+    client: 'Multi-site commercial vehicle trade network — German client',
     summary:
-      'A network of production marketplace sites sharing one custom listing, filtering, and search engine built for commercial vehicle trade.',
+      'A network of production marketplace sites sharing one custom listing, filtering, and search engine built for commercial vehicle trade — each site also engineered with its own SEO-friendly technical foundation.',
+    categories: ['Marketplace & Listings', 'SEO & Performance'],
     challenge:
-      "Commercial vehicle inventory doesn't fit generic listing plugins — buyers filter by trade-specific fields, and off-the-shelf search doesn't hold up once inventory and traffic scale across multiple properties.",
+      "Commercial vehicle inventory doesn't fit generic listing plugins — buyers filter by trade-specific fields, and off-the-shelf search doesn't hold up once inventory and traffic scale across multiple properties. Running several sites off shared catalog logic also risks duplicate-content and technical SEO problems if the sites aren't built deliberately to rank independently.",
     solution:
-      'Built custom vehicle listing systems with advanced filtering, sorting, and search tailored to commercial vehicle attributes, backed by custom API integrations, dynamic search modules, and centralized data management dashboards across the network — all delivered as custom-coded WordPress plugins rather than off-the-shelf listing tools.',
+      'Built custom vehicle listing systems with advanced filtering, sorting, and search tailored to commercial vehicle attributes, backed by custom API integrations, dynamic search modules, and centralized data management dashboards across the network — all delivered as custom-coded WordPress plugins rather than off-the-shelf listing tools. Every site was also built with its own SEO-friendly technical foundation — clean URL structures, schema/meta markup, and fast page-load performance — so each property could rank and convert organic traffic independently instead of competing with the rest of the network.',
     features: [
       'Multi-attribute filtering & sorting',
       'Custom API integrations',
       'Trade-specific search modules',
       'Centralized inventory dashboards',
+      'SEO-friendly technical foundation (clean URLs, schema markup, fast page loads)',
     ],
     techStack: ['WordPress (custom plugin architecture)', 'PHP', 'MySQL', 'Custom REST APIs'],
     proof: [
       'Multiple production sites sharing one custom listing/search engine, not a page-builder template',
       'Filtering built around real commercial-vehicle trade attributes, not a generic listing plugin schema',
       'One centralized inventory dashboard managing listings across every site in the network',
+      'Each site built with its own SEO-friendly technical foundation — clean URLs, schema/meta markup, fast page loads — to rank and convert independently rather than duplicate content across properties',
     ],
     imageLabel: 'Vehicle marketplace network — desktop screenshot (1600x1000)',
+    gallery: [
+      { src: '/commercial-vehicle-marketplace-network1.png', label: 'Network site — truck (LKW) selling landing page' },
+      { src: '/commercial-vehicle-marketplace-network2.png', label: 'Network site — car (Pkw) selling landing page' },
+      { src: '/commercial-vehicle-marketplace-network3.png', label: 'Network site — live vehicle listing & inventory' },
+      { src: '/commercial-vehicle-marketplace-network4.png', label: 'Network site — vision, mission & expertise section' },
+      { src: '/commercial-vehicle-marketplace-network5.webp', label: 'Sister site on the same platform — home improvement services' },
+    ],
     featured: true,
   },
   {
-    slug: 'custom-laravel-cms-platforms',
-    title: 'Custom Laravel CMS Platforms',
-    client: 'Two production CMS builds',
+    slug: 'nexus-clinic-headless-wordpress-nextjs',
+    title: 'Nexus Clinic — WordPress to Next.js Migration',
+    client: 'Nexus Clinic — aesthetic & medical clinic, Kuala Lumpur, Malaysia',
     summary:
-      'Two purpose-built CMS platforms on Laravel, built when the content and workflow model outgrew what a generic CMS plugin could do.',
+      'Migrated an aesthetic-clinic site from traditional WordPress to a headless WordPress + Next.js architecture, landing near-perfect Lighthouse scores on both mobile and desktop.',
+    categories: ['Performance', 'Core Web Vitals', 'Deployment & Infrastructure'],
     challenge:
-      "Content and workflow requirements that outgrew WordPress's plugin-based approach, needing a structured, purpose-built admin layer.",
+      "The client's site was running on traditional WordPress and wanted to move to React for stronger SEO control and faster pages, without losing the WordPress content-editing workflow the team already relied on. Beyond the migration itself, the project needed someone to own the full deployment pipeline and server security end to end, not just hand off code.",
     solution:
-      'Built custom CMS platforms on Laravel with tailored content models and admin workflows, rather than forcing the requirements into a general-purpose CMS.',
+      'Rebuilt the entire front end in Next.js for server-rendering and fine-grained SEO control, while keeping WordPress as a headless CMS on the backend so content stays fully editable for the team. Secured the connection between the two by locking down the WordPress API so it is never exposed directly to the browser, and carried out full technical optimization across the site — resulting in near-perfect Lighthouse scores on both mobile and desktop. Also own the full deployment pipeline: pushing code from GitHub straight to the production VPS, hardening and securing the VPS itself, and routing all traffic through Cloudflare.',
     features: [
-      'Custom content modeling',
-      'Purpose-built admin workflows',
-      'Laravel backend architecture',
+      'Headless WordPress backend, Next.js front end',
+      'Secured WordPress API — never exposed directly to the browser',
+      'Server-rendered pages built for SEO',
+      'Full technical performance optimization pass',
+      'GitHub-to-VPS deployment pipeline, fully self-managed',
+      'VPS hardening & security, traffic routed through Cloudflare',
     ],
-    techStack: ['Laravel', 'PHP', 'MySQL', 'Custom Admin Panel'],
+    techStack: [
+      'Next.js',
+      'React',
+      'WordPress (headless CMS)',
+      'Secured WordPress REST API',
+      'Node.js',
+      'GitHub',
+      'VPS',
+      'Cloudflare',
+    ],
     proof: [
-      'Two production CMS platforms running on content models designed around the actual business workflow',
-      'Admin panel built around how the team actually works, instead of a retrofitted generic CMS',
+      'Mobile Lighthouse: 95 Performance, 97 Accessibility, 100 Best Practices, 100 SEO',
+      'Desktop Lighthouse: 100 Performance, 97 Accessibility, 100 Best Practices, 100 SEO',
+      'Desktop Core Web Vitals: 0.5s First Contentful Paint, 0.8s Largest Contentful Paint, 30ms Total Blocking Time, 0.01 Cumulative Layout Shift',
+      'WordPress API secured and only ever consumed on the backend — never exposed directly to the client',
+      'Full deployment pipeline self-managed — GitHub to VPS — with the VPS hardened and traffic secured through Cloudflare',
     ],
-    imageLabel: 'Laravel CMS platform — screenshot (1600x1000)',
-    featured: false,
+    imageLabel: 'Nexus Clinic homepage — desktop screenshot (1600x1000)',
+    gallery: [
+      { src: '/nexus.webp', label: 'Homepage — hero section' },
+      { src: '/nexus-service-pages.webp', label: 'Botox treatment service page' },
+    ],
+    featured: true,
+  },
+  {
+    slug: 'custom-laravel-blog-cms-secure-api',
+    title: 'Custom Laravel CMS — Secure Blog Publishing & API',
+    client: 'Dr. Soma Plastic Surgery — plastic surgery clinic, Malaysia (built at Daikimedia)',
+    summary:
+      'A custom Laravel CMS for blog authoring and publishing, serving content to the live site through a secure custom API, with two-factor OTP-gated admin login.',
+    categories: ['Custom CMS', 'Performance'],
+    challenge:
+      "The team needed a way to write and publish blog content without touching the live site's codebase, served through an API rather than a shared database. Since this was a fully custom, single-purpose admin panel rather than a hardened, widely-used platform like WordPress, admin access itself needed to be locked down deliberately rather than relying on a plugin ecosystem's existing security track record.",
+    solution:
+      "Built a complete CMS in Laravel for authoring and publishing blog content, with a secure custom API that the live site fetches and renders content from. Gated the admin login behind two-factor authentication — email and password plus a one-time OTP code — so the CMS can't be reached from anywhere with credentials alone. The consuming frontend was also optimized specifically for Largest Contentful Paint, so pulling content from the CMS API doesn't cost the site its load speed.",
+    features: [
+      'Custom blog authoring & publishing CMS, built in Laravel',
+      'Secure custom API — live site fetches and renders CMS content',
+      'Two-factor (OTP) gated admin login',
+      'Frontend optimized specifically for Largest Contentful Paint',
+    ],
+    techStack: ['Laravel', 'PHP', 'MySQL', 'Custom REST API', 'OTP-based Two-Factor Authentication'],
+    proof: [
+      'Admin login gated behind email/password plus a one-time OTP code — the CMS cannot be reached with credentials alone',
+      'Blog content is authored in the CMS and served to the live site entirely through a custom-built API, not a shared database',
+      'Live site running on this CMS scores 91 Performance / 85 Accessibility / 100 Best Practices / 100 SEO on desktop, and 95 Performance / 85 Accessibility / 100 Best Practices / 100 SEO on mobile in PageSpeed Insights',
+    ],
+    imageLabel: 'Custom CMS — secure OTP-gated admin login (1600x1000)',
+    gallery: [
+      { src: '/soma-cms-interface.png', label: 'CMS — secure OTP-gated admin login' },
+      { src: '/soma-aesthetic-clinic.webp', label: 'Live site homepage — content served from the CMS API' },
+    ],
+    featured: true,
+  },
+  {
+    slug: 'furnishings-my-nextjs-api-caching',
+    title: 'Vinyl & Carpet Flooring Retailer — API Caching & Core Web Vitals Fix',
+    client: 'Vinyl & carpet flooring retailer, Malaysia',
+    summary:
+      'Fixed an already-built Next.js site that was extremely slow by replacing scattered, repeated API calls with a centralized caching layer — landing near-perfect Lighthouse scores on mobile and desktop.',
+    categories: ['Performance', 'Core Web Vitals'],
+    challenge:
+      'The site was already built in Next.js on Vercel, pulling content from a CMS API built by another developer, but it was extremely slow. The same API endpoints were being fetched independently on multiple pages — sometimes multiple times on a single page — with no single caching layer controlling any of it. Every page load re-hit an already-slow backend API directly, compounding load time on top of a slow server.',
+    solution:
+      'Introduced a centralized caching layer across the site — products, blogs, and general site data all now go through cached fetches instead of every page independently re-calling the CMS API. That cut both the number of API calls and the time spent waiting on the slow backend, taking load time and Largest Contentful Paint down sharply on both mobile and desktop.',
+    features: [
+      'Centralized caching layer for products, blogs & site-wide data',
+      'Eliminated duplicate, uncached API calls across pages',
+      'Next.js data fetching optimized, deployed on Vercel',
+      'LCP and load-time optimization across mobile & desktop',
+    ],
+    techStack: ['Next.js', 'React', 'Vercel', 'Headless CMS API (third-party)'],
+    proof: [
+      'Mobile Lighthouse: 97 Performance, 96 Accessibility, 100 Best Practices, 100 SEO',
+      'Desktop Lighthouse: 99 Performance, 96 Accessibility, 96 Best Practices, 100 SEO',
+      'Repeated, uncached API calls scattered across pages replaced with a single centralized caching layer for products, blogs, and site data',
+    ],
+    imageLabel: 'Flooring retailer — desktop Lighthouse audit (1600x1000)',
+    gallery: [
+      { src: '/furnishing-lcp-desktop.png', label: 'Desktop Lighthouse audit — after caching' },
+      { src: '/furnishing-lcp.png', label: 'Mobile Lighthouse audit — after caching' },
+    ],
+    featured: true,
   },
 ];
 
@@ -95,4 +207,8 @@ export function getCaseStudy(slug: string): CaseStudy | undefined {
 
 export function getFeaturedCaseStudies(): CaseStudy[] {
   return caseStudies.filter((study) => study.featured);
+}
+
+export function getAllCategories(): string[] {
+  return Array.from(new Set(caseStudies.flatMap((study) => study.categories)));
 }
