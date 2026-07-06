@@ -3,7 +3,7 @@
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import Link from 'next/link';
-
+import { getWhatsAppLink } from '@/lib/socialLinks';
 const navLinks = [
   { label: 'About', href: '/#about' },
   { label: 'Services', href: '/#services' },
@@ -61,7 +61,7 @@ export default function Navbar() {
           </nav>
 
           <Link
-            href="/#contact"
+            href={getWhatsAppLink()}
             className="hidden md:inline-block btn-hover-cta px-5 py-2.5 bg-ctaAccent text-background font-semibold rounded-lg hover:bg-ctaAccentHover transition-colors"
           >
             Start Your Project
@@ -71,7 +71,7 @@ export default function Navbar() {
             type="button"
             aria-label="Toggle menu"
             onClick={() => setIsMenuOpen((open) => !open)}
-            className="md:hidden w-10 h-10 rounded-lg border border-border flex items-center justify-center"
+            className="md:hidden w-11 h-11 rounded-lg border border-border flex items-center justify-center"
           >
             <div className="space-y-1.5">
               <span

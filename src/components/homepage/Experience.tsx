@@ -77,8 +77,8 @@ export default function Experience() {
                   <Briefcase className="w-6 h-6 text-primaryAccent" />
                 </div>
                 {exp.current && (
-                  <span className="flex items-center gap-2 text-xs font-semibold text-primaryAccent bg-primaryAccent/10 border border-primaryAccent/20 px-3 py-1.5 rounded-full">
-                    <span className="w-2 h-2 rounded-full bg-primaryAccent animate-pulse" />
+                  <span className="flex items-center gap-2 text-xs font-semibold text-primaryAccentLight bg-primaryAccent/15 border border-primaryAccent/30 px-3 py-1.5 rounded-full">
+                    <span className="w-2 h-2 rounded-full bg-primaryAccentLight animate-pulse" />
                     Current Role
                   </span>
                 )}

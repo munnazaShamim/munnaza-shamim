@@ -114,9 +114,9 @@ export default function Contact() {
                 >
                   Send via WhatsApp
                 </motion.button>
-                <p className="text-sm text-mutedText text-center">
+                <p className="text-sm text-secondaryText text-center">
                   Opens WhatsApp with your message ready to send — or email me directly at{' '}
-                  <a href={EMAIL_LINK} className="text-primaryAccent hover:underline">
+                  <a href={EMAIL_LINK} className="text-primaryAccentLight underline underline-offset-2 hover:text-primaryAccent">
                     {EMAIL}
                   </a>
                 </p>

@@ -156,7 +156,7 @@ export default function Testimonials() {
                 type="button"
                 aria-label="Previous testimonial"
                 onClick={() => goTo(activeIndex - 1, -1)}
-                className="w-10 h-10 rounded-full bg-background/70 backdrop-blur border border-border flex items-center justify-center text-primaryText hover:bg-primaryAccent hover:border-primaryAccent hover:text-background transition-colors"
+                className="w-11 h-11 rounded-full bg-background/70 backdrop-blur border border-border flex items-center justify-center text-primaryText hover:bg-primaryAccent hover:border-primaryAccent hover:text-background transition-colors"
               >
                 <ChevronLeft className="w-5 h-5" />
               </button>
@@ -164,27 +164,31 @@ export default function Testimonials() {
                 type="button"
                 aria-label="Next testimonial"
                 onClick={() => goTo(activeIndex + 1, 1)}
-                className="w-10 h-10 rounded-full bg-background/70 backdrop-blur border border-border flex items-center justify-center text-primaryText hover:bg-primaryAccent hover:border-primaryAccent hover:text-background transition-colors"
+                className="w-11 h-11 rounded-full bg-background/70 backdrop-blur border border-border flex items-center justify-center text-primaryText hover:bg-primaryAccent hover:border-primaryAccent hover:text-background transition-colors"
               >
                 <ChevronRight className="w-5 h-5" />
               </button>
             </div>
           </div>
 
-          {/* Dots */}
-          <div className="flex justify-center gap-2 mt-6">
+          {/* Dots — padded to a 24px+ tap target while keeping the visual dot small */}
+          <div className="flex justify-center gap-1 mt-6">
             {testimonials.map((testimonial, index) => (
               <button
                 key={testimonial.href}
                 type="button"
                 aria-label={`Go to testimonial ${index + 1}`}
                 onClick={() => goTo(index, index > activeIndex ? 1 : -1)}
-                className={`h-2 rounded-full transition-all duration-300 ${
-                  index === activeIndex
-                    ? 'w-8 bg-primaryAccent'
-                    : 'w-2 bg-border hover:bg-mutedText'
-                }`}
-              />
+                className="p-2.5 flex items-center justify-center"
+              >
+                <span
+                  className={`block h-2 rounded-full transition-all duration-300 ${
+                    index === activeIndex
+                      ? 'w-8 bg-primaryAccent'
+                      : 'w-2 bg-border hover:bg-mutedText'
+                  }`}
+                />
+              </button>
             ))}
           </div>
         </motion.div>

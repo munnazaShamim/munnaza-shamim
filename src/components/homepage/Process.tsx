@@ -89,7 +89,7 @@ export default function Process() {
               transition={{ duration: 0.6, delay: 0.1 * index }}
             >
               <div className="flex items-center justify-between mb-4">
-                <span className="text-4xl font-bold text-primaryAccent/25 group-hover:text-primaryAccent/50 transition-colors">
+                <span className="text-4xl font-bold text-primaryAccent/60 group-hover:text-primaryAccent/90 transition-colors">
                   {step.number}
                 </span>
                 {index < steps.length - 1 && (

@@ -101,7 +101,7 @@ export default function Footer() {
                 </a>
               </li>
               <li>Lahore, Pakistan</li>
-              <li className="text-mutedText text-sm">Working hours aligned with CET</li>
+              <li className="text-secondaryText text-sm">Working hours aligned with CET</li>
             </ul>
           </motion.div>
         </div>
