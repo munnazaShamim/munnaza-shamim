@@ -20,7 +20,7 @@ export default function Experience() {
       current: true,
       description:
         'Building Next.js applications with a focus on performance and technical SEO — including headless WordPress migrations, custom Laravel CMS platforms, and Core Web Vitals remediation for client sites.',
-      highlights: ['Next.js', 'Headless WordPress', 'Laravel CMS', 'Core Web Vitals'],
+      highlights: ['Next.js', 'Headless WordPress', 'Laravel CMS', 'Core Web Vitals', 'Server Management', 'Technical SEO', 'Security', 'Performance Optimization', 'REST APIs'],
     },
     {
       year: '2022 - 2025',
@@ -30,7 +30,7 @@ export default function Experience() {
       current: false,
       description:
         'Built and maintained WordPress websites across automotive, business, and e-commerce industries. Designed REST APIs for mobile apps and third-party integrations, developed real-time WebSocket features for auction and live-bidding systems, and managed server configurations, databases, and site migrations.',
-      highlights: ['WordPress & WooCommerce', 'REST APIs', 'WebSockets', 'Server Management'],
+      highlights: ['WordPress & WooCommerce', 'REST APIs', 'WebSockets', 'Server Management', 'Database Management', 'Security'],
     },
   ];
 
