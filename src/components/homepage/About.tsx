@@ -37,7 +37,7 @@ export default function About() {
             animate={isMounted ? { opacity: 1, x: 0 } : {}}
             transition={{ duration: 0.6, delay: 0.2 }}
           >
-            <h2 className="text-l md:text-xl font-bold mb-6">About</h2>
+            <h2 className="text-3xl md:text-4xl font-bold mb-6">About</h2>
             <div className="space-y-4 text-secondaryText text-lg">
               <p>
                 I&apos;m Munnaza Shamim, a full-stack developer based in Lahore, Pakistan, working with clients across Europe, the UK, UAE, and North America. My focus sits where most agencies split the work in two: building the system, and making it fast.
@@ -50,6 +50,9 @@ export default function About() {
               </p>
               <p>
                 Currently building Next.js applications as a Senior Developer at Daikimedia, after three years as a full-stack WordPress and Node.js developer at ultrasolz. Four years in, one standard applied to every project: it has to load fast, it has to rank, and it has to hold up under real usage.
+              </p>
+              <p>
+                Most of my client base is in Europe — including German businesses in the commercial vehicle trade — so GDPR-conscious data handling and clean consent flows are a default in my builds, not an afterthought. My working hours align with Central European Time: Lahore is only three to four hours ahead of Berlin, so same-day communication is the norm.
               </p>
             </div>
           </motion.div>

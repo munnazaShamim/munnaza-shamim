@@ -13,7 +13,7 @@ export default function CaseStudies() {
     setIsMounted(true);
   }, []);
 
-  const caseStudies = getFeaturedCaseStudies();
+  const caseStudies = getFeaturedCaseStudies().slice(0, 4);
 
   return (
     <section id="case-studies" className="py-20 bg-secondaryBackground">
@@ -76,7 +76,7 @@ export default function CaseStudies() {
             href="/case-studies"
             className="btn-hover inline-block px-8 py-4 border border-border text-primaryText font-semibold rounded-lg hover:bg-cardBackground transition-colors"
           >
-            View All Case Studies
+            View All Case Studies ↗
           </Link>
         </motion.div>
       </div>

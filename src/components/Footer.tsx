@@ -2,8 +2,25 @@
 
 import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
+import Link from 'next/link';
 import SocialLink from './SocialLink';
 import { socialLinks, PHONE_DISPLAY, PHONE_LINK, EMAIL, EMAIL_LINK } from '@/lib/socialLinks';
+
+const serviceLinks = [
+  { label: 'Next.js Development', href: '/case-studies/nexus-clinic-headless-wordpress-nextjs' },
+  { label: 'WordPress Engineering', href: '/case-studies/real-time-vehicle-auction-platform' },
+  { label: 'Laravel CMS Development', href: '/case-studies/custom-laravel-blog-cms-secure-api' },
+  { label: 'Technical SEO & Core Web Vitals', href: '/case-studies/furnishings-my-nextjs-api-caching' },
+  { label: 'All Services', href: '/#services' },
+];
+
+const resourceLinks = [
+  { label: 'Case Studies', href: '/case-studies' },
+  { label: 'Blog', href: '/blog' },
+  { label: 'Core Web Vitals in 2026', href: '/blog/core-web-vitals-2026-lcp-inp-cls' },
+  { label: 'WordPress → Next.js Migration Guide', href: '/blog/wordpress-to-nextjs-migration-seo' },
+  { label: 'Privacy Policy', href: '/privacy' },
+];
 
 export default function Footer() {
   const [isMounted, setIsMounted] = useState(false);
@@ -39,15 +56,11 @@ export default function Footer() {
           >
             <h3 className="font-bold mb-4">Services</h3>
             <ul className="space-y-2 text-secondaryText">
-              {[
-                "Next.js Development",
-                "WordPress Engineering",
-                "Laravel CMS Development",
-                "Technical SEO",
-                "MERN Stack Apps"
-              ].map((item, index) => (
-                <li key={index}>
-                  <a href="#" className="hover:text-primaryAccent transition-colors">{item}</a>
+              {serviceLinks.map((item) => (
+                <li key={item.label}>
+                  <Link href={item.href} className="hover:text-primaryAccent transition-colors">
+                    {item.label}
+                  </Link>
                 </li>
               ))}
             </ul>
@@ -60,15 +73,11 @@ export default function Footer() {
           >
             <h3 className="font-bold mb-4">Resources</h3>
             <ul className="space-y-2 text-secondaryText">
-              {[
-                "Case Studies",
-                "Blog",
-                "Performance Guides",
-                "SEO Resources",
-                "Technical Articles"
-              ].map((item, index) => (
-                <li key={index}>
-                  <a href="#" className="hover:text-primaryAccent transition-colors">{item}</a>
+              {resourceLinks.map((item) => (
+                <li key={item.label}>
+                  <Link href={item.href} className="hover:text-primaryAccent transition-colors">
+                    {item.label}
+                  </Link>
                 </li>
               ))}
             </ul>
@@ -92,12 +101,16 @@ export default function Footer() {
                 </a>
               </li>
               <li>Lahore, Pakistan</li>
+              <li className="text-mutedText text-sm">Working hours aligned with CET</li>
             </ul>
           </motion.div>
         </div>
 
-        <div className="border-t border-border mt-12 pt-8 text-center text-secondaryText">
+        <div className="border-t border-border mt-12 pt-8 flex flex-col sm:flex-row items-center justify-center gap-2 sm:gap-6 text-center text-secondaryText">
           <p>&copy; {new Date().getFullYear()} Munnaza Shamim. All rights reserved.</p>
+          <Link href="/privacy" className="text-sm hover:text-primaryAccent transition-colors">
+            Privacy Policy
+          </Link>
         </div>
       </div>
     </footer>

@@ -3,28 +3,40 @@
 import { useState, useEffect, useRef } from 'react';
 import { motion, useAnimationFrame, useMotionValue } from 'framer-motion';
 
+// Each group gets its own accent so the marquee reads as a varied,
+// scannable strip instead of a wall of identical cards.
+const groupColors = {
+  language: '#A78BFA',
+  frontend: '#5C7CFA',
+  backend: '#34D399',
+  cms: '#D4A853',
+  database: '#F472B6',
+  realtime: '#22D3EE',
+  infra: '#2DD4BF',
+} as const;
+
 const technologies = [
-  { name: "HTML5", category: "Markup" },
-  { name: "CSS3", category: "Styling" },
-  { name: "JavaScript", category: "Language" },
-  { name: "TypeScript", category: "Language" },
-  { name: "React", category: "Frontend Library" },
-  { name: "Next.js", category: "Frontend Framework" },
-  { name: "Tailwind CSS", category: "CSS Framework" },
-  { name: "Node.js", category: "Backend Runtime" },
-  { name: "Express", category: "Backend Framework" },
-  { name: "PHP", category: "Backend Language" },
-  { name: "Laravel", category: "CMS Framework" },
-  { name: "WordPress", category: "CMS" },
-  { name: "WooCommerce", category: "E-Commerce" },
-  { name: "MySQL / MariaDB", category: "Database" },
-  { name: "MongoDB", category: "Database" },
-  { name: "WebSockets", category: "Real-Time" },
-  { name: "REST APIs", category: "Integration" },
-  { name: "VPS", category: "Server Management" },
-  { name: "cPanel / Apache", category: "Server Management" },
-  { name: "Cloudflare", category: "CDN & Security" },
-  { name: "Vercel", category: "Deployment" },
+  { name: "HTML5", category: "Markup", color: groupColors.language },
+  { name: "CSS3", category: "Styling", color: groupColors.language },
+  { name: "JavaScript", category: "Language", color: groupColors.language },
+  { name: "TypeScript", category: "Language", color: groupColors.language },
+  { name: "React", category: "Frontend Library", color: groupColors.frontend },
+  { name: "Next.js", category: "Frontend Framework", color: groupColors.frontend },
+  { name: "Tailwind CSS", category: "CSS Framework", color: groupColors.frontend },
+  { name: "Node.js", category: "Backend Runtime", color: groupColors.backend },
+  { name: "Express", category: "Backend Framework", color: groupColors.backend },
+  { name: "PHP", category: "Backend Language", color: groupColors.backend },
+  { name: "Laravel", category: "CMS Framework", color: groupColors.backend },
+  { name: "WordPress", category: "CMS", color: groupColors.cms },
+  { name: "WooCommerce", category: "E-Commerce", color: groupColors.cms },
+  { name: "MySQL / MariaDB", category: "Database", color: groupColors.database },
+  { name: "MongoDB", category: "Database", color: groupColors.database },
+  { name: "WebSockets", category: "Real-Time", color: groupColors.realtime },
+  { name: "REST APIs", category: "Integration", color: groupColors.realtime },
+  { name: "VPS", category: "Server Management", color: groupColors.infra },
+  { name: "cPanel / Apache", category: "Server Management", color: groupColors.infra },
+  { name: "Cloudflare", category: "CDN & Security", color: groupColors.infra },
+  { name: "Vercel", category: "Deployment", color: groupColors.infra },
 ];
 
 const metrics = [
@@ -50,10 +62,11 @@ const metrics = [
   }
 ];
 
-function MarqueeTrack({ items, speed = 40 }: { items: typeof technologies; speed?: number }) {
+function MarqueeTrack({ items, speed = 90 }: { items: typeof technologies; speed?: number }) {
   const x = useMotionValue(0);
   const trackRef = useRef<HTMLDivElement>(null);
   const halfWidthRef = useRef(0);
+  const isPausedRef = useRef(false);
 
   useEffect(() => {
     if (trackRef.current) {
@@ -62,7 +75,7 @@ function MarqueeTrack({ items, speed = 40 }: { items: typeof technologies; speed
   }, []);
 
   useAnimationFrame((_, delta) => {
-    if (!halfWidthRef.current) return;
+    if (!halfWidthRef.current || isPausedRef.current) return;
     let next = x.get() - (speed * delta) / 1000;
     if (next <= -halfWidthRef.current) {
       next += halfWidthRef.current;
@@ -71,27 +84,38 @@ function MarqueeTrack({ items, speed = 40 }: { items: typeof technologies; speed
   });
 
   return (
-    <motion.div ref={trackRef} className="flex w-max gap-6 py-2" style={{ x }} role="list" aria-label="Technology stack">
-      {items.map((tech) => (
-        <div
-          key={tech.name}
-          role="listitem"
-          className="card-hover shrink-0 w-44 bg-cardBackground p-6 rounded-xl border border-border text-center"
-        >
-          <div className="text-base font-semibold mb-2">{tech.name}</div>
-          <div className="text-xs text-secondaryText">{tech.category}</div>
-        </div>
-      ))}
-      {items.map((tech) => (
-        <div
-          key={`dup-${tech.name}`}
-          aria-hidden="true"
-          className="card-hover shrink-0 w-44 bg-cardBackground p-6 rounded-xl border border-border text-center"
-        >
-          <div className="text-base font-semibold mb-2">{tech.name}</div>
-          <div className="text-xs text-secondaryText">{tech.category}</div>
-        </div>
-      ))}
+    <motion.div
+      ref={trackRef}
+      className="flex w-max gap-3 sm:gap-6 py-2"
+      style={{ x }}
+      role="list"
+      aria-label="Technology stack"
+      onMouseEnter={() => {
+        isPausedRef.current = true;
+      }}
+      onMouseLeave={() => {
+        isPausedRef.current = false;
+      }}
+    >
+      {[false, true].map((isDuplicate) =>
+        items.map((tech) => (
+          <div
+            key={isDuplicate ? `dup-${tech.name}` : tech.name}
+            role={isDuplicate ? undefined : 'listitem'}
+            aria-hidden={isDuplicate || undefined}
+            className="card-hover shrink-0 w-28 sm:w-36 md:w-44 p-3 sm:p-5 md:p-6 rounded-xl border text-center"
+            style={{
+              borderColor: `${tech.color}40`,
+              background: `linear-gradient(180deg, ${tech.color}14, rgba(17, 24, 39, 0.9))`,
+            }}
+          >
+            <div className="text-sm sm:text-base font-semibold mb-1 sm:mb-2">{tech.name}</div>
+            <div className="text-[10px] sm:text-xs font-medium" style={{ color: tech.color }}>
+              {tech.category}
+            </div>
+          </div>
+        ))
+      )}
     </motion.div>
   );
 }
@@ -121,7 +145,7 @@ export default function TechStack() {
             animate={isMounted ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.6, delay: 0.2 }}
           >
-            Cutting-edge technologies for modern web solutions,Real systems, in production, carrying real traffic
+            Real systems, in production, carrying real traffic
           </motion.p>
         </div>
 

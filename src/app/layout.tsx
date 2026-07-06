@@ -1,14 +1,16 @@
 import './globals.css';
 import type { Metadata } from 'next';
-import { Inter } from 'next/font/google';
+import { Inter, Sora } from 'next/font/google';
 import Navbar from '@/components/Navbar';
+import { SITE_URL, SITE_TITLE, SITE_DESCRIPTION } from '@/lib/site';
+import { socialLinks } from '@/lib/socialLinks';
 
-const inter = Inter({ subsets: ['latin'] });
-
-const SITE_URL = 'http://munnaza-shamim.vercel.app/';
-const SITE_TITLE = 'Munnaza Shamim — Full-Stack Developer & Performance Engineer';
-const SITE_DESCRIPTION =
-  'Full-stack developer specializing in Next.js, WordPress, and Laravel systems engineered for speed and technical SEO. Available for projects across Europe, the UK, UAE, and North America.';
+const inter = Inter({ subsets: ['latin'], variable: '--font-inter' });
+const sora = Sora({
+  subsets: ['latin'],
+  weight: ['400', '500', '600', '700'],
+  variable: '--font-sora',
+});
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
@@ -24,14 +26,6 @@ export const metadata: Metadata = {
     url: SITE_URL,
     title: SITE_TITLE,
     description: SITE_DESCRIPTION,
-    images: [
-      {
-        url: '/Munnaza.jpg',
-        width: 1200,
-        height: 630,
-        alt: 'Munnaza Shamim — Full-Stack Developer & Performance Engineer',
-      },
-    ],
   },
   twitter: {
     card: 'summary_large_image',
@@ -43,7 +37,7 @@ export const metadata: Metadata = {
     follow: true,
   },
   alternates: {
-    canonical: SITE_URL,
+    canonical: '/',
   },
 };
 
@@ -53,6 +47,15 @@ const personJsonLd = {
   name: 'Munnaza Shamim',
   jobTitle: 'Full-Stack Developer & Performance Engineer',
   url: SITE_URL,
+  sameAs: socialLinks
+    .filter((link) => link.label !== 'WhatsApp')
+    .map((link) => link.href),
+  address: {
+    '@type': 'PostalAddress',
+    addressLocality: 'Lahore',
+    addressCountry: 'PK',
+  },
+  areaServed: ['Europe', 'United Kingdom', 'United Arab Emirates', 'North America'],
   worksFor: {
     '@type': 'Organization',
     name: 'Daikimedia',
@@ -73,7 +76,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en">
+    <html lang="en" className={`${inter.variable} ${sora.variable}`}>
       <body className={inter.className}>
         <script
           type="application/ld+json"

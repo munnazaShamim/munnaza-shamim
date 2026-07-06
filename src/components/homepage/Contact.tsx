@@ -5,7 +5,7 @@ import { motion } from 'framer-motion';
 import { Mail, MapPin, Phone } from 'lucide-react';
 import { WhatsappIcon } from '@/components/icons/BrandIcons';
 import SocialLink from '@/components/SocialLink';
-import { socialLinks, PHONE_DISPLAY, PHONE_LINK, EMAIL, EMAIL_LINK, WHATSAPP_URL } from '@/lib/socialLinks';
+import { socialLinks, PHONE_DISPLAY, PHONE_LINK, EMAIL, EMAIL_LINK, WHATSAPP_URL, getWhatsAppLink } from '@/lib/socialLinks';
 
 const iconBadgeMotion = {
   whileHover: { scale: 1.12, rotate: 8 },
@@ -31,8 +31,8 @@ export default function Contact() {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    // Form submission logic would go here
-    alert('Thank you for your message! I will get back to you soon.');
+    const composed = `Hi Munnaza, I'm ${formData.name} (${formData.email}).\n\n${formData.message}`;
+    window.open(getWhatsAppLink(composed), '_blank', 'noopener,noreferrer');
     setFormData({ name: '', email: '', message: '' });
   };
 
@@ -112,8 +112,14 @@ export default function Contact() {
                   whileHover={{ scale: 1.02 }}
                   whileTap={{ scale: 0.98 }}
                 >
-                  Send Message
+                  Send via WhatsApp
                 </motion.button>
+                <p className="text-sm text-mutedText text-center">
+                  Opens WhatsApp with your message ready to send — or email me directly at{' '}
+                  <a href={EMAIL_LINK} className="text-primaryAccent hover:underline">
+                    {EMAIL}
+                  </a>
+                </p>
               </form>
             </motion.div>
 
@@ -127,7 +133,7 @@ export default function Contact() {
                 <div>
                   <h3 className="text-xl font-bold mb-4">Get in Touch</h3>
                   <p className="text-secondaryText mb-6">
-                    Available for projects across Europe, the UK, UAE, and North America — full builds, performance audits, or ongoing support.
+                    Available for projects across Europe, the UK, UAE, and North America — full builds, performance audits, or ongoing support. Working hours aligned with Central European Time (Lahore is just 3–4 hours ahead of Berlin), so same-day replies are the norm.
                   </p>
                 </div>
 

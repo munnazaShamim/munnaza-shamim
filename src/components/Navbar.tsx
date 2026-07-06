@@ -7,8 +7,9 @@ import Link from 'next/link';
 const navLinks = [
   { label: 'About', href: '/#about' },
   { label: 'Services', href: '/#services' },
-  { label: 'Case Studies', href: '/#case-studies' },
+  { label: 'Case Studies', href: '/case-studies' },
   { label: 'Tech Stack', href: '/#tech-stack' },
+  { label: 'Blog', href: '/blog' },
   { label: 'Process', href: '/#process' },
   { label: 'Contact', href: '/#contact' },
 ];

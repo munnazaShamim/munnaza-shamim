@@ -3,7 +3,9 @@
 import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import Link from 'next/link';
-import { blogPosts } from '@/lib/blogPosts';
+import { blogPosts as allBlogPosts } from '@/lib/blogPosts';
+
+const blogPosts = allBlogPosts.slice(0, 4);
 
 export default function Blog() {
   const [isMounted, setIsMounted] = useState(false);
@@ -13,7 +15,7 @@ export default function Blog() {
   }, []);
 
   return (
-    <section className="py-20 bg-secondaryBackground">
+    <section id="blog" className="py-20 bg-secondaryBackground">
       <div className="container mx-auto px-4">
         <div className="max-w-4xl mx-auto text-center mb-16">
           <motion.h2
@@ -30,14 +32,14 @@ export default function Blog() {
             animate={isMounted ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.6, delay: 0.2 }}
           >
-            Expert articles on performance, SEO, and modern web development
+            Articles on performance, SEO, and architecture — written from real production work
           </motion.p>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
           {blogPosts.map((post, index) => (
-            <motion.div
-              key={post.id}
+            <motion.article
+              key={post.slug}
               initial={{ opacity: 0, y: 20 }}
               animate={isMounted ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.6, delay: 0.1 * index }}
@@ -56,20 +58,27 @@ export default function Blog() {
                   <h3 className="text-xl font-bold mb-3 group-hover:text-primaryAccent transition-colors">
                     {post.title}
                   </h3>
-                  <p className="text-secondaryText">{post.excerpt}</p>
+                  <p className="text-secondaryText mb-4">{post.excerpt}</p>
+                  <span className="text-primaryAccent font-semibold text-sm">Read article →</span>
                 </div>
               </Link>
-            </motion.div>
+            </motion.article>
           ))}
         </div>
 
         <div className="text-center">
-          <Link
-            href="/blog"
-            className="btn-hover inline-block px-8 py-3 border border-border text-primaryText font-semibold rounded-lg hover:bg-cardBackground transition-colors"
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={isMounted ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.6, delay: 0.4 }}
           >
-            View All Articles
-          </Link>
+            <Link
+              href="/blog"
+              className="btn-hover inline-block px-8 py-3 border border-border text-primaryText font-semibold rounded-lg hover:bg-cardBackground transition-colors"
+            >
+              View All Articles ↗
+            </Link>
+          </motion.div>
         </div>
       </div>
     </section>
