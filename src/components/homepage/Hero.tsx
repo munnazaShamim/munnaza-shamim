@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import Link from 'next/link';
 import Image from 'next/image';
+import { Download } from 'lucide-react';
 
 export default function Hero() {
   const [isMounted, setIsMounted] = useState(false);
@@ -20,7 +21,7 @@ export default function Hero() {
       </div>
 
       <div className="container mx-auto px-4 py-20 relative z-10">
-        <div className="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+        <div className="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-16 items-center lg:items-stretch">
           {/* Left Column - Content */}
           <motion.div
             className="space-y-8"
@@ -63,42 +64,25 @@ export default function Hero() {
               <Link href="/case-studies" className="btn-hover px-8 py-4 border border-border text-primaryText font-semibold rounded-lg text-center hover:bg-cardBackground transition-colors">
                 View Case Studies
               </Link>
-              <a
-                href="/Munnaza-Shamim-CV.pdf"
-                download
-                className="btn-hover px-8 py-4 border border-border text-primaryText font-semibold rounded-lg text-center hover:bg-cardBackground transition-colors"
-              >
-                Download CV
-              </a>
             </motion.div>
 
-            <motion.div
-              className="flex items-center gap-4 pt-4"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.8 }}
-            >
-              <p className="text-sm text-secondaryText">
-                Live in production: a real-time vehicle auction platform with live bidding across dealer, seller, and admin dashboards, plus a network of high-traffic commercial marketplace sites.
-              </p>
-            </motion.div>
           </motion.div>
 
           {/* Right Column - Visual */}
           <motion.div
-            className="relative"
+            className="relative flex lg:h-full"
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.8, delay: 0.4 }}
           >
-            <div className="relative">
-              <div className="relative aspect-[1200/692] w-full rounded-xl overflow-hidden border border-border shadow-2xl">
+            <div className="relative w-full h-[320px] sm:h-[420px] lg:flex-1">
+              <div className="relative w-full h-full rounded-xl">
                 <Image
-                  src="/PageSpeed-hero.webp"
-                  alt="PageSpeed Insights performance report"
+                  src="/munnaza-hero.webp"
+                  alt="Full-stack performance dashboard mockup — load time, rendering, and Core Web Vitals"
                   fill
                   sizes="(min-width: 1024px) 50vw, 90vw"
-                  className="object-cover"
+                  className="object-cover rounded-xl"
                   priority
                 />
               </div>
@@ -109,7 +93,27 @@ export default function Hero() {
             </div>
           </motion.div>
         </div>
+          <motion.div
+              className="flex flex-col gap-3 pt-8 text-center items-center justify-center max-w-3xl mx-auto"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.8 }}
+            >
+              <p className="text-sm text-secondaryText">
+                Live in production: a real-time vehicle auction platform with live bidding across dealer, seller, and admin dashboards, plus a network of high-traffic commercial marketplace sites.
+              </p>
+
+                <a
+                href="/Munnaza-Shamim-CV.pdf"
+                download
+                className="inline-flex items-center gap-2 text-sm font-semibold text-primaryAccentLight hover:text-primaryAccent transition-colors w-fit border border-border px-8 py-2 rounded-lg hover:bg-cardBackground transition-colors"
+              >
+                <Download className="w-4 h-4" />
+                Download CV
+              </a>
+            </motion.div>
       </div>
+      
     </section>
   );
 }
