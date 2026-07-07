@@ -75,6 +75,16 @@ export default function FurnishingsCaseStudy() {
             <div className="text-primaryAccent text-sm font-semibold mb-2">{study.client}</div>
             <h1 className="text-3xl md:text-4xl font-bold mb-4">{study.title}</h1>
             <p className="text-xl text-secondaryText max-w-3xl">{study.summary}</p>
+            {study.liveUrl && (
+              <a
+                href={study.liveUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="btn-hover inline-flex items-center gap-2 mt-6 px-5 py-2.5 border border-primaryAccent/40 text-primaryAccent font-semibold rounded-lg hover:bg-primaryAccent hover:text-background transition-colors"
+              >
+                Visit the live site ↗
+              </a>
+            )}
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-14">
@@ -183,7 +193,7 @@ export default function FurnishingsCaseStudy() {
             </ul>
           </div>
 
-          <CaseStudyCTA text="I fix slow, already-built sites the same way — tracing where the API calls actually go and putting proper caching in front of them, not just tweaking the front end." />
+          <CaseStudyCTA text="If your site is already built but painfully slow, this is where I start — tracing where the API calls actually go and putting proper caching in front of them, not just tweaking the front end." />
         </div>
       </div>
     </main>

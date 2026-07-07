@@ -17,6 +17,8 @@ export interface CaseStudy {
   imageLabel: string;
   gallery?: CaseStudyImage[];
   featured: boolean;
+  /** Public production URL — omitted for anonymous client work or projects deployed by others. */
+  liveUrl?: string;
 }
 
 export const caseStudies: CaseStudy[] = [
@@ -30,7 +32,7 @@ export const caseStudies: CaseStudy[] = [
     challenge:
       "Standard WordPress has no concept of live, concurrent bidding — no real-time state, no per-listing access control, no role-based dashboard separation, and no notification workflow for a multi-party, high-value transaction. The client needed all of this built from scratch on top of WordPress, matched pixel-for-pixel to a design delivered as an XD file, including the live in-page bidding animation.",
     solution:
-      'Built the entire auction engine as custom PHP and MySQL logic inside a custom-coded WordPress plugin — bid calculations, role-based permissions, and auction state are all handled server-side, not through a page builder or an off-the-shelf auction plugin. Layered Node.js WebSockets on top so every active auction gets its own authenticated room: bid updates are pushed only to the logged-in users actually watching that listing, not broadcast site-wide. Built three separate dashboards — Seller, Dealer, Admin — each scoped to just the data and actions relevant to that role, with every new registration manually verified by an admin before dashboard access is granted. Wired a full transactional email system into every step of the auction lifecycle, and added an authenticated, admin-verified live chat plus AI-powered outbound verification calls for high-value transactions. The full visual design — including the live bidding animation — was implemented pixel-for-pixel from the client\'s XD files.',
+      'Built the entire auction engine as custom PHP and MySQL logic inside a custom-coded WordPress plugin — bid calculations, role-based permissions, and auction state are all handled server-side, not through a page builder or an off-the-shelf auction plugin. Layered Node.js WebSockets on top so every active auction gets its own authenticated room: bid updates are pushed only to the logged-in users actually watching that listing, not broadcast site-wide. Built three separate dashboards — Seller, Dealer, Admin — each scoped to just the data and actions relevant to that role, with every new registration manually verified by an admin before dashboard access is granted. Wired a full transactional email system into every step of the auction lifecycle, and added an authenticated, admin-verified live chat plus AI-powered outbound verification calls for high-value transactions. The full visual design — including the live bidding animation — was implemented exactly as delivered in the client\'s XD files.',
     features: [
       'Real-time bid engine — no page reload',
       'Per-auction WebSocket rooms, authenticated & scoped per client',
@@ -88,8 +90,8 @@ export const caseStudies: CaseStudy[] = [
     ],
     imageLabel: 'Vehicle marketplace network — desktop screenshot (1600x1000)',
     gallery: [
-      { src: '/commercial-vehicle-marketplace-network1.png', label: 'Network site — truck (LKW) selling landing page' },
-      { src: '/commercial-vehicle-marketplace-network2.png', label: 'Network site — car (Pkw) selling landing page' },
+      { src: '/commercial-vehicle-marketplace-network1.png', label: 'Network site — truck (LKW) sales landing page' },
+      { src: '/commercial-vehicle-marketplace-network2.png', label: 'Network site — car (PKW) sales landing page' },
       { src: '/commercial-vehicle-marketplace-network3.png', label: 'Network site — live vehicle listing & inventory' },
       { src: '/commercial-vehicle-marketplace-network4.png', label: 'Network site — vision, mission & expertise section' },
       { src: '/commercial-vehicle-marketplace-network5.webp', label: 'Sister site on the same platform — home improvement services' },
@@ -106,7 +108,7 @@ export const caseStudies: CaseStudy[] = [
     challenge:
       "The client's site was running on traditional WordPress and wanted to move to React for stronger SEO control and faster pages, without losing the WordPress content-editing workflow the team already relied on. Beyond the migration itself, the project needed someone to own the full deployment pipeline and server security end to end, not just hand off code.",
     solution:
-      'Rebuilt the entire front end in Next.js for server-rendering and fine-grained SEO control, while keeping WordPress as a headless CMS on the backend so content stays fully editable for the team. Secured the connection between the two by locking down the WordPress API so it is never exposed directly to the browser, and carried out full technical optimization across the site — resulting in near-perfect Lighthouse scores on both mobile and desktop. Also own the full deployment pipeline: pushing code from GitHub straight to the production VPS, hardening and securing the VPS itself, and routing all traffic through Cloudflare.',
+      'Rebuilt the entire front end in Next.js for server-rendering and fine-grained SEO control, while keeping WordPress as a headless CMS on the backend so content stays fully editable for the team. Secured the connection between the two by locking down the WordPress API so it is never exposed directly to the browser, and carried out full technical optimization across the site — resulting in near-perfect Lighthouse scores on both mobile and desktop. I also owned the full deployment pipeline: pushing code from GitHub straight to the production VPS, hardening and securing the VPS itself, and routing all traffic through Cloudflare.',
     features: [
       'Headless WordPress backend, Next.js front end',
       'Secured WordPress API — never exposed directly to the browser',
@@ -136,14 +138,15 @@ export const caseStudies: CaseStudy[] = [
     gallery: [
       { src: '/nexus.webp', label: 'Homepage — hero section' },
       { src: '/nexus-service-pages.webp', label: 'Botox treatment service page' },
-      { src: '/nexus-full.webp', label: 'full page desing' },
+      { src: '/nexus-full.webp', label: 'Full page design' },
     ],
     featured: true,
+    liveUrl: 'https://www.nexus-clinic.com/',
   },
   {
     slug: 'custom-laravel-blog-cms-secure-api',
     title: 'Custom Laravel CMS — Secure Blog Publishing & API',
-    client: 'Dr. Soma Plastic Surgery — plastic surgery clinic, Malaysia (built at Daikimedia)',
+    client: 'Dr. Soma Plastic Surgery — plastic surgery clinic, Malaysia (built at DaikiMedia)',
     summary:
       'A custom Laravel CMS for blog authoring and publishing, serving content to the live site through a secure custom API, with two-factor OTP-gated admin login.',
     categories: ['Custom CMS', 'Performance'],
@@ -169,6 +172,7 @@ export const caseStudies: CaseStudy[] = [
       { src: '/soma-aesthetic-clinic.webp', label: 'Live site homepage — content served from the CMS API' },
     ],
     featured: true,
+    liveUrl: 'https://drsomaplasticsurgery.com/',
   },
   {
     slug: 'furnishings-my-nextjs-api-caching',
@@ -197,11 +201,12 @@ export const caseStudies: CaseStudy[] = [
     ],
     imageLabel: 'Flooring retailer — desktop Lighthouse audit (1600x1000)',
     gallery: [
-      { src: '/furnishing-hero.webp', label: 'site image' },
+      { src: '/furnishing-hero.webp', label: 'Homepage — hero section' },
       { src: '/furnishing-lcp-desktop.png', label: 'Desktop Lighthouse audit — after caching' },
       { src: '/furnishing-lcp.png', label: 'Mobile Lighthouse audit — after caching' },
     ],
     featured: true,
+    liveUrl: 'https://www.furnishings.com.my/',
   },
   {
     slug: 'daikimedia-core-web-vitals-optimization',
@@ -234,6 +239,7 @@ export const caseStudies: CaseStudy[] = [
       { src: '/daikimedia.after-core-web-vital.png', label: 'Mobile Lighthouse audit — after optimization (95 Performance)' },
     ],
     featured: true,
+    liveUrl: 'https://www.daikimedia.com/',
   },
 ];
 

@@ -9,7 +9,6 @@ import Blog from '@/components/homepage/Blog';
 import Process from '@/components/homepage/Process';
 import Testimonials from '@/components/homepage/Testimonials';
 import Contact from '@/components/homepage/Contact';
-import Footer from '@/components/Footer';
 
 export default function Home() {
   return (
@@ -18,12 +17,12 @@ export default function Home() {
       <About />
       <Services />
       <CaseStudies />
+      <Testimonials />
       <TechStack />
       <Experience />
       <PerformanceExpertise />
       <Blog />
       <Process />
-      <Testimonials />
       <Contact />
     </main>
   );

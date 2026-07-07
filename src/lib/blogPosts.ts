@@ -1,6 +1,12 @@
+export interface BlogCode {
+  language: string;
+  snippet: string;
+}
+
 export interface BlogSection {
   heading: string;
   paragraphs: string[];
+  code?: BlogCode;
 }
 
 export interface BlogPost {
@@ -25,10 +31,10 @@ export const blogPosts: BlogPost[] = [
     excerpt:
       'A practical breakdown of the fixes that move the needle on Core Web Vitals, versus the ones that just look good in an audit.',
     category: 'Performance',
-    readTime: '9 min read',
+    readTime: '5 min read',
     publishDate: '2026-01-12',
     intro:
-      "Most Core Web Vitals advice stops at plugin recommendations and generic checklists. In practice, the fixes that actually move LCP, INP, and CLS on a production site are architectural — how your data is fetched, how many times it's fetched, and what runs before the browser paints anything. This is what I've found actually works, based on real audits I've run and fixed.",
+      "Most Core Web Vitals advice stops at plugin recommendations and generic checklists. In practice, the fixes that actually move LCP, INP, and CLS on a production site are architectural — how your data is fetched, how many times it's fetched, and what runs before the browser paints anything. This is what I've found actually works, based on real production sites I've audited and fixed.",
     sections: [
       {
         heading: "LCP is a data-fetching problem before it's an image problem",
@@ -36,6 +42,19 @@ export const blogPosts: BlogPost[] = [
           "The default advice for Largest Contentful Paint is always about the hero image: compress it, lazy-load below the fold, serve WebP. That's real, but it's rarely the biggest lever on a site that's actually slow. The biggest lever is usually how long the server takes to have something to paint in the first place.",
           "On one Next.js site I inherited — a flooring retailer's e-commerce catalog — the front end was already built and deployed on Vercel, but it was pulling from a CMS API with no caching layer at all. The same product and blog endpoints were being fetched independently, sometimes more than once on a single page. Every request re-hit an already-slow backend before the page could render anything. The fix wasn't image compression — it was introducing a centralized caching layer so products, blogs, and site-wide data stopped being re-fetched on every page load. That single architectural change took Lighthouse Performance from a struggling score to 97 mobile / 99 desktop, because the bottleneck was never the image — it was the round trip before the image could even be requested.",
         ],
+        code: {
+          language: 'TypeScript — Next.js',
+          snippet: `// lib/api.ts — one cached fetch, shared by every page that needs products
+export async function getProducts() {
+  const res = await fetch(process.env.CMS_API_URL + '/products', {
+    // Cache and reuse across pages for 10 minutes instead of
+    // re-hitting the slow CMS API on every render.
+    next: { revalidate: 600 },
+  });
+  if (!res.ok) throw new Error('CMS API responded ' + res.status);
+  return res.json();
+}`,
+        },
       },
       {
         heading: 'INP replaced FID for a reason — and most sites still optimize for the wrong metric',
@@ -47,7 +66,7 @@ export const blogPosts: BlogPost[] = [
       {
         heading: 'CLS mistakes that keep coming back',
         paragraphs: [
-          'Cumulative Layout Shift almost always comes down to three repeat offenders: images and embeds without explicit width/height (or `fill` without a properly sized container), web fonts swapping in after a FOUC, and content injected above existing content after the initial render — think cookie banners, personalization widgets, or lazily-loaded ad slots that push everything down.',
+          'Cumulative Layout Shift almost always comes down to three repeat offenders: images and embeds without explicit width/height (or a fill-mode image without a properly sized container), web fonts swapping in after a FOUC, and content injected above existing content after the initial render — think cookie banners, personalization widgets, or lazily-loaded ad slots that push everything down.',
           "The fix that's easy to skip is reserving space for anything that loads asynchronously, even if you don't know its exact final size yet — a skeleton with a fixed aspect ratio beats letting the DOM jump when the real content arrives.",
         ],
       },
@@ -73,7 +92,7 @@ export const blogPosts: BlogPost[] = [
     excerpt:
       "How to plan a framework migration so three years of search rankings don't disappear on launch day.",
     category: 'SEO',
-    readTime: '10 min read',
+    readTime: '5 min read',
     publishDate: '2026-02-18',
     intro:
       'A framework migration is one of the few times a client can lose years of organic rankings in a single deploy. The technical work of rebuilding the front end in Next.js is the easy half. The half that actually protects rankings is everything around the migration — the API boundary, the redirect map, and structured data parity.',
@@ -95,6 +114,21 @@ export const blogPosts: BlogPost[] = [
         paragraphs: [
           "Before a single line of Next.js gets deployed to production, every existing URL needs a 1:1 mapping to its new location, with proper 301s — not blanket redirects to a homepage, which reads to Google as a wholesale loss of the old page's relevance. Canonical tags, sitemap.xml, and robots.txt all need to go live in the same deploy as the redirects, not as a follow-up task a week later. Search engines re-crawl fast; a gap of even a few days with broken canonicals or a stale sitemap is enough to cost rankings you spent years building.",
         ],
+        code: {
+          language: 'TypeScript — next.config.ts',
+          snippet: `// next.config.ts — the 301 map ships in the same deploy as the new site
+const nextConfig = {
+  async redirects() {
+    return [
+      // 1:1 mapping for every old WordPress URL —
+      // never a blanket redirect to the homepage
+      { source: '/2023/:month/:slug', destination: '/blog/:slug', permanent: true },
+      { source: '/service/:slug', destination: '/treatments/:slug', permanent: true },
+    ];
+  },
+};
+export default nextConfig;`,
+        },
       },
       {
         heading: 'Structured data parity, not structured data improvement',
@@ -124,7 +158,7 @@ export const blogPosts: BlogPost[] = [
     excerpt:
       'Where WooCommerce stores actually lose speed at checkout, and the fixes that hold up under real traffic.',
     category: 'WordPress',
-    readTime: '8 min read',
+    readTime: '4 min read',
     publishDate: '2026-03-22',
     intro:
       "Checkout is the one page on an e-commerce site where speed has a direct, measurable line to revenue — every extra second of load time at checkout is a customer re-reading their card details instead of clicking pay. Most WooCommerce slowness at checkout traces back to a small set of causes, and almost none of them are the theme.",
@@ -134,6 +168,18 @@ export const blogPosts: BlogPost[] = [
         paragraphs: [
           "WooCommerce checkout pages typically load a stack of plugins simultaneously: a page builder's own JS/CSS bundle, multiple payment gateway scripts (often all of them, even the ones a given customer won't use), a cart-abandonment plugin, a reviews widget, and marketing pixels — all render-blocking, all on the one page where speed matters most. The fix isn't disabling features — it's conditionally loading gateway scripts only for the gateway the customer selects, and moving every non-essential script off the checkout template entirely.",
         ],
+        code: {
+          language: 'PHP — WordPress',
+          snippet: `// functions.php — stop loading every payment SDK on every page
+add_action('wp_enqueue_scripts', function () {
+    if (!is_checkout()) {
+        // Gateways enqueue their SDKs site-wide by default:
+        // strip them everywhere except checkout itself.
+        wp_dequeue_script('woocommerce_stripe');
+        wp_dequeue_script('ppcp-smart-button');
+    }
+}, 99);`,
+        },
       },
       {
         heading: 'Every cart update is a database write, and most plugins don\'t batch them',
@@ -172,7 +218,7 @@ export const blogPosts: BlogPost[] = [
     excerpt:
       'Adding live bidding, live chat, or live dashboards to a WordPress site without replacing the CMS underneath it.',
     category: 'Architecture',
-    readTime: '11 min read',
+    readTime: '5 min read',
     publishDate: '2026-04-09',
     intro:
       "WordPress has no native concept of real-time state — no live updates, no concurrent session awareness, nothing built for a feature like live bidding or a live dashboard. The usual response is to say WordPress can't do it and reach for a full rebuild on another stack. That's rarely necessary. I've built this exact capability directly on top of WordPress, and the pattern holds for most real-time features a WordPress-based business needs.",
@@ -180,7 +226,7 @@ export const blogPosts: BlogPost[] = [
       {
         heading: "The core split: WordPress owns state, Node.js owns the wire",
         paragraphs: [
-          "The architecture that worked, building a real-time vehicle auction platform, was keeping WordPress as the system of record — a custom-coded plugin handling bid calculations, role-based permissions, and auction state entirely in server-side PHP and MySQL, not a page builder or an off-the-shelf auction plugin — while layering Node.js WebSockets on top purely as the real-time transport. WordPress never tries to hold an open connection or manage live state itself. It stays doing what it's good at: authenticated data, permissions, and persistence.",
+          "The architecture that worked when I built a real-time vehicle auction platform was keeping WordPress as the system of record — a custom-coded plugin handling bid calculations, role-based permissions, and auction state entirely in server-side PHP and MySQL, not a page builder or an off-the-shelf auction plugin — while layering Node.js WebSockets on top purely as the real-time transport. WordPress never tries to hold an open connection or manage live state itself. It stays doing what it's good at: authenticated data, permissions, and persistence.",
         ],
       },
       {
@@ -188,6 +234,28 @@ export const blogPosts: BlogPost[] = [
         paragraphs: [
           "The mistake that's easy to make with WebSockets is treating every event as something to broadcast site-wide. On the auction platform, every listing gets its own authenticated WebSocket room, and bid updates are pushed only to logged-in users actually watching that specific listing — not blasted to every connected client. Bidding activity and bid details are gated entirely behind login; there's no anonymous visibility into live auction data at all. That distinction matters both for performance — you're not pushing irrelevant events to thousands of idle connections — and for the access control a live-bidding business actually needs.",
         ],
+        code: {
+          language: 'JavaScript — Node.js + Socket.IO',
+          snippet: `// Every auction gets its own authenticated room — never a site-wide broadcast
+io.use(async (socket, next) => {
+  // Validate the WordPress session before any room can be joined
+  const user = await verifyWpSession(socket.handshake.auth.token);
+  if (!user) return next(new Error('unauthorized'));
+  socket.data.user = user;
+  next();
+});
+
+io.on('connection', (socket) => {
+  socket.on('watch', (auctionId) => {
+    socket.join('auction:' + auctionId);
+  });
+});
+
+// When WordPress confirms a bid, only that auction's watchers hear it
+function broadcastBid(auctionId, bid) {
+  io.to('auction:' + auctionId).emit('bid:update', bid);
+}`,
+        },
       },
       {
         heading: 'Role-based dashboards need their own access model, not a WordPress role tweak',
@@ -219,7 +287,7 @@ export const blogPosts: BlogPost[] = [
     title: 'Database Optimization for High-Traffic WordPress Sites',
     excerpt: 'Query-level and schema fixes that matter more than another caching plugin.',
     category: 'Performance',
-    readTime: '9 min read',
+    readTime: '4 min read',
     publishDate: '2026-05-14',
     intro:
       "Caching plugins are the first thing every WordPress performance guide reaches for, and they help — but they mask a slow database instead of fixing it. Once a site has real catalog size or traffic, the schema and query patterns underneath WordPress's defaults start to matter more than which cache plugin is installed.",
@@ -227,7 +295,7 @@ export const blogPosts: BlogPost[] = [
       {
         heading: "postmeta is the first thing to stop trusting at scale",
         paragraphs: [
-          "WordPress stores custom field data in a single wp_postmeta table as loosely-typed key/value rows. That's fine for a blog. It falls apart for anything with real filtering needs — a large product or listing catalog querying by several attributes at once turns into a chain of JOINs against an EAV-style table that was never indexed for that access pattern. Building the vehicle listing systems for a commercial vehicle marketplace network, filtering and search had to be built around custom database logic — dedicated tables and indexes matched to the actual trade-specific attributes buyers filter by — rather than relying on postmeta lookups through a generic listing plugin.",
+          "WordPress stores custom field data in a single wp_postmeta table as loosely-typed key/value rows. That's fine for a blog. It falls apart for anything with real filtering needs — a large product or listing catalog querying by several attributes at once turns into a chain of JOINs against an EAV-style table that was never indexed for that access pattern. When I built the vehicle listing systems for a commercial vehicle marketplace network, filtering and search had to be built around custom database logic — dedicated tables and indexes matched to the actual trade-specific attributes buyers filter by — rather than relying on postmeta lookups through a generic listing plugin.",
         ],
       },
       {
@@ -235,6 +303,18 @@ export const blogPosts: BlogPost[] = [
         paragraphs: [
           "The most common database issue I find on high-traffic WordPress sites isn't a missing index — it's an index that doesn't match the actual WHERE clause and sort order a query uses. Adding an index to a column queried alone does nothing if every real query filters on that column combined with two others and then sorts by a fourth. Profiling actual slow queries (via the MySQL slow query log, not guesswork) and indexing for the combination that's really running is what closes the gap a generic caching plugin can't.",
         ],
+        code: {
+          language: 'SQL — MySQL',
+          snippet: `-- The real query filters on three columns and sorts by a fourth:
+EXPLAIN SELECT * FROM vehicle_listings
+WHERE make = 'MAN' AND category = 'tractor-unit' AND status = 'active'
+ORDER BY listed_at DESC LIMIT 24;
+
+-- So the index must match that exact combination --
+-- an index on make alone does nothing for this query:
+CREATE INDEX idx_listings_filter_sort
+ON vehicle_listings (make, category, status, listed_at);`,
+        },
       },
       {
         heading: 'Centralize data access when multiple properties share one dataset',
@@ -267,7 +347,7 @@ export const blogPosts: BlogPost[] = [
     excerpt:
       'A decision framework for picking a rendering strategy per route, instead of defaulting to one for the whole app.',
     category: 'Architecture',
-    readTime: '8 min read',
+    readTime: '4 min read',
     publishDate: '2026-06-20',
     intro:
       'The most common Next.js mistake I see isn\'t picking the wrong rendering strategy — it\'s picking one strategy for the entire app instead of choosing per route. Static generation, server-side rendering, and incremental static regeneration solve different problems, and a real production app usually needs all three.',
@@ -289,6 +369,16 @@ export const blogPosts: BlogPost[] = [
         paragraphs: [
           "Incremental Static Regeneration is what most CMS-backed marketing and content sites should actually run on: pages are served statically fast, but revalidate in the background on an interval or on-demand when content changes, so editors don't need a rebuild to see updates go live. It's the strategy that gives you SSG's speed with SSG's biggest weakness — staleness — removed.",
         ],
+        code: {
+          language: 'TypeScript — Next.js',
+          snippet: `// app/blog/[slug]/page.tsx — choose the strategy per route
+export const revalidate = 3600; // ISR: served static, refreshed in the background
+
+export async function generateStaticParams() {
+  const posts = await getPublishedPosts();
+  return posts.map((post) => ({ slug: post.slug }));
+}`,
+        },
       },
       {
         heading: "Where caching architecture matters more than the rendering label",

@@ -3,8 +3,9 @@ import type { Metadata } from 'next';
 import { Inter, Sora } from 'next/font/google';
 import Navbar from '@/components/Navbar';
 import { SITE_URL, SITE_TITLE, SITE_DESCRIPTION } from '@/lib/site';
-import { socialLinks } from '@/lib/socialLinks';
+import { socialLinks, EMAIL } from '@/lib/socialLinks';
 import Footer from '@/components/Footer';
+import MotionProvider from '@/components/MotionProvider';
 
 const inter = Inter({ subsets: ['latin'], variable: '--font-inter' });
 const sora = Sora({
@@ -48,6 +49,8 @@ const personJsonLd = {
   name: 'Munnaza Shamim',
   jobTitle: 'Full-Stack Developer & Performance Engineer',
   url: SITE_URL,
+  image: `${SITE_URL}/Munnaza.webp`,
+  email: EMAIL,
   sameAs: socialLinks
     .filter((link) => link.label !== 'WhatsApp')
     .map((link) => link.href),
@@ -59,7 +62,7 @@ const personJsonLd = {
   areaServed: ['Europe', 'United Kingdom', 'United Arab Emirates', 'North America'],
   worksFor: {
     '@type': 'Organization',
-    name: 'Daikimedia',
+    name: 'DaikiMedia',
   },
   knowsAbout: [
     'Next.js',
@@ -83,9 +86,11 @@ export default function RootLayout({
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(personJsonLd) }}
         />
-        <Navbar />
-        {children}
-        <Footer />
+        <MotionProvider>
+          <Navbar />
+          {children}
+          <Footer />
+        </MotionProvider>
       </body>
     </html>
   );

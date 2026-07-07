@@ -87,7 +87,7 @@ export default function MarketplaceNetworkCaseStudy() {
           </div>
 
           <div className="mb-12">
-            <h2 className="text-2xl font-bold mb-6">What Was Built Across the Network</h2>
+            <h2 className="text-2xl font-bold mb-6">Key Features</h2>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               {study.features.map((feature) => (
                 <div

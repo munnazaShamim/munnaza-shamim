@@ -4,7 +4,6 @@ import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import Link from 'next/link';
 import Image from 'next/image';
-import { getWhatsAppLink } from '@/lib/socialLinks';
 
 export default function Hero() {
   const [isMounted, setIsMounted] = useState(false);
@@ -38,7 +37,7 @@ export default function Hero() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.2 }}
             >
-              <h1 className="text-[32px] md:text-[40px] font-bold leading-tight">
+              <h1 className="text-4xl md:text-5xl font-bold leading-tight">
                 Full-stack development, <span className="text-gradient">engineered around speed</span>
               </h1>
             </motion.div>
@@ -58,12 +57,19 @@ export default function Hero() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.6 }}
             >
-              <Link href={getWhatsAppLink()} className="btn-hover-cta px-8 py-4 bg-ctaAccent text-background font-semibold rounded-lg text-center hover:bg-ctaAccentHover transition-colors">
+              <Link href="/#contact" className="btn-hover-cta px-8 py-4 bg-ctaAccent text-background font-semibold rounded-lg text-center hover:bg-ctaAccentHover transition-colors">
                 Start Your Project
               </Link>
               <Link href="/case-studies" className="btn-hover px-8 py-4 border border-border text-primaryText font-semibold rounded-lg text-center hover:bg-cardBackground transition-colors">
                 View Case Studies
               </Link>
+              <a
+                href="/Munnaza-Shamim-CV.pdf"
+                download
+                className="btn-hover px-8 py-4 border border-border text-primaryText font-semibold rounded-lg text-center hover:bg-cardBackground transition-colors"
+              >
+                Download CV
+              </a>
             </motion.div>
 
             <motion.div

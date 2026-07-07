@@ -3,7 +3,6 @@
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import Link from 'next/link';
-import { getWhatsAppLink } from '@/lib/socialLinks';
 const navLinks = [
   { label: 'About', href: '/#about' },
   { label: 'Services', href: '/#services' },
@@ -61,7 +60,7 @@ export default function Navbar() {
           </nav>
 
           <Link
-            href={getWhatsAppLink()}
+            href="/#contact"
             className="hidden md:inline-block btn-hover-cta px-5 py-2.5 bg-ctaAccent text-background font-semibold rounded-lg hover:bg-ctaAccentHover transition-colors"
           >
             Start Your Project
@@ -69,7 +68,9 @@ export default function Navbar() {
 
           <button
             type="button"
-            aria-label="Toggle menu"
+            aria-label={isMenuOpen ? 'Close menu' : 'Open menu'}
+            aria-expanded={isMenuOpen}
+            aria-controls="mobile-menu"
             onClick={() => setIsMenuOpen((open) => !open)}
             className="md:hidden w-11 h-11 rounded-lg border border-border flex items-center justify-center"
           >
@@ -97,6 +98,7 @@ export default function Navbar() {
       <AnimatePresence>
         {isMenuOpen && (
           <motion.nav
+            id="mobile-menu"
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: 'auto' }}
             exit={{ opacity: 0, height: 0 }}

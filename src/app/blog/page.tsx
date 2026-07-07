@@ -29,7 +29,7 @@ export default function BlogIndexPage() {
           </Link>
           <h1 className="text-3xl md:text-4xl font-bold mt-4 mb-4">Technical Insights</h1>
           <p className="text-xl text-secondaryText max-w-2xl mx-auto">
-            Expert articles on performance, SEO, and modern web development
+            Notes from production — performance, SEO, and architecture decisions from real client work
           </p>
         </div>
 

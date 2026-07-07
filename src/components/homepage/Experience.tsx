@@ -15,7 +15,7 @@ export default function Experience() {
     {
       year: 'Jan 2026 - Present',
       title: 'Senior Developer',
-      company: 'Daikimedia',
+      company: 'DaikiMedia',
       location: 'Lahore, Pakistan (Remote)',
       current: true,
       description:

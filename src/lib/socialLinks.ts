@@ -1,5 +1,5 @@
 import { ComponentType } from 'react';
-import { WhatsappIcon, FacebookIcon, InstagramIcon, LinkedinIcon } from '@/components/icons/BrandIcons';
+import { WhatsappIcon, FacebookIcon, InstagramIcon, LinkedinIcon, GithubIcon } from '@/components/icons/BrandIcons';
 
 export const PHONE_DISPLAY = '+92 303 8489822';
 export const WHATSAPP_NUMBER = '923038489822';
@@ -32,6 +32,20 @@ export const socialLinks: SocialLinkData[] = [
     hoverClass: 'hover:bg-[#25D366] hover:border-[#25D366]',
   },
   {
+    label: 'GitHub',
+    href: 'https://github.com/munnazaShamim',
+    icon: GithubIcon,
+    glowColor: 'rgba(139, 148, 158, 0.45)',
+    hoverClass: 'hover:bg-[#24292F] hover:border-[#8B949E]',
+  },
+  {
+    label: 'LinkedIn',
+    href: 'https://www.linkedin.com/in/munnaza-shamim/',
+    icon: LinkedinIcon,
+    glowColor: 'rgba(10, 102, 194, 0.45)',
+    hoverClass: 'hover:bg-[#0A66C2] hover:border-[#0A66C2]',
+  },
+  {
     label: 'Facebook',
     href: 'https://www.facebook.com/munnaza.shamim.7',
     icon: FacebookIcon,
@@ -45,12 +59,5 @@ export const socialLinks: SocialLinkData[] = [
     glowColor: 'rgba(238, 42, 123, 0.45)',
     hoverClass:
       'hover:bg-gradient-to-tr hover:from-[#f9ce34] hover:via-[#ee2a7b] hover:to-[#6228d7] hover:border-transparent',
-  },
-  {
-    label: 'LinkedIn',
-    href: 'https://www.linkedin.com/in/munnaza-shamim/',
-    icon: LinkedinIcon,
-    glowColor: 'rgba(10, 102, 194, 0.45)',
-    hoverClass: 'hover:bg-[#0A66C2] hover:border-[#0A66C2]',
   },
 ];

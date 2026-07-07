@@ -1,50 +1,49 @@
 'use client';
 
 import { useState, useEffect, useCallback } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion, AnimatePresence, useReducedMotion } from 'framer-motion';
 import Link from 'next/link';
-import { ChevronLeft, ChevronRight, Quote } from 'lucide-react';
+import { ChevronLeft, ChevronRight, BadgeCheck } from 'lucide-react';
 
-// Placeholder testimonial copy — swap `quote` with the client's real words as they come in.
-// Attribution is role/project-based (not a named individual) until a real name is provided,
-// so nothing here reads as a fabricated person once quotes are updated.
+// Verifiable project outcomes — every statement here is backed by its linked case study.
+// When real client quotes come in, they can be added alongside (never invented).
 const testimonials = [
   {
-    quote:
-      'Bidding had to feel instant and be bulletproof under real money — every bid, every dashboard, matched our design pixel-for-pixel and just worked from day one.',
-    attribution: 'Project Lead — Vehicle Auction Platform',
+    outcome:
+      'Every bid is pushed live over WebSockets to Seller, Dealer, and Admin dashboards — no page reloads — with the client’s XD design implemented exactly as delivered.',
+    attribution: 'Real-Time Vehicle Auction Platform',
     location: 'Germany',
     href: '/case-studies/real-time-vehicle-auction-platform',
     linkLabel: 'Read the case study',
   },
   {
-    quote:
-      'We needed five sites to rank on their own, not cannibalize each other, while sharing one listing engine behind the scenes. That balance is exactly what got built.',
-    attribution: 'Operations Manager — Commercial Vehicle Marketplace Network',
+    outcome:
+      'Five production marketplace sites run on one custom listing and search engine, each with its own technical SEO foundation so every site ranks independently.',
+    attribution: 'Commercial Vehicle Marketplace Network',
     location: 'Germany',
     href: '/case-studies/commercial-vehicle-marketplace-network',
     linkLabel: 'Read the case study',
   },
   {
-    quote:
-      'Moving off traditional WordPress felt risky for our rankings. The migration kept our editing workflow intact and the site came out faster than we imagined possible.',
-    attribution: 'Clinic Director — Nexus Clinic',
+    outcome:
+      'A WordPress-to-headless-Next.js migration that kept the team’s editing workflow — and landed 100 desktop / 95 mobile Lighthouse Performance with a 0.8s LCP.',
+    attribution: 'Nexus Clinic',
     location: 'Kuala Lumpur, Malaysia',
     href: '/case-studies/nexus-clinic-headless-wordpress-nextjs',
     linkLabel: 'Read the case study',
   },
   {
-    quote:
-      'Publishing content needed to be simple for our team but locked down properly on the admin side. The two-factor login gave us that without slowing anyone down.',
-    attribution: 'Practice Manager — Dr. Soma Plastic Surgery',
+    outcome:
+      'Blog publishing stayed simple for the clinic team while admin access was locked behind OTP two-factor login, with content served through a secure custom API.',
+    attribution: 'Dr. Soma Plastic Surgery',
     location: 'Malaysia',
     href: '/case-studies/custom-laravel-blog-cms-secure-api',
     linkLabel: 'Read the case study',
   },
   {
-    quote:
-      'Our site was already built, just slow — every page felt like it was waiting on something. Finding and fixing the actual bottleneck made an immediate, visible difference.',
-    attribution: 'Store Owner — Vinyl & Carpet Flooring Retailer',
+    outcome:
+      'One centralized caching layer replaced scattered, repeated API calls — 97 mobile / 99 desktop Lighthouse Performance on a site that previously stalled on every page.',
+    attribution: 'Vinyl & Carpet Flooring Retailer',
     location: 'Malaysia',
     href: '/case-studies/furnishings-my-nextjs-api-caching',
     linkLabel: 'Read the case study',
@@ -58,6 +57,7 @@ export default function Testimonials() {
   const [activeIndex, setActiveIndex] = useState(0);
   const [direction, setDirection] = useState(1);
   const [isPaused, setIsPaused] = useState(false);
+  const prefersReducedMotion = useReducedMotion();
 
   useEffect(() => {
     setIsMounted(true);
@@ -69,17 +69,17 @@ export default function Testimonials() {
   }, []);
 
   useEffect(() => {
-    if (isPaused) return;
+    if (isPaused || prefersReducedMotion) return;
     const timer = setInterval(() => {
       goTo(activeIndex + 1, 1);
     }, AUTO_ADVANCE_MS);
     return () => clearInterval(timer);
-  }, [activeIndex, isPaused, goTo]);
+  }, [activeIndex, isPaused, prefersReducedMotion, goTo]);
 
   const active = testimonials[activeIndex];
 
   return (
-    <section className="py-20 bg-secondaryBackground">
+    <section className="py-20">
       <div className="container mx-auto px-4">
         <div className="max-w-4xl mx-auto text-center mb-16">
           <motion.h2
@@ -88,7 +88,7 @@ export default function Testimonials() {
             animate={isMounted ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.6 }}
           >
-            What Clients Say
+            Proven Project Outcomes
           </motion.h2>
           <motion.p
             className="text-xl text-secondaryText max-w-2xl mx-auto"
@@ -96,7 +96,7 @@ export default function Testimonials() {
             animate={isMounted ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.6, delay: 0.2 }}
           >
-            From the businesses behind the systems in the case studies above
+            What each engagement actually delivered — every claim traceable to its case study
           </motion.p>
         </div>
 
@@ -110,7 +110,7 @@ export default function Testimonials() {
         >
           <div className="relative bg-cardBackground rounded-2xl border border-border overflow-hidden">
             <div className="absolute top-8 left-8 text-primaryAccent/15" aria-hidden="true">
-              <Quote className="w-16 h-16" fill="currentColor" />
+              <BadgeCheck className="w-16 h-16" />
             </div>
 
             <AnimatePresence mode="wait" initial={false}>
@@ -123,7 +123,7 @@ export default function Testimonials() {
                 className="relative p-10 md:p-14 min-h-[280px] flex flex-col justify-center"
               >
                 <p className="text-xl md:text-2xl font-medium leading-relaxed mb-8">
-                  &ldquo;{active.quote}&rdquo;
+                  {active.outcome}
                 </p>
 
                 <div className="flex items-center gap-4">
@@ -177,7 +177,7 @@ export default function Testimonials() {
               <button
                 key={testimonial.href}
                 type="button"
-                aria-label={`Go to testimonial ${index + 1}`}
+                aria-label={`Go to outcome ${index + 1}`}
                 onClick={() => goTo(index, index > activeIndex ? 1 : -1)}
                 className="p-2.5 flex items-center justify-center"
               >

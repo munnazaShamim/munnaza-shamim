@@ -22,12 +22,11 @@ export default function About() {
           >
             <div className="relative aspect-square rounded-2xl overflow-hidden border border-border">
               <Image
-                src="/Munnaza.jpg"
+                src="/Munnaza.webp"
                 alt="Munnaza Shamim"
                 fill
                 sizes="(min-width: 1024px) 280px, 60vw"
                 className="object-cover"
-                priority
               />
             </div>
           </motion.div>
@@ -49,7 +48,7 @@ export default function About() {
                 Recent work includes a live auction and bidding platform built on custom PHP/MySQL auction logic with Node.js WebSockets for instant bid updates across Dealer, Seller, and Admin roles, a family of commercial vehicle marketplace sites built for the European commercial vehicle trade, and two custom Laravel CMS platforms.
               </p>
               <p>
-                Currently building Next.js applications as a Senior Developer at Daikimedia, after three years as a full-stack WordPress and Node.js developer at ultrasolz. Four years in, one standard applied to every project: it has to load fast, it has to rank, and it has to hold up under real usage.
+                Currently building Next.js applications as a Senior Developer at DaikiMedia, after three years as a full-stack WordPress and Node.js developer at ultrasolz. Four years in, one standard applied to every project: it has to load fast, it has to rank, and it has to hold up under real usage.
               </p>
               <p>
                 Most of my client base is in Europe — including German businesses in the commercial vehicle trade — so GDPR-conscious data handling and clean consent flows are a default in my builds, not an afterthought. My working hours align with Central European Time: Lahore is only three to four hours ahead of Berlin, so same-day communication is the norm.

@@ -78,6 +78,16 @@ export default function LaravelBlogCMSCaseStudy() {
             <div className="text-primaryAccent text-sm font-semibold mb-2">{study.client}</div>
             <h1 className="text-3xl md:text-4xl font-bold mb-4">{study.title}</h1>
             <p className="text-xl text-secondaryText max-w-3xl">{study.summary}</p>
+            {study.liveUrl && (
+              <a
+                href={study.liveUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="btn-hover inline-flex items-center gap-2 mt-6 px-5 py-2.5 border border-primaryAccent/40 text-primaryAccent font-semibold rounded-lg hover:bg-primaryAccent hover:text-background transition-colors"
+              >
+                Visit the live site ↗
+              </a>
+            )}
           </div>
 
           {gallery.length > 0 && <CaseStudyGallery gallery={gallery} />}

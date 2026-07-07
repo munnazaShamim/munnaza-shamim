@@ -1,6 +1,5 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
-import Footer from '@/components/Footer';
 import { EMAIL, EMAIL_LINK } from '@/lib/socialLinks';
 
 export const metadata: Metadata = {
@@ -71,7 +70,6 @@ export default function PrivacyPage() {
           </div>
         </div>
       </div>
-      <Footer />
     </main>
   );
 }

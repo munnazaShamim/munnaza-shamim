@@ -2,7 +2,8 @@
 
 import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { Mail, MapPin, Phone } from 'lucide-react';
+import Link from 'next/link';
+import { Download, Mail, MapPin, Phone } from 'lucide-react';
 import { WhatsappIcon } from '@/components/icons/BrandIcons';
 import SocialLink from '@/components/SocialLink';
 import { socialLinks, PHONE_DISPLAY, PHONE_LINK, EMAIL, EMAIL_LINK, WHATSAPP_URL, getWhatsAppLink } from '@/lib/socialLinks';
@@ -120,6 +121,13 @@ export default function Contact() {
                     {EMAIL}
                   </a>
                 </p>
+                <p className="text-xs text-mutedText text-center">
+                  Your details are used only to reply to you — see the{' '}
+                  <Link href="/privacy" className="underline underline-offset-2 hover:text-secondaryText">
+                    privacy policy
+                  </Link>
+                  .
+                </p>
               </form>
             </motion.div>
 
@@ -203,6 +211,24 @@ export default function Contact() {
                       <div className="text-secondaryText">Lahore, Pakistan (Remote)</div>
                     </div>
                   </div>
+
+                  <motion.a
+                    href="/Munnaza-Shamim-CV.pdf"
+                    download
+                    className="flex items-start group"
+                    whileHover={{ x: 4 }}
+                  >
+                    <motion.div
+                      className="w-10 h-10 rounded-full bg-primaryAccent flex items-center justify-center text-background mr-4 flex-shrink-0"
+                      {...iconBadgeMotion}
+                    >
+                      <Download className="w-4 h-4" />
+                    </motion.div>
+                    <div>
+                      <div className="font-semibold group-hover:text-primaryAccent transition-colors">Résumé / CV</div>
+                      <div className="text-secondaryText">Download PDF</div>
+                    </div>
+                  </motion.a>
                 </div>
 
                 <div>

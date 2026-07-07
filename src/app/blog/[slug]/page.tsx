@@ -92,6 +92,16 @@ export default async function BlogPostPage({ params }: PageProps) {
                     </p>
                   ))}
                 </div>
+                {section.code && (
+                  <div className="mt-6 rounded-xl border border-border overflow-hidden">
+                    <div className="px-4 py-2 bg-secondaryBackground border-b border-border text-xs font-semibold text-mutedText uppercase tracking-wider">
+                      {section.code.language}
+                    </div>
+                    <pre className="bg-cardBackground p-5 overflow-x-auto text-sm leading-relaxed text-primaryText">
+                      <code>{section.code.snippet}</code>
+                    </pre>
+                  </div>
+                )}
               </div>
             ))}
           </div>
