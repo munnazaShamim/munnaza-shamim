@@ -136,6 +136,7 @@ export const caseStudies: CaseStudy[] = [
     gallery: [
       { src: '/nexus.webp', label: 'Homepage — hero section' },
       { src: '/nexus-service-pages.webp', label: 'Botox treatment service page' },
+      { src: '/nexus-full.webp', label: 'full page desing' },
     ],
     featured: true,
   },
@@ -174,28 +175,63 @@ export const caseStudies: CaseStudy[] = [
     title: 'Vinyl & Carpet Flooring Retailer — API Caching & Core Web Vitals Fix',
     client: 'Vinyl & carpet flooring retailer, Malaysia',
     summary:
-      'Fixed an already-built Next.js site that was extremely slow by replacing scattered, repeated API calls with a centralized caching layer — landing near-perfect Lighthouse scores on mobile and desktop.',
+      'Fixed an already-built Next.js site that was extremely slow and felt sluggish to browse, by replacing scattered, repeated API calls with a centralized caching layer — smoothing out scrolling and page-to-page navigation while landing near-perfect Lighthouse scores on mobile and desktop.',
     categories: ['Performance', 'Core Web Vitals'],
     challenge:
-      'The site was already built in Next.js on Vercel, pulling content from a CMS API built by another developer, but it was extremely slow. The same API endpoints were being fetched independently on multiple pages — sometimes multiple times on a single page — with no single caching layer controlling any of it. Every page load re-hit an already-slow backend API directly, compounding load time on top of a slow server.',
+      'The site was already built in Next.js on Vercel, pulling content from a CMS API built by another developer, but it was extremely slow. The same API endpoints were being fetched independently on multiple pages — sometimes multiple times on a single page — with no single caching layer controlling any of it. Every page load re-hit an already-slow backend API directly, compounding load time on top of a slow server, and browsing the site felt heavy — scrolling and moving between pages kept stalling while components waited on the same data to come back again.',
     solution:
-      'Introduced a centralized caching layer across the site — products, blogs, and general site data all now go through cached fetches instead of every page independently re-calling the CMS API. That cut both the number of API calls and the time spent waiting on the slow backend, taking load time and Largest Contentful Paint down sharply on both mobile and desktop.',
+      'Introduced a centralized caching layer across the site — products, blogs, and general site data all now go through cached fetches instead of every page independently re-calling the CMS API. That cut both the number of API calls and the time spent waiting on the slow backend, taking load time and Largest Contentful Paint down sharply on both mobile and desktop. With components no longer re-fetching the same data on every render, scrolling and navigating through product and blog pages became smooth and immediate instead of stalling — the whole site got faster to move through, not just faster to first paint.',
     features: [
       'Centralized caching layer for products, blogs & site-wide data',
       'Eliminated duplicate, uncached API calls across pages',
       'Next.js data fetching optimized, deployed on Vercel',
       'LCP and load-time optimization across mobile & desktop',
+      'Smooth, uninterrupted scrolling and page-to-page navigation',
     ],
     techStack: ['Next.js', 'React', 'Vercel', 'Headless CMS API (third-party)'],
     proof: [
       'Mobile Lighthouse: 97 Performance, 96 Accessibility, 100 Best Practices, 100 SEO',
       'Desktop Lighthouse: 99 Performance, 96 Accessibility, 96 Best Practices, 100 SEO',
       'Repeated, uncached API calls scattered across pages replaced with a single centralized caching layer for products, blogs, and site data',
+      'Scrolling and browsing across product and blog pages no longer stalls on repeat API calls — the site now moves as fast as it loads',
     ],
     imageLabel: 'Flooring retailer — desktop Lighthouse audit (1600x1000)',
     gallery: [
+      { src: '/furnishing-hero.webp', label: 'site image' },
       { src: '/furnishing-lcp-desktop.png', label: 'Desktop Lighthouse audit — after caching' },
       { src: '/furnishing-lcp.png', label: 'Mobile Lighthouse audit — after caching' },
+    ],
+    featured: true,
+  },
+  {
+    slug: 'daikimedia-core-web-vitals-optimization',
+    title: 'DaikiMedia — Core Web Vitals & Performance Optimization',
+    client: 'DaikiMedia — growth marketing agency (the agency\'s own site)',
+    summary:
+      'Fixed a mobile Performance score stuck at 46 on DaikiMedia\'s own marketing site, taking it to 95 on mobile and a perfect 100 on desktop with a full-stack optimization pass.',
+    categories: ['Performance', 'Core Web Vitals'],
+    challenge:
+      "DaikiMedia's own marketing site — the agency's primary lead-generation asset — was scoring just 46 for mobile Performance in Google PageSpeed Insights, despite Accessibility, Best Practices, and SEO all already sitting in the 90s. The site looked fine on paper but was slow for the real visitors it needed to convert.",
+    solution:
+      "Rather than chasing a single metric, ran a full performance pass across every layer contributing to the slow mobile load: optimized and lazy-loaded images, removed render-blocking JS/CSS, tightened font loading, trimmed unnecessary third-party scripts, and improved caching across the site. The site is a Next.js/React app shipped as a static export to the live host, so the fixes landed directly in the exported build rather than depending on server-side tuning.",
+    features: [
+      'Image optimization & lazy-loading across the site',
+      'Removed render-blocking JS/CSS',
+      'Optimized font loading & trimmed third-party scripts',
+      'Caching improvements across pages',
+      'Next.js static export (SSG) build shipped to production',
+    ],
+    techStack: ['Next.js', 'React', 'Static Export (SSG)'],
+    proof: [
+      'Mobile Lighthouse Performance: 46 → 95 after optimization, with Accessibility 96, Best Practices 100, and SEO 92 held steady',
+      'Desktop Lighthouse: 100 Performance, 93 Accessibility, 100 Best Practices, 92 SEO',
+      'Fixed at the build level — the site ships as a static Next.js export, not a server-rendered app tuned after the fact',
+    ],
+    imageLabel: 'DaikiMedia — desktop Lighthouse audit after optimization (1600x1000)',
+    gallery: [
+      { src: '/daikimedia-core-web-vital-destop.png', label: 'Desktop Lighthouse audit — after optimization (100 Performance)' },
+      { src: '/daikimedia-before-core-web-vital.png', label: 'Mobile Lighthouse audit — before optimization (46 Performance)' },
+      { src: '/daikimedia.after-core-web-vital.png', label: 'Mobile Lighthouse audit — after optimization (95 Performance)' },
     ],
     featured: true,
   },

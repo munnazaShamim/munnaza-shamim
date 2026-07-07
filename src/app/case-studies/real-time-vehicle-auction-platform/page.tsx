@@ -1,7 +1,6 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
-import Footer from '@/components/Footer';
 import CaseStudyCTA from '@/components/CaseStudyCTA';
 import CaseStudyGallery from '@/components/CaseStudyGallery';
 import { getCaseStudy } from '@/lib/caseStudies';
@@ -154,7 +153,6 @@ export default function AuctionPlatformCaseStudy() {
           <CaseStudyCTA text="I build real-time, high-traffic bidding and auction systems the same way — engineered for production, not just a demo." />
         </div>
       </div>
-      <Footer />
     </main>
   );
 }

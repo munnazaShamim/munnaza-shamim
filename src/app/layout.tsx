@@ -4,6 +4,7 @@ import { Inter, Sora } from 'next/font/google';
 import Navbar from '@/components/Navbar';
 import { SITE_URL, SITE_TITLE, SITE_DESCRIPTION } from '@/lib/site';
 import { socialLinks } from '@/lib/socialLinks';
+import Footer from '@/components/Footer';
 
 const inter = Inter({ subsets: ['latin'], variable: '--font-inter' });
 const sora = Sora({
@@ -84,6 +85,7 @@ export default function RootLayout({
         />
         <Navbar />
         {children}
+        <Footer />
       </body>
     </html>
   );

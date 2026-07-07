@@ -2,7 +2,6 @@ import type { Metadata } from 'next';
 import Image from 'next/image';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
-import Footer from '@/components/Footer';
 import CaseStudyCTA from '@/components/CaseStudyCTA';
 import CaseStudyGallery from '@/components/CaseStudyGallery';
 import { getCaseStudy } from '@/lib/caseStudies';
@@ -214,7 +213,6 @@ export default function LaravelBlogCMSCaseStudy() {
           <CaseStudyCTA text="I build custom CMS platforms and the APIs that feed them the same way — secured deliberately, not left to a plugin ecosystem to handle." />
         </div>
       </div>
-      <Footer />
     </main>
   );
 }

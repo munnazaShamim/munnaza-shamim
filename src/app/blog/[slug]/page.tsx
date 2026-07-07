@@ -1,7 +1,6 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
-import Footer from '@/components/Footer';
 import CaseStudyCTA from '@/components/CaseStudyCTA';
 import { blogPosts, getBlogPost } from '@/lib/blogPosts';
 
@@ -123,7 +122,6 @@ export default async function BlogPostPage({ params }: PageProps) {
           <CaseStudyCTA text="If this is the kind of problem you're dealing with right now, I can help you fix it in your own codebase." />
         </div>
       </div>
-      <Footer />
     </main>
   );
 }

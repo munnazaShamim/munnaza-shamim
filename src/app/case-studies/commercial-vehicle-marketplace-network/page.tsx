@@ -2,7 +2,6 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import ImagePlaceholder from '@/components/ImagePlaceholder';
-import Footer from '@/components/Footer';
 import CaseStudyCTA from '@/components/CaseStudyCTA';
 import CaseStudyGallery from '@/components/CaseStudyGallery';
 import { getCaseStudy } from '@/lib/caseStudies';
@@ -130,7 +129,6 @@ export default function MarketplaceNetworkCaseStudy() {
           <CaseStudyCTA text="I build custom listing, search, and multi-site content systems the same way — engineered for scale, not a page-builder template." />
         </div>
       </div>
-      <Footer />
     </main>
   );
 }

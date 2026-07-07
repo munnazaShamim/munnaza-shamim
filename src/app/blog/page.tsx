@@ -1,6 +1,5 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
-import Footer from '@/components/Footer';
 import { blogPosts } from '@/lib/blogPosts';
 
 const PAGE_TITLE = 'Technical Blog — Performance, SEO & Architecture Notes | Munnaza Shamim';
@@ -58,7 +57,6 @@ export default function BlogIndexPage() {
           ))}
         </div>
       </div>
-      <Footer />
     </main>
   );
 }

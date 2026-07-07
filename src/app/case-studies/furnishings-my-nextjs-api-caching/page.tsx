@@ -2,7 +2,6 @@ import type { Metadata } from 'next';
 import Image from 'next/image';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
-import Footer from '@/components/Footer';
 import CaseStudyCTA from '@/components/CaseStudyCTA';
 import { getCaseStudy } from '@/lib/caseStudies';
 
@@ -187,7 +186,6 @@ export default function FurnishingsCaseStudy() {
           <CaseStudyCTA text="I fix slow, already-built sites the same way — tracing where the API calls actually go and putting proper caching in front of them, not just tweaking the front end." />
         </div>
       </div>
-      <Footer />
     </main>
   );
 }

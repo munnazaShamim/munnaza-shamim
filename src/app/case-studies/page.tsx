@@ -1,6 +1,5 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
-import Footer from '@/components/Footer';
 import CaseStudiesGrid from '@/components/CaseStudiesGrid';
 import { caseStudies, getAllCategories } from '@/lib/caseStudies';
 
@@ -37,7 +36,6 @@ export default function CaseStudiesIndexPage() {
 
         <CaseStudiesGrid caseStudies={caseStudies} categories={getAllCategories()} />
       </div>
-      <Footer />
     </main>
   );
 }
