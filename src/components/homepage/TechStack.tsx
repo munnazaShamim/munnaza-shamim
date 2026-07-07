@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useEffect, useRef } from 'react';
-import { motion, useAnimationFrame, useMotionValue, useReducedMotion } from 'framer-motion';
+import { motion, useAnimationFrame, useMotionValue } from 'framer-motion';
 
 // Each group gets its own accent so the marquee reads as a varied,
 // scannable strip instead of a wall of identical cards.
@@ -67,7 +67,6 @@ function MarqueeTrack({ items, speed = 90 }: { items: typeof technologies; speed
   const trackRef = useRef<HTMLDivElement>(null);
   const halfWidthRef = useRef(0);
   const isPausedRef = useRef(false);
-  const prefersReducedMotion = useReducedMotion();
 
   useEffect(() => {
     if (trackRef.current) {
@@ -76,7 +75,7 @@ function MarqueeTrack({ items, speed = 90 }: { items: typeof technologies; speed
   }, []);
 
   useAnimationFrame((_, delta) => {
-    if (prefersReducedMotion || !halfWidthRef.current || isPausedRef.current) return;
+    if (!halfWidthRef.current || isPausedRef.current) return;
     let next = x.get() - (speed * delta) / 1000;
     if (next <= -halfWidthRef.current) {
       next += halfWidthRef.current;
