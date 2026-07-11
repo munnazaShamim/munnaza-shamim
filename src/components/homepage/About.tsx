@@ -1,24 +1,20 @@
 'use client';
 
-import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import Image from 'next/image';
+import { slideLeft, slideRight, revealViewport, reveal } from '@/lib/animations';
 
 export default function About() {
-  const [isMounted, setIsMounted] = useState(false);
-
-  useEffect(() => {
-    setIsMounted(true);
-  }, []);
-
   return (
-    <section id="about" className="py-20">
+    <section id="about" className="pt-8 pb-20 md:pt-12">
       <div className="container mx-auto px-4">
         <div className="max-w-5xl mx-auto grid grid-cols-1 lg:grid-cols-[280px_1fr] gap-12 items-start">
           <motion.div
-            initial={{ opacity: 0, x: -20 }}
-            animate={isMounted ? { opacity: 1, x: 0 } : {}}
-            transition={{ duration: 0.6 }}
+            variants={slideLeft}
+            initial="hidden"
+            whileInView="visible"
+            viewport={revealViewport}
+            transition={reveal()}
           >
             <div className="relative aspect-square rounded-2xl overflow-hidden border border-border">
               <Image
@@ -32,26 +28,28 @@ export default function About() {
           </motion.div>
 
           <motion.div
-            initial={{ opacity: 0, x: 20 }}
-            animate={isMounted ? { opacity: 1, x: 0 } : {}}
-            transition={{ duration: 0.6, delay: 0.2 }}
+            variants={slideRight}
+            initial="hidden"
+            whileInView="visible"
+            viewport={revealViewport}
+            transition={reveal(0.15)}
           >
             <h2 className="text-3xl md:text-4xl font-bold mb-6">About</h2>
             <div className="space-y-4 text-secondaryText text-lg">
               <p>
-                I&apos;m Munnaza Shamim, a full-stack developer based in Lahore, Pakistan, working with clients across Europe, the UK, UAE, and North America. My focus sits where most agencies split the work in two: building the system, and making it fast.
+                I&apos;m Munnaza Shamim, a full-stack developer based in Lahore, Pakistan. I work with clients across Europe, the UK, the UAE, and North America. Most agencies split this kind of work in two, where one team builds the system and another tries to make it fast. I do both.
               </p>
               <p>
-                That means WordPress builds that don&apos;t fall over under WooCommerce checkout load, Next.js applications architected around rendering strategy and caching from day one, and real-time systems wired for actual concurrent behavior — not just CRUD with a WebSocket bolted on.
+                In practice that means WordPress builds that hold up under WooCommerce checkout load, Next.js applications planned around rendering strategy and caching from day one, and real-time systems wired for genuine concurrent behavior rather than plain CRUD with a WebSocket bolted on top.
               </p>
               <p>
-                Recent work includes a live auction and bidding platform built on custom PHP/MySQL auction logic with Node.js WebSockets for instant bid updates across Dealer, Seller, and Admin roles, a family of commercial vehicle marketplace sites built for the European commercial vehicle trade, and two custom Laravel CMS platforms.
+                Recent work includes a live auction and bidding platform running on custom PHP and MySQL auction logic, with Node.js WebSockets pushing instant bid updates to the Dealer, Seller, and Admin roles. I also built a family of commercial vehicle marketplace sites for the European trade, plus two custom Laravel CMS platforms.
               </p>
               <p>
-                Currently building Next.js applications as a Senior Developer at DaikiMedia, after three years as a full-stack WordPress and Node.js developer at ultrasolz. Four years in, one standard applied to every project: it has to load fast, it has to rank, and it has to hold up under real usage.
+                Right now I&apos;m building Next.js applications as a Senior Developer at DaikiMedia, after three years as a full-stack WordPress and Node.js developer at ultrasolz. Four years in, I hold every project to the same standard: it has to load fast, it has to rank, and it has to hold up under real usage.
               </p>
               <p>
-                Most of my client base is in Europe — including German businesses in the commercial vehicle trade — so GDPR-conscious data handling and clean consent flows are a default in my builds, not an afterthought. My working hours align with Central European Time: Lahore is only three to four hours ahead of Berlin, so same-day communication is the norm.
+                Most of my clients are in Europe, including German businesses in the commercial vehicle trade, so GDPR-conscious data handling and clean consent flows are built in from the start rather than added later. My hours line up with Central European Time. Lahore is only three to four hours ahead of Berlin, so same-day replies are normal.
               </p>
             </div>
           </motion.div>

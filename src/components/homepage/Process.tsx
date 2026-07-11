@@ -1,16 +1,11 @@
 'use client';
 
-import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { Gauge, LineChart, TrendingUp } from 'lucide-react';
+import { zoomIn, slideByIndex, revealViewport, reveal } from '@/lib/animations';
+import RightArrow from '@/lib/icons/ArrowRight';
 
 export default function Process() {
-  const [isMounted, setIsMounted] = useState(false);
-
-  useEffect(() => {
-    setIsMounted(true);
-  }, []);
-
   const steps = [
     {
       number: '01',
@@ -63,17 +58,21 @@ export default function Process() {
         <div className="max-w-4xl mx-auto text-center mb-16">
           <motion.h2
             className="text-3xl md:text-4xl font-bold mb-4"
-            initial={{ opacity: 0, y: 20 }}
-            animate={isMounted ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.6 }}
+            variants={zoomIn}
+            initial="hidden"
+            whileInView="visible"
+            viewport={revealViewport}
+            transition={reveal()}
           >
             How This Works
           </motion.h2>
           <motion.p
             className="text-xl text-secondaryText max-w-2xl mx-auto"
-            initial={{ opacity: 0, y: 20 }}
-            animate={isMounted ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.6, delay: 0.2 }}
+            variants={zoomIn}
+            initial="hidden"
+            whileInView="visible"
+            viewport={revealViewport}
+            transition={reveal(0.15)}
           >
             No work starts until the actual bottleneck or requirement is understood
           </motion.p>
@@ -84,18 +83,18 @@ export default function Process() {
             <motion.div
               key={step.number}
               className="card-hover relative bg-cardBackground rounded-2xl border border-border p-6 group"
-              initial={{ opacity: 0, y: 20 }}
-              animate={isMounted ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.6, delay: 0.1 * index }}
+              variants={slideByIndex(index)}
+              initial="hidden"
+              whileInView="visible"
+              viewport={revealViewport}
+              transition={reveal(0.1 * index)}
             >
               <div className="flex items-center justify-between mb-4">
                 <span className="text-4xl font-bold text-primaryAccent/60 group-hover:text-primaryAccent/90 transition-colors">
                   {step.number}
                 </span>
                 {index < steps.length - 1 && (
-                  <span className="hidden lg:block text-mutedText" aria-hidden="true">
-                    →
-                  </span>
+                  <RightArrow size={18} className="hidden lg:block text-mutedText" />
                 )}
               </div>
               <h3 className="font-bold mb-2">{step.title}</h3>
@@ -106,9 +105,11 @@ export default function Process() {
 
         <motion.div
           className="max-w-6xl mx-auto bg-cardBackground rounded-2xl border border-border p-8 md:p-10"
-          initial={{ opacity: 0, y: 20 }}
-          animate={isMounted ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.6, delay: 0.3 }}
+          variants={zoomIn}
+          initial="hidden"
+          whileInView="visible"
+          viewport={revealViewport}
+          transition={reveal()}
         >
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:divide-x md:divide-border">
             {pillars.map((pillar) => {

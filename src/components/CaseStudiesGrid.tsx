@@ -4,6 +4,7 @@ import { useState } from 'react';
 import Link from 'next/link';
 import CaseStudyThumbnail from '@/components/CaseStudyThumbnail';
 import type { CaseStudy } from '@/lib/caseStudies';
+import RightArrow from '@/lib/icons/ArrowRight';
 
 interface CaseStudiesGridProps {
   caseStudies: CaseStudy[];
@@ -45,7 +46,7 @@ export default function CaseStudiesGrid({ caseStudies, categories }: CaseStudies
           <Link
             key={study.slug}
             href={`/case-studies/${study.slug}`}
-            className="card-hover bg-cardBackground rounded-2xl border border-border overflow-hidden block"
+            className="group card-hover bg-cardBackground rounded-2xl border border-border overflow-hidden block"
           >
             <div className="p-8">
               <CaseStudyThumbnail study={study} className="mb-6" />
@@ -62,7 +63,10 @@ export default function CaseStudiesGrid({ caseStudies, categories }: CaseStudies
               <div className="text-primaryAccent text-sm font-semibold mb-2">{study.client}</div>
               <h2 className="text-xl font-bold mb-3">{study.title}</h2>
               <p className="text-sm text-secondaryText mb-4">{study.summary}</p>
-              <span className="text-primaryAccent font-semibold text-sm">Read full case study →</span>
+              <span className="inline-flex items-center gap-1.5 text-primaryAccent font-semibold text-sm">
+                Read full case study
+                <RightArrow size={16} className="transition-transform duration-200 group-hover:translate-x-1" />
+              </span>
             </div>
           </Link>
         ))}

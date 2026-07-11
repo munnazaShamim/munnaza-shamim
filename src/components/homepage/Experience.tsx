@@ -1,16 +1,10 @@
 'use client';
 
-import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { Briefcase, MapPin, Calendar } from 'lucide-react';
+import { zoomIn, slideByIndex, revealViewport, reveal } from '@/lib/animations';
 
 export default function Experience() {
-  const [isMounted, setIsMounted] = useState(false);
-
-  useEffect(() => {
-    setIsMounted(true);
-  }, []);
-
   const experiences = [
     {
       year: 'Jan 2026 - Present',
@@ -19,7 +13,7 @@ export default function Experience() {
       location: 'Lahore, Pakistan (Remote)',
       current: true,
       description:
-        'Building Next.js applications with a focus on performance and technical SEO — including headless WordPress migrations, custom Laravel CMS platforms, and Core Web Vitals remediation for client sites.',
+        'Building Next.js applications with a focus on performance and technical SEO. The work spans headless WordPress migrations, custom Laravel CMS platforms, and Core Web Vitals fixes for client sites.',
       highlights: ['Next.js', 'Headless WordPress', 'Laravel CMS', 'Core Web Vitals', 'Server Management', 'Technical SEO', 'Security', 'Performance Optimization', 'REST APIs'],
     },
     {
@@ -40,17 +34,21 @@ export default function Experience() {
         <div className="max-w-4xl mx-auto text-center mb-16">
           <motion.h2
             className="text-3xl md:text-4xl font-bold mb-4"
-            initial={{ opacity: 0, y: 20 }}
-            animate={isMounted ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.6 }}
+            variants={zoomIn}
+            initial="hidden"
+            whileInView="visible"
+            viewport={revealViewport}
+            transition={reveal()}
           >
             Professional Experience
           </motion.h2>
           <motion.p
             className="text-xl text-secondaryText max-w-2xl mx-auto"
-            initial={{ opacity: 0, y: 20 }}
-            animate={isMounted ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.6, delay: 0.2 }}
+            variants={zoomIn}
+            initial="hidden"
+            whileInView="visible"
+            viewport={revealViewport}
+            transition={reveal(0.15)}
           >
             Four years, two roles, one focus on shipping fast systems
           </motion.p>
@@ -61,9 +59,11 @@ export default function Experience() {
             <motion.div
               key={exp.company}
               className="card-hover relative bg-cardBackground rounded-2xl border border-border p-8 overflow-hidden"
-              initial={{ opacity: 0, y: 20 }}
-              animate={isMounted ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.6, delay: 0.15 * index }}
+              variants={slideByIndex(index)}
+              initial="hidden"
+              whileInView="visible"
+              viewport={revealViewport}
+              transition={reveal(0.12 * index)}
             >
               {/* Accent bar */}
               <div

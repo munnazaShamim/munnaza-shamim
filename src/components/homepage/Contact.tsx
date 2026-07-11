@@ -1,10 +1,11 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { motion } from 'framer-motion';
 import Link from 'next/link';
-import { Download, Mail, MapPin, Phone } from 'lucide-react';
-import { WhatsappIcon } from '@/components/icons/BrandIcons';
+import { Download, Mail, Phone } from 'lucide-react';
+import { WhatsappIcon } from '@/lib/icons/BrandIcons';
+import { zoomIn, slideLeft, slideRight, revealViewport, reveal } from '@/lib/animations';
 import SocialLink from '@/components/SocialLink';
 import { socialLinks, PHONE_DISPLAY, PHONE_LINK, EMAIL, EMAIL_LINK, WHATSAPP_URL, getWhatsAppLink } from '@/lib/socialLinks';
 
@@ -14,16 +15,11 @@ const iconBadgeMotion = {
 };
 
 export default function Contact() {
-  const [isMounted, setIsMounted] = useState(false);
   const [formData, setFormData] = useState({
     name: '',
     email: '',
     message: ''
   });
-
-  useEffect(() => {
-    setIsMounted(true);
-  }, []);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
@@ -42,19 +38,23 @@ export default function Contact() {
       <div className="container mx-auto px-4">
         <div className="max-w-4xl mx-auto">
           <div className="text-center mb-16">
-            <motion.h2 
+            <motion.h2
               className="text-3xl md:text-4xl font-bold mb-4"
-              initial={{ opacity: 0, y: 20 }}
-              animate={isMounted ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.6 }}
+              variants={zoomIn}
+              initial="hidden"
+              whileInView="visible"
+              viewport={revealViewport}
+              transition={reveal()}
             >
               Let&apos;s Scope the Work
             </motion.h2>
             <motion.p
               className="text-xl text-secondaryText max-w-2xl mx-auto"
-              initial={{ opacity: 0, y: 20 }}
-              animate={isMounted ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.6, delay: 0.2 }}
+              variants={zoomIn}
+              initial="hidden"
+              whileInView="visible"
+              viewport={revealViewport}
+              transition={reveal(0.15)}
             >
               Tell me what you&apos;re building or what&apos;s slow, and I&apos;ll tell you honestly whether it&apos;s a quick fix or a real rebuild.
             </motion.p>
@@ -63,9 +63,11 @@ export default function Contact() {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
             {/* Contact Form */}
             <motion.div
-              initial={{ opacity: 0, x: -20 }}
-              animate={isMounted ? { opacity: 1, x: 0 } : {}}
-              transition={{ duration: 0.6, delay: 0.2 }}
+              variants={slideLeft}
+              initial="hidden"
+              whileInView="visible"
+              viewport={revealViewport}
+              transition={reveal(0.15)}
             >
               <form onSubmit={handleSubmit} className="space-y-6">
                 <div>
@@ -109,20 +111,21 @@ export default function Contact() {
                 
                 <motion.button
                   type="submit"
-                  className="btn-hover-cta w-full px-8 py-4 bg-ctaAccent text-background font-semibold rounded-lg hover:bg-ctaAccentHover transition-colors"
+                  className="btn-hover-cta w-full inline-flex items-center justify-center gap-2 px-8 py-4 bg-ctaAccent text-background font-semibold rounded-lg hover:bg-ctaAccentHover transition-colors"
                   whileHover={{ scale: 1.02 }}
                   whileTap={{ scale: 0.98 }}
                 >
+                  <WhatsappIcon className="w-5 h-5" />
                   Send via WhatsApp
                 </motion.button>
                 <p className="text-sm text-secondaryText text-center">
-                  Opens WhatsApp with your message ready to send — or email me directly at{' '}
+                  Opens WhatsApp with your message ready to send, or email me directly at{' '}
                   <a href={EMAIL_LINK} className="text-primaryAccentLight underline underline-offset-2 hover:text-primaryAccent">
                     {EMAIL}
                   </a>
                 </p>
                 <p className="text-xs text-mutedText text-center">
-                  Your details are used only to reply to you — see the{' '}
+                  Your details are used only to reply to you. See the{' '}
                   <Link href="/privacy" className="underline underline-offset-2 hover:text-secondaryText">
                     privacy policy
                   </Link>
@@ -133,15 +136,17 @@ export default function Contact() {
 
             {/* Contact Info */}
             <motion.div
-              initial={{ opacity: 0, x: 20 }}
-              animate={isMounted ? { opacity: 1, x: 0 } : {}}
-              transition={{ duration: 0.6, delay: 0.4 }}
+              variants={slideRight}
+              initial="hidden"
+              whileInView="visible"
+              viewport={revealViewport}
+              transition={reveal(0.3)}
             >
               <div className="space-y-8">
                 <div>
                   <h3 className="text-xl font-bold mb-4">Get in Touch</h3>
                   <p className="text-secondaryText mb-6">
-                    Available for projects across Europe, the UK, UAE, and North America — full builds, performance audits, or ongoing support. Working hours aligned with Central European Time (Lahore is just 3–4 hours ahead of Berlin), so same-day replies are the norm.
+                    Available for projects across Europe, the UK, the UAE, and North America, whether that&apos;s a full build, a performance audit, or ongoing support. My hours line up with Central European Time (Lahore is only three to four hours ahead of Berlin), so same-day replies are the norm.
                   </p>
                 </div>
 
@@ -199,19 +204,6 @@ export default function Contact() {
                     </div>
                   </motion.a>
 
-                  <div className="flex items-start">
-                    <motion.div
-                      className="w-10 h-10 rounded-full bg-primaryAccent flex items-center justify-center text-background mr-4 flex-shrink-0"
-                      {...iconBadgeMotion}
-                    >
-                      <MapPin className="w-4 h-4" />
-                    </motion.div>
-                    <div>
-                      <div className="font-semibold">Location</div>
-                      <div className="text-secondaryText">Lahore, Pakistan (Remote)</div>
-                    </div>
-                  </div>
-
                   <motion.a
                     href="/Munnaza-Shamim-CV.pdf"
                     download
@@ -225,7 +217,7 @@ export default function Contact() {
                       <Download className="w-4 h-4" />
                     </motion.div>
                     <div>
-                      <div className="font-semibold group-hover:text-primaryAccent transition-colors">Résumé / CV</div>
+                      <div className="font-semibold group-hover:text-primaryAccent transition-colors">Resume and CV</div>
                       <div className="text-secondaryText">Download PDF</div>
                     </div>
                   </motion.a>

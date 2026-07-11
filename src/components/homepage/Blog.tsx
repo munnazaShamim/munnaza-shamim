@@ -1,38 +1,37 @@
 'use client';
 
-import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import Link from 'next/link';
 import { blogPosts as allBlogPosts } from '@/lib/blogPosts';
+import { zoomIn, slideByIndex, revealViewport, reveal } from '@/lib/animations';
+import RightArrow from '@/lib/icons/ArrowRight';
 
 const blogPosts = allBlogPosts.slice(0, 4);
 
 export default function Blog() {
-  const [isMounted, setIsMounted] = useState(false);
-
-  useEffect(() => {
-    setIsMounted(true);
-  }, []);
-
   return (
     <section id="blog" className="py-20 bg-secondaryBackground">
       <div className="container mx-auto px-4">
         <div className="max-w-4xl mx-auto text-center mb-16">
           <motion.h2
             className="text-3xl md:text-4xl font-bold mb-4"
-            initial={{ opacity: 0, y: 20 }}
-            animate={isMounted ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.6 }}
+            variants={zoomIn}
+            initial="hidden"
+            whileInView="visible"
+            viewport={revealViewport}
+            transition={reveal()}
           >
             Technical Insights
           </motion.h2>
           <motion.p
             className="text-xl text-secondaryText max-w-2xl mx-auto"
-            initial={{ opacity: 0, y: 20 }}
-            animate={isMounted ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.6, delay: 0.2 }}
+            variants={zoomIn}
+            initial="hidden"
+            whileInView="visible"
+            viewport={revealViewport}
+            transition={reveal(0.15)}
           >
-            Articles on performance, SEO, and architecture — written from real production work
+            Articles on performance, SEO, and architecture, written from real production work
           </motion.p>
         </div>
 
@@ -40,9 +39,11 @@ export default function Blog() {
           {blogPosts.map((post, index) => (
             <motion.article
               key={post.slug}
-              initial={{ opacity: 0, y: 20 }}
-              animate={isMounted ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.6, delay: 0.1 * index }}
+              variants={slideByIndex(index)}
+              initial="hidden"
+              whileInView="visible"
+              viewport={revealViewport}
+              transition={reveal(0.1 * index)}
             >
               <Link
                 href={`/blog/${post.slug}`}
@@ -59,7 +60,10 @@ export default function Blog() {
                     {post.title}
                   </h3>
                   <p className="text-secondaryText mb-4">{post.excerpt}</p>
-                  <span className="text-primaryAccent font-semibold text-sm">Read article →</span>
+                  <span className="inline-flex items-center gap-1.5 text-primaryAccent font-semibold text-sm">
+                    Read article
+                    <RightArrow size={16} className="transition-transform duration-200 group-hover:translate-x-1" />
+                  </span>
                 </div>
               </Link>
             </motion.article>
@@ -68,15 +72,18 @@ export default function Blog() {
 
         <div className="text-center">
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={isMounted ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.6, delay: 0.4 }}
+            variants={zoomIn}
+            initial="hidden"
+            whileInView="visible"
+            viewport={revealViewport}
+            transition={reveal()}
           >
             <Link
               href="/blog"
-              className="btn-hover inline-block px-8 py-3 border border-border text-primaryText font-semibold rounded-lg hover:bg-cardBackground transition-colors"
+              className="group btn-hover inline-flex items-center gap-2 px-8 py-3 border border-border text-primaryText font-semibold rounded-lg hover:bg-cardBackground transition-colors"
             >
-              View All Articles ↗
+              View All Articles
+              <RightArrow size={18} className="transition-transform duration-200 group-hover:translate-x-1" />
             </Link>
           </motion.div>
         </div>

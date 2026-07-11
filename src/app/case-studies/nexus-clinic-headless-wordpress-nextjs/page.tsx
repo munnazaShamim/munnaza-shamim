@@ -5,6 +5,8 @@ import { notFound } from 'next/navigation';
 import CaseStudyCTA from '@/components/CaseStudyCTA';
 import CaseStudyGallery from '@/components/CaseStudyGallery';
 import { getCaseStudy } from '@/lib/caseStudies';
+import LeftArrow from '@/lib/icons/ArrowLeft';
+import RightArrow from '@/lib/icons/ArrowRight';
 
 const SLUG = 'nexus-clinic-headless-wordpress-nextjs';
 
@@ -12,7 +14,7 @@ export function generateMetadata(): Metadata {
   const study = getCaseStudy(SLUG);
   if (!study) return {};
 
-  const title = `${study.title} — Case Study | Munnaza Shamim`;
+  const title = `${study.title} | Case Study | Munnaza Shamim`;
 
   return {
     title,
@@ -68,8 +70,9 @@ export default function NexusClinicCaseStudy() {
 
       <div className="container mx-auto px-4">
         <div className="max-w-5xl mx-auto">
-          <Link href="/case-studies" className="text-primaryAccent text-sm font-semibold hover:underline">
-            ← All case studies
+          <Link href="/case-studies" className="group inline-flex items-center gap-1.5 text-primaryAccent text-sm font-semibold hover:underline">
+            <LeftArrow size={16} className="transition-transform duration-200 group-hover:-translate-x-1" />
+            All case studies
           </Link>
 
           <div className="mt-4 mb-10">
@@ -91,9 +94,10 @@ export default function NexusClinicCaseStudy() {
                 href={study.liveUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="btn-hover inline-flex items-center gap-2 mt-6 px-5 py-2.5 border border-primaryAccent/40 text-primaryAccent font-semibold rounded-lg hover:bg-primaryAccent hover:text-background transition-colors"
+                className="btn-hover group inline-flex items-center gap-1.5 mt-6 px-5 py-2.5 border border-primaryAccent/40 text-primaryAccent font-semibold rounded-lg hover:bg-primaryAccent hover:text-background transition-colors"
               >
-                Visit the live site ↗
+                Visit the live site
+                <RightArrow size={16} className="transition-transform duration-200 group-hover:translate-x-1" />
               </a>
             )}
           </div>
@@ -122,7 +126,7 @@ export default function NexusClinicCaseStudy() {
                 <div className="aspect-video w-full relative border-b border-border">
                   <Image
                     src="/nexus-core-web-vital.png"
-                    alt="Nexus Clinic — mobile Lighthouse audit"
+                    alt="Nexus Clinic mobile Lighthouse audit"
                     fill
                     className="object-cover object-top"
                     sizes="(max-width: 1024px) 100vw, 50vw"
@@ -145,7 +149,7 @@ export default function NexusClinicCaseStudy() {
                 <div className="aspect-video w-full relative border-b border-border">
                   <Image
                     src="/nexus-core-web-vital-desktop.png"
-                    alt="Nexus Clinic — desktop Lighthouse audit"
+                    alt="Nexus Clinic desktop Lighthouse audit"
                     fill
                     className="object-cover object-top"
                     sizes="(max-width: 1024px) 100vw, 50vw"
@@ -218,7 +222,7 @@ export default function NexusClinicCaseStudy() {
             </ul>
           </div>
 
-          <CaseStudyCTA text="I build fast, SEO-optimized Next.js front ends on top of headless CMS backends the same way — engineered for real Core Web Vitals, not just a demo." />
+          <CaseStudyCTA text="I build fast, SEO-optimized Next.js front ends on top of headless CMS backends the same way, engineered for real Core Web Vitals rather than a pretty demo." />
         </div>
       </div>
     </main>

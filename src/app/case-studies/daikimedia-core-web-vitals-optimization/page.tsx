@@ -4,6 +4,8 @@ import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import CaseStudyCTA from '@/components/CaseStudyCTA';
 import { getCaseStudy } from '@/lib/caseStudies';
+import LeftArrow from '@/lib/icons/ArrowLeft';
+import RightArrow from '@/lib/icons/ArrowRight';
 
 const SLUG = 'daikimedia-core-web-vitals-optimization';
 
@@ -11,7 +13,7 @@ export function generateMetadata(): Metadata {
   const study = getCaseStudy(SLUG);
   if (!study) return {};
 
-  const title = `${study.title} — Case Study | Munnaza Shamim`;
+  const title = `${study.title} | Case Study | Munnaza Shamim`;
 
   return {
     title,
@@ -64,8 +66,9 @@ export default function DaikiMediaCaseStudy() {
 
       <div className="container mx-auto px-4">
         <div className="max-w-5xl mx-auto">
-          <Link href="/case-studies" className="text-primaryAccent text-sm font-semibold hover:underline">
-            ← All case studies
+          <Link href="/case-studies" className="group inline-flex items-center gap-1.5 text-primaryAccent text-sm font-semibold hover:underline">
+            <LeftArrow size={16} className="transition-transform duration-200 group-hover:-translate-x-1" />
+            All case studies
           </Link>
 
           <div className="mt-4 mb-10">
@@ -87,9 +90,10 @@ export default function DaikiMediaCaseStudy() {
                 href={study.liveUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="btn-hover inline-flex items-center gap-2 mt-6 px-5 py-2.5 border border-primaryAccent/40 text-primaryAccent font-semibold rounded-lg hover:bg-primaryAccent hover:text-background transition-colors"
+                className="btn-hover group inline-flex items-center gap-1.5 mt-6 px-5 py-2.5 border border-primaryAccent/40 text-primaryAccent font-semibold rounded-lg hover:bg-primaryAccent hover:text-background transition-colors"
               >
-                Visit the live site ↗
+                Visit the live site
+                <RightArrow size={16} className="transition-transform duration-200 group-hover:translate-x-1" />
               </a>
             )}
           </div>
@@ -106,7 +110,7 @@ export default function DaikiMediaCaseStudy() {
           </div>
 
           <div className="mb-14">
-            <h2 className="text-2xl font-bold mb-2">Lighthouse Scores — Before &amp; After</h2>
+            <h2 className="text-2xl font-bold mb-2">Lighthouse Scores: Before &amp; After</h2>
             <p className="text-secondaryText mb-6">
               Real PageSpeed Insights audits of the live site: mobile before the fix, mobile after, and desktop after.
             </p>
@@ -116,14 +120,14 @@ export default function DaikiMediaCaseStudy() {
                 <div className="aspect-video w-full relative border-b border-border">
                   <Image
                     src="/daikimedia-before-core-web-vital.png"
-                    alt="DaikiMedia — mobile Lighthouse audit before optimization"
+                    alt="DaikiMedia mobile Lighthouse audit before optimization"
                     fill
                     className="object-cover object-top"
                     sizes="(max-width: 1024px) 100vw, 33vw"
                   />
                 </div>
                 <div className="p-6">
-                  <h3 className="font-semibold mb-4">Mobile — Before</h3>
+                  <h3 className="font-semibold mb-4">Mobile: Before</h3>
                   <div className="grid grid-cols-2 gap-3">
                     {mobileBeforeScores.map((score) => (
                       <div key={score.label} className="text-center">
@@ -139,14 +143,14 @@ export default function DaikiMediaCaseStudy() {
                 <div className="aspect-video w-full relative border-b border-border">
                   <Image
                     src="/daikimedia.after-core-web-vital.png"
-                    alt="DaikiMedia — mobile Lighthouse audit after optimization"
+                    alt="DaikiMedia mobile Lighthouse audit after optimization"
                     fill
                     className="object-cover object-top"
                     sizes="(max-width: 1024px) 100vw, 33vw"
                   />
                 </div>
                 <div className="p-6">
-                  <h3 className="font-semibold mb-4">Mobile — After</h3>
+                  <h3 className="font-semibold mb-4">Mobile: After</h3>
                   <div className="grid grid-cols-2 gap-3">
                     {mobileAfterScores.map((score) => (
                       <div key={score.label} className="text-center">
@@ -162,14 +166,14 @@ export default function DaikiMediaCaseStudy() {
                 <div className="aspect-video w-full relative border-b border-border">
                   <Image
                     src="/daikimedia-core-web-vital-destop.png"
-                    alt="DaikiMedia — desktop Lighthouse audit after optimization"
+                    alt="DaikiMedia desktop Lighthouse audit after optimization"
                     fill
                     className="object-cover object-top"
                     sizes="(max-width: 1024px) 100vw, 33vw"
                   />
                 </div>
                 <div className="p-6">
-                  <h3 className="font-semibold mb-4">Desktop — After</h3>
+                  <h3 className="font-semibold mb-4">Desktop: After</h3>
                   <div className="grid grid-cols-2 gap-3">
                     {desktopAfterScores.map((score) => (
                       <div key={score.label} className="text-center">
@@ -223,7 +227,7 @@ export default function DaikiMediaCaseStudy() {
             </ul>
           </div>
 
-          <CaseStudyCTA text="I fix slow, already-built sites the same way — auditing every layer (images, render-blocking resources, fonts, third-party scripts, caching) instead of chasing one metric in isolation." />
+          <CaseStudyCTA text="I fix slow, already-built sites the same way. That means auditing every layer (images, render-blocking resources, fonts, third-party scripts, caching) instead of chasing one metric in isolation." />
         </div>
       </div>
     </main>

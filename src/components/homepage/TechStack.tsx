@@ -1,7 +1,8 @@
 'use client';
 
-import { useState, useEffect, useRef } from 'react';
+import { useEffect, useRef } from 'react';
 import { motion, useAnimationFrame, useMotionValue } from 'framer-motion';
+import { zoomIn, slideByIndex, revealViewport, reveal } from '@/lib/animations';
 
 // Each group gets its own accent so the marquee reads as a varied,
 // scannable strip instead of a wall of identical cards.
@@ -121,29 +122,27 @@ function MarqueeTrack({ items, speed = 90 }: { items: typeof technologies; speed
 }
 
 export default function TechStack() {
-  const [isMounted, setIsMounted] = useState(false);
-
-  useEffect(() => {
-    setIsMounted(true);
-  }, []);
-
   return (
     <section id="tech-stack" className="pt-20">
       <div className="container mx-auto px-4">
         <div className="max-w-4xl mx-auto text-center mb-16">
           <motion.h2
             className="text-3xl md:text-4xl font-bold mb-4"
-            initial={{ opacity: 0, y: 20 }}
-            animate={isMounted ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.6 }}
+            variants={zoomIn}
+            initial="hidden"
+            whileInView="visible"
+            viewport={revealViewport}
+            transition={reveal()}
           >
             Technical Expertise
           </motion.h2>
           <motion.p
             className="text-xl text-secondaryText max-w-2xl mx-auto"
-            initial={{ opacity: 0, y: 20 }}
-            animate={isMounted ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.6, delay: 0.2 }}
+            variants={zoomIn}
+            initial="hidden"
+            whileInView="visible"
+            viewport={revealViewport}
+            transition={reveal(0.15)}
           >
             Real systems, in production, carrying real traffic
           </motion.p>
@@ -154,9 +153,11 @@ export default function TechStack() {
             <motion.div
               key={index}
               className="bg-cardBackground p-8 rounded-2xl border border-border text-center"
-              initial={{ opacity: 0, y: 20 }}
-              animate={isMounted ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.6, delay: 0.1 * index }}
+              variants={slideByIndex(index)}
+              initial="hidden"
+              whileInView="visible"
+              viewport={revealViewport}
+              transition={reveal(0.1 * index)}
               whileHover={{ y: -5 }}
             >
               <div className="text-4xl md:text-5xl font-bold text-primaryAccent mb-2">
@@ -175,9 +176,11 @@ export default function TechStack() {
 
       <motion.div
         className="relative w-full overflow-hidden marquee-fade mb-[-60px]"
-        initial={{ opacity: 0 }}
-        animate={isMounted ? { opacity: 1 } : {}}
-        transition={{ duration: 0.6, delay: 0.4 }}
+        variants={zoomIn}
+        initial="hidden"
+        whileInView="visible"
+        viewport={revealViewport}
+        transition={reveal(0.2)}
       >
         <MarqueeTrack items={technologies} />
       </motion.div>

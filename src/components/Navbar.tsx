@@ -3,6 +3,8 @@
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import Link from 'next/link';
+import RightArrow from '@/lib/icons/ArrowRight';
+import { reveal } from '@/lib/animations';
 const navLinks = [
   { label: 'About', href: '/#about' },
   { label: 'Services', href: '/#services' },
@@ -31,7 +33,7 @@ export default function Navbar() {
     <motion.header
       initial={{ opacity: 0, y: -20 }}
       animate={isMounted ? { opacity: 1, y: 0 } : {}}
-      transition={{ duration: 0.6 }}
+      transition={reveal()}
       className={`fixed top-0 left-0 right-0 z-50 border-b transition-colors ${
         isScrolled
           ? 'bg-background/80 backdrop-blur-md border-border'
@@ -61,9 +63,10 @@ export default function Navbar() {
 
           <Link
             href="/#contact"
-            className="hidden md:inline-block btn-hover-cta px-5 py-2.5 bg-ctaAccent text-background font-semibold rounded-lg hover:bg-ctaAccentHover transition-colors"
+            className="group hidden md:inline-flex items-center gap-2 btn-hover-cta px-5 py-2.5 bg-ctaAccent text-background font-semibold rounded-lg hover:bg-ctaAccentHover transition-colors"
           >
             Start Your Project
+            <RightArrow size={16} className="transition-transform duration-200 group-hover:translate-x-1" />
           </Link>
 
           <button
@@ -119,9 +122,10 @@ export default function Navbar() {
               <Link
                 href="/#contact"
                 onClick={() => setIsMenuOpen(false)}
-                className="btn-hover-cta px-5 py-2.5 bg-ctaAccent text-background font-semibold rounded-lg text-center hover:bg-ctaAccentHover transition-colors"
+                className="group btn-hover-cta inline-flex items-center justify-center gap-2 px-5 py-2.5 bg-ctaAccent text-background font-semibold rounded-lg text-center hover:bg-ctaAccentHover transition-colors"
               >
                 Start Your Project
+                <RightArrow size={16} className="transition-transform duration-200 group-hover:translate-x-1" />
               </Link>
             </div>
           </motion.nav>

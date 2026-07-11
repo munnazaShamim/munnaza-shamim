@@ -3,6 +3,8 @@ import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import CaseStudyCTA from '@/components/CaseStudyCTA';
 import { blogPosts, getBlogPost } from '@/lib/blogPosts';
+import LeftArrow from '@/lib/icons/ArrowLeft';
+import RightArrow from '@/lib/icons/ArrowRight';
 
 interface PageProps {
   params: Promise<{ slug: string }>;
@@ -55,8 +57,9 @@ export default async function BlogPostPage({ params }: PageProps) {
 
       <div className="container mx-auto px-4">
         <div className="max-w-3xl mx-auto">
-          <Link href="/blog" className="text-primaryAccent text-sm font-semibold hover:underline">
-            ← All articles
+          <Link href="/blog" className="group inline-flex items-center gap-1.5 text-primaryAccent text-sm font-semibold hover:underline">
+            <LeftArrow size={16} className="transition-transform duration-200 group-hover:-translate-x-1" />
+            All articles
           </Link>
 
           <div className="mt-4 mb-10">
@@ -77,7 +80,7 @@ export default async function BlogPostPage({ params }: PageProps) {
             <h1 className="text-3xl md:text-4xl font-bold mb-4">{post.title}</h1>
             <p className="text-xl text-secondaryText">{post.intro}</p>
             <div className="text-primaryAccent text-sm font-semibold mt-6">
-              Written by Munnaza Shamim — Full-Stack Developer &amp; Performance Engineer
+              Written by Munnaza Shamim, Full-Stack Developer &amp; Performance Engineer
             </div>
           </div>
 
@@ -122,9 +125,10 @@ export default async function BlogPostPage({ params }: PageProps) {
             <div className="mb-14">
               <Link
                 href={`/case-studies/${post.relatedCaseStudy.slug}`}
-                className="inline-block text-primaryAccent font-semibold hover:underline"
+                className="group inline-flex items-center gap-1.5 text-primaryAccent font-semibold hover:underline"
               >
-                {post.relatedCaseStudy.label} →
+                {post.relatedCaseStudy.label}
+                <RightArrow size={16} className="transition-transform duration-200 group-hover:translate-x-1" />
               </Link>
             </div>
           )}

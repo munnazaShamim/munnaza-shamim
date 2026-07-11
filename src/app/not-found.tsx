@@ -1,4 +1,6 @@
 import Link from 'next/link';
+import LeftArrow from '@/lib/icons/ArrowLeft';
+import RightArrow from '@/lib/icons/ArrowRight';
 
 export default function NotFound() {
   return (
@@ -13,15 +15,17 @@ export default function NotFound() {
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link
               href="/"
-              className="btn-hover-cta px-8 py-4 bg-ctaAccent text-background font-semibold rounded-lg hover:bg-ctaAccentHover transition-colors"
+              className="btn-hover-cta group inline-flex items-center justify-center gap-1.5 px-8 py-4 bg-ctaAccent text-background font-semibold rounded-lg hover:bg-ctaAccentHover transition-colors"
             >
+              <LeftArrow size={16} className="transition-transform duration-200 group-hover:-translate-x-1" />
               Back to Home
             </Link>
             <Link
               href="/case-studies"
-              className="btn-hover px-8 py-4 border border-border text-primaryText font-semibold rounded-lg hover:bg-cardBackground transition-colors"
+              className="group btn-hover inline-flex items-center justify-center gap-2 px-8 py-4 border border-border text-primaryText font-semibold rounded-lg hover:bg-cardBackground transition-colors"
             >
               View Case Studies
+              <RightArrow size={18} className="transition-transform duration-200 group-hover:translate-x-1" />
             </Link>
           </div>
         </div>

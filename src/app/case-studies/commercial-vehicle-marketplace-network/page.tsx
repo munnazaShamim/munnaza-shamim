@@ -5,6 +5,7 @@ import ImagePlaceholder from '@/components/ImagePlaceholder';
 import CaseStudyCTA from '@/components/CaseStudyCTA';
 import CaseStudyGallery from '@/components/CaseStudyGallery';
 import { getCaseStudy } from '@/lib/caseStudies';
+import LeftArrow from '@/lib/icons/ArrowLeft';
 
 const SLUG = 'commercial-vehicle-marketplace-network';
 
@@ -12,7 +13,7 @@ export function generateMetadata(): Metadata {
   const study = getCaseStudy(SLUG);
   if (!study) return {};
 
-  const title = `${study.title} — Case Study | Munnaza Shamim`;
+  const title = `${study.title} | Case Study | Munnaza Shamim`;
 
   return {
     title,
@@ -46,8 +47,9 @@ export default function MarketplaceNetworkCaseStudy() {
 
       <div className="container mx-auto px-4">
         <div className="max-w-4xl mx-auto">
-          <Link href="/case-studies" className="text-primaryAccent text-sm font-semibold hover:underline">
-            ← All case studies
+          <Link href="/case-studies" className="group inline-flex items-center gap-1.5 text-primaryAccent text-sm font-semibold hover:underline">
+            <LeftArrow size={16} className="transition-transform duration-200 group-hover:-translate-x-1" />
+            All case studies
           </Link>
 
           <div className="mt-4 mb-8">
@@ -126,7 +128,7 @@ export default function MarketplaceNetworkCaseStudy() {
             </ul>
           </div>
 
-          <CaseStudyCTA text="I build custom listing, search, and multi-site content systems the same way — engineered for scale, not a page-builder template." />
+          <CaseStudyCTA text="I build custom listing, search, and multi-site content systems the same way. They're engineered to scale, not stitched together from a page-builder template." />
         </div>
       </div>
     </main>

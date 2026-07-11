@@ -5,6 +5,6 @@ export const SITE_URL = 'https://munnaza-shamim.vercel.app';
 
 export const SITE_NAME = 'Munnaza Shamim';
 export const SITE_TITLE =
-  'Munnaza Shamim — Full-Stack Developer & Performance Engineer';
+  'Munnaza Shamim | Full-Stack Developer & Performance Engineer';
 export const SITE_DESCRIPTION =
-  'Full-stack developer specializing in Next.js, WordPress, and Laravel systems engineered for speed and technical SEO. Available for projects across Europe, the UK, UAE, and North America.';
+  'Full-stack developer specializing in Next.js, WordPress, and Laravel systems engineered for speed and technical SEO. Available for projects across Europe, the UK, the UAE, and North America.';

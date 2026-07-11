@@ -1,11 +1,12 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import { EMAIL, EMAIL_LINK } from '@/lib/socialLinks';
+import LeftArrow from '@/lib/icons/ArrowLeft';
 
 export const metadata: Metadata = {
   title: 'Privacy Policy | Munnaza Shamim',
   description:
-    'How this portfolio site handles personal data — GDPR-conscious by design: no tracking cookies, no analytics profiling, and contact data used only to reply to you.',
+    'How this portfolio site handles personal data. GDPR-conscious by design: no tracking cookies, no analytics profiling, and contact data used only to reply to you.',
   alternates: { canonical: '/privacy' },
   robots: { index: true, follow: true },
 };
@@ -42,8 +43,9 @@ export default function PrivacyPage() {
     <main className="min-h-screen pt-32 pb-20">
       <div className="container mx-auto px-4 mb-12">
         <div className="max-w-3xl mx-auto">
-          <Link href="/" className="text-primaryAccent text-sm font-semibold hover:underline">
-            ← Back to home
+          <Link href="/" className="group inline-flex items-center gap-1.5 text-primaryAccent text-sm font-semibold hover:underline">
+            <LeftArrow size={16} className="transition-transform duration-200 group-hover:-translate-x-1" />
+            Back to home
           </Link>
           <h1 className="text-3xl md:text-4xl font-bold mt-4 mb-4">Privacy Policy</h1>
           <p className="text-secondaryText text-lg mb-12">

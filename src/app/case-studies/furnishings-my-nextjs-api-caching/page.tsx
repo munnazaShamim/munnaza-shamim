@@ -4,6 +4,8 @@ import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import CaseStudyCTA from '@/components/CaseStudyCTA';
 import { getCaseStudy } from '@/lib/caseStudies';
+import LeftArrow from '@/lib/icons/ArrowLeft';
+import RightArrow from '@/lib/icons/ArrowRight';
 
 const SLUG = 'furnishings-my-nextjs-api-caching';
 
@@ -11,7 +13,7 @@ export function generateMetadata(): Metadata {
   const study = getCaseStudy(SLUG);
   if (!study) return {};
 
-  const title = `${study.title} — Case Study | Munnaza Shamim`;
+  const title = `${study.title} | Case Study | Munnaza Shamim`;
 
   return {
     title,
@@ -57,8 +59,9 @@ export default function FurnishingsCaseStudy() {
 
       <div className="container mx-auto px-4">
         <div className="max-w-5xl mx-auto">
-          <Link href="/case-studies" className="text-primaryAccent text-sm font-semibold hover:underline">
-            ← All case studies
+          <Link href="/case-studies" className="group inline-flex items-center gap-1.5 text-primaryAccent text-sm font-semibold hover:underline">
+            <LeftArrow size={16} className="transition-transform duration-200 group-hover:-translate-x-1" />
+            All case studies
           </Link>
 
           <div className="mt-4 mb-10">
@@ -80,9 +83,10 @@ export default function FurnishingsCaseStudy() {
                 href={study.liveUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="btn-hover inline-flex items-center gap-2 mt-6 px-5 py-2.5 border border-primaryAccent/40 text-primaryAccent font-semibold rounded-lg hover:bg-primaryAccent hover:text-background transition-colors"
+                className="btn-hover group inline-flex items-center gap-1.5 mt-6 px-5 py-2.5 border border-primaryAccent/40 text-primaryAccent font-semibold rounded-lg hover:bg-primaryAccent hover:text-background transition-colors"
               >
-                Visit the live site ↗
+                Visit the live site
+                <RightArrow size={16} className="transition-transform duration-200 group-hover:translate-x-1" />
               </a>
             )}
           </div>
@@ -109,7 +113,7 @@ export default function FurnishingsCaseStudy() {
                 <div className="aspect-video w-full relative border-b border-border">
                   <Image
                     src="/furnishing-lcp.png"
-                    alt="Flooring retailer — mobile Lighthouse audit"
+                    alt="Flooring retailer mobile Lighthouse audit"
                     fill
                     className="object-cover object-top"
                     sizes="(max-width: 1024px) 100vw, 50vw"
@@ -132,7 +136,7 @@ export default function FurnishingsCaseStudy() {
                 <div className="aspect-video w-full relative border-b border-border">
                   <Image
                     src="/furnishing-lcp-desktop.png"
-                    alt="Flooring retailer — desktop Lighthouse audit"
+                    alt="Flooring retailer desktop Lighthouse audit"
                     fill
                     className="object-cover object-top"
                     sizes="(max-width: 1024px) 100vw, 50vw"
@@ -193,7 +197,7 @@ export default function FurnishingsCaseStudy() {
             </ul>
           </div>
 
-          <CaseStudyCTA text="If your site is already built but painfully slow, this is where I start — tracing where the API calls actually go and putting proper caching in front of them, not just tweaking the front end." />
+          <CaseStudyCTA text="If your site is already built but painfully slow, this is where I start. I trace where the API calls actually go and put proper caching in front of them, instead of only tweaking the front end." />
         </div>
       </div>
     </main>

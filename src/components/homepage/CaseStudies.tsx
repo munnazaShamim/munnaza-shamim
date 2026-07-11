@@ -1,18 +1,13 @@
 'use client';
 
-import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import Link from 'next/link';
 import CaseStudyThumbnail from '@/components/CaseStudyThumbnail';
 import { getFeaturedCaseStudies } from '@/lib/caseStudies';
+import { zoomIn, slideByIndex, revealViewport, reveal } from '@/lib/animations';
+import RightArrow from '@/lib/icons/ArrowRight';
 
 export default function CaseStudies() {
-  const [isMounted, setIsMounted] = useState(false);
-
-  useEffect(() => {
-    setIsMounted(true);
-  }, []);
-
   const caseStudies = getFeaturedCaseStudies().slice(0, 4);
 
   return (
@@ -21,17 +16,21 @@ export default function CaseStudies() {
         <div className="max-w-4xl mx-auto text-center mb-16">
           <motion.h2
             className="text-3xl md:text-4xl font-bold mb-4"
-            initial={{ opacity: 0, y: 20 }}
-            animate={isMounted ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.6 }}
+            variants={zoomIn}
+            initial="hidden"
+            whileInView="visible"
+            viewport={revealViewport}
+            transition={reveal()}
           >
             Featured Work
           </motion.h2>
           <motion.p
             className="text-xl text-secondaryText max-w-2xl mx-auto"
-            initial={{ opacity: 0, y: 20 }}
-            animate={isMounted ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.6, delay: 0.2 }}
+            variants={zoomIn}
+            initial="hidden"
+            whileInView="visible"
+            viewport={revealViewport}
+            transition={reveal(0.15)}
           >
             Real systems, built for real constraints
           </motion.p>
@@ -42,9 +41,11 @@ export default function CaseStudies() {
             <motion.div
               key={study.slug}
               className="card-hover bg-cardBackground rounded-2xl border border-border overflow-hidden flex flex-col"
-              initial={{ opacity: 0, y: 20 }}
-              animate={isMounted ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.6, delay: 0.1 * index }}
+              variants={slideByIndex(index)}
+              initial="hidden"
+              whileInView="visible"
+              viewport={revealViewport}
+              transition={reveal(0.1 * index)}
             >
               <div className="p-6 flex flex-col flex-1">
                 <CaseStudyThumbnail study={study} fit="cover" className="mb-5" />
@@ -57,9 +58,10 @@ export default function CaseStudies() {
 
                 <Link
                   href={`/case-studies/${study.slug}`}
-                  className="mt-auto text-primaryAccent font-semibold text-sm hover:underline"
+                  className="group mt-auto inline-flex items-center gap-1.5 text-primaryAccent font-semibold text-sm hover:underline"
                 >
-                  Read full case study →
+                  Read full case study
+                  <RightArrow size={16} className="transition-transform duration-200 group-hover:translate-x-1" />
                 </Link>
               </div>
             </motion.div>
@@ -68,15 +70,18 @@ export default function CaseStudies() {
 
         <motion.div
           className="text-center mt-12"
-          initial={{ opacity: 0, y: 20 }}
-          animate={isMounted ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.6, delay: 0.4 }}
+          variants={zoomIn}
+          initial="hidden"
+          whileInView="visible"
+          viewport={revealViewport}
+          transition={reveal()}
         >
           <Link
             href="/case-studies"
-            className="btn-hover inline-block px-8 py-4 border border-border text-primaryText font-semibold rounded-lg hover:bg-cardBackground transition-colors"
+            className="group btn-hover inline-flex items-center gap-2 px-8 py-4 border border-border text-primaryText font-semibold rounded-lg hover:bg-cardBackground transition-colors"
           >
-            View All Case Studies ↗
+            View All Case Studies
+            <RightArrow size={18} className="transition-transform duration-200 group-hover:translate-x-1" />
           </Link>
         </motion.div>
       </div>

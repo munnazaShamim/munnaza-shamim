@@ -4,6 +4,7 @@ import { notFound } from 'next/navigation';
 import CaseStudyCTA from '@/components/CaseStudyCTA';
 import CaseStudyGallery from '@/components/CaseStudyGallery';
 import { getCaseStudy } from '@/lib/caseStudies';
+import LeftArrow from '@/lib/icons/ArrowLeft';
 
 const SLUG = 'real-time-vehicle-auction-platform';
 
@@ -11,7 +12,7 @@ export function generateMetadata(): Metadata {
   const study = getCaseStudy(SLUG);
   if (!study) return {};
 
-  const title = `${study.title} — Case Study | Munnaza Shamim`;
+  const title = `${study.title} | Case Study | Munnaza Shamim`;
 
   return {
     title,
@@ -47,7 +48,7 @@ export default function AuctionPlatformCaseStudy() {
     },
     {
       step: 'Bidding happens live',
-      detail: 'Each auction runs in its own authenticated WebSocket room — bid updates push instantly to logged-in participants only, no refresh, no public broadcast.',
+      detail: 'Each auction runs in its own authenticated WebSocket room. Bid updates push instantly to logged-in participants only, with no refresh and no public broadcast.',
     },
     {
       step: 'The auction closes',
@@ -64,8 +65,9 @@ export default function AuctionPlatformCaseStudy() {
 
       <div className="container mx-auto px-4">
         <div className="max-w-5xl mx-auto">
-          <Link href="/case-studies" className="text-primaryAccent text-sm font-semibold hover:underline">
-            ← All case studies
+          <Link href="/case-studies" className="group inline-flex items-center gap-1.5 text-primaryAccent text-sm font-semibold hover:underline">
+            <LeftArrow size={16} className="transition-transform duration-200 group-hover:-translate-x-1" />
+            All case studies
           </Link>
 
           <div className="mt-4 mb-10">
@@ -150,7 +152,7 @@ export default function AuctionPlatformCaseStudy() {
             </ul>
           </div>
 
-          <CaseStudyCTA text="I build real-time, high-traffic bidding and auction systems the same way — engineered for production, not just a demo." />
+          <CaseStudyCTA text="I build real-time, high-traffic bidding and auction systems the same way, engineered for production rather than a quick demo." />
         </div>
       </div>
     </main>

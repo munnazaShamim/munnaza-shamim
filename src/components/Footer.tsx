@@ -1,10 +1,10 @@
 'use client';
 
-import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import Link from 'next/link';
 import SocialLink from './SocialLink';
 import { socialLinks, PHONE_DISPLAY, PHONE_LINK, EMAIL, EMAIL_LINK } from '@/lib/socialLinks';
+import { reveal } from '@/lib/animations';
 
 const serviceLinks = [
   { label: 'Next.js Development', href: '/case-studies/nexus-clinic-headless-wordpress-nextjs' },
@@ -23,24 +23,19 @@ const resourceLinks = [
 ];
 
 export default function Footer() {
-  const [isMounted, setIsMounted] = useState(false);
-
-  useEffect(() => {
-    setIsMounted(true);
-  }, []);
-
   return (
     <footer className="border-t border-border bg-secondaryBackground">
       <div className="container mx-auto px-4 py-16">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={isMounted ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.6 }}
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.2 }}
+            transition={reveal()}
           >
             <div className="text-2xl font-bold mb-4">Munnaza Shamim</div>
             <p className="text-secondaryText mb-4">
-              Full-stack development, engineered around speed — for clients across Europe, the UK, UAE, and North America.
+              Full-stack development, engineered around speed, for clients across Europe, the UK, the UAE, and North America.
             </p>
             <div className="flex space-x-4">
               {socialLinks.map((social) => (
@@ -50,9 +45,10 @@ export default function Footer() {
           </motion.div>
 
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={isMounted ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.6, delay: 0.1 }}
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.2 }}
+            transition={reveal(0.1)}
           >
             <h3 className="font-bold mb-4">Services</h3>
             <ul className="space-y-2 text-secondaryText">
@@ -67,9 +63,10 @@ export default function Footer() {
           </motion.div>
 
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={isMounted ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.6, delay: 0.2 }}
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.2 }}
+            transition={reveal(0.2)}
           >
             <h3 className="font-bold mb-4">Resources</h3>
             <ul className="space-y-2 text-secondaryText">
@@ -84,9 +81,10 @@ export default function Footer() {
           </motion.div>
 
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={isMounted ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.6, delay: 0.3 }}
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.2 }}
+            transition={reveal(0.3)}
           >
             <h3 className="font-bold mb-4">Contact</h3>
             <ul className="space-y-2 text-secondaryText">

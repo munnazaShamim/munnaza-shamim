@@ -5,6 +5,8 @@ import { motion } from 'framer-motion';
 import Link from 'next/link';
 import Image from 'next/image';
 import { Download } from 'lucide-react';
+import RightArrow from '@/lib/icons/ArrowRight';
+import { reveal } from '@/lib/animations';
 
 export default function Hero() {
   const [isMounted, setIsMounted] = useState(false);
@@ -20,7 +22,7 @@ export default function Hero() {
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(92,124,250,0.12),transparent_50%)]"></div>
       </div>
 
-      <div className="container mx-auto px-4 py-20 relative z-10">
+      <div className="container mx-auto px-4 pt-20 pb-12 relative z-10">
         <div className="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-16 items-center lg:items-stretch">
           {/* Left Column - Content */}
           <motion.div
@@ -31,12 +33,12 @@ export default function Hero() {
               hidden: { opacity: 0, y: 20 },
               visible: { opacity: 1, y: 0 }
             }}
-            transition={{ duration: 0.6 }}
+            transition={reveal()}
           >
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.2 }}
+              transition={reveal(0.2)}
             >
               <h1 className="text-4xl md:text-5xl font-bold leading-tight">
                 Full-stack development, <span className="text-gradient">engineered around speed</span>
@@ -47,22 +49,24 @@ export default function Hero() {
               className="text-lg md:text-xl text-secondaryText max-w-2xl"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.4 }}
+              transition={reveal(0.4)}
             >
-              Full-stack developer specializing in Next.js, WordPress, and Laravel systems for businesses across Europe, the UK, UAE, and North America — built for real Core Web Vitals, not just a clean Lighthouse run.
+              Full-stack developer specializing in Next.js, WordPress, and Laravel systems for businesses across Europe, the UK, the UAE, and North America. Built for real Core Web Vitals, not just a clean Lighthouse run.
             </motion.p>
 
             <motion.div
               className="flex flex-col sm:flex-row gap-4"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.6 }}
+              transition={reveal(0.6)}
             >
-              <Link href="/#contact" className="btn-hover-cta px-8 py-4 bg-ctaAccent text-background font-semibold rounded-lg text-center hover:bg-ctaAccentHover transition-colors">
+              <Link href="/#contact" className="group btn-hover-cta inline-flex items-center justify-center gap-2 px-8 py-4 bg-ctaAccent text-background font-semibold rounded-lg text-center hover:bg-ctaAccentHover transition-colors">
                 Start Your Project
+                <RightArrow size={18} className="transition-transform duration-200 group-hover:translate-x-1" />
               </Link>
-              <Link href="/case-studies" className="btn-hover px-8 py-4 border border-border text-primaryText font-semibold rounded-lg text-center hover:bg-cardBackground transition-colors">
+              <Link href="/case-studies" className="group btn-hover inline-flex items-center justify-center gap-2 px-8 py-4 border border-border text-primaryText font-semibold rounded-lg text-center hover:bg-cardBackground transition-colors">
                 View Case Studies
+                <RightArrow size={18} className="transition-transform duration-200 group-hover:translate-x-1" />
               </Link>
             </motion.div>
 
@@ -73,16 +77,16 @@ export default function Hero() {
             className="relative flex lg:h-full"
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.8, delay: 0.4 }}
+            transition={reveal(0.4)}
           >
-            <div className="relative w-full h-[320px] sm:h-[420px] lg:flex-1">
+            <div className="relative w-full aspect-[1045/784] lg:aspect-auto lg:h-full lg:flex-1">
               <div className="relative w-full h-full rounded-xl">
                 <Image
                   src="/munnaza-hero.webp"
-                  alt="Full-stack performance dashboard mockup — load time, rendering, and Core Web Vitals"
+                  alt="Full-stack performance dashboard mockup showing load time, rendering, and Core Web Vitals"
                   fill
                   sizes="(min-width: 1024px) 50vw, 90vw"
-                  className="object-cover rounded-xl"
+                  className="object-contain lg:object-cover rounded-xl"
                   priority
                 />
               </div>
@@ -97,7 +101,7 @@ export default function Hero() {
               className="flex flex-col gap-3 pt-8 text-center items-center justify-center max-w-3xl mx-auto"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.8 }}
+              transition={reveal(0.8)}
             >
               <p className="text-sm text-secondaryText">
                 Live in production: a real-time vehicle auction platform with live bidding across dealer, seller, and admin dashboards, plus a network of high-traffic commercial marketplace sites.

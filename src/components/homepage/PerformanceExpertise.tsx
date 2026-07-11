@@ -1,38 +1,32 @@
 'use client';
 
-import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { Activity, Search, Rocket, Network } from 'lucide-react';
+import { zoomIn, slideByIndex, revealViewport, reveal } from '@/lib/animations';
 
 export default function PerformanceExpertise() {
-  const [isMounted, setIsMounted] = useState(false);
-
-  useEffect(() => {
-    setIsMounted(true);
-  }, []);
-
   const expertiseAreas = [
     {
       title: "Core Web Vitals Optimization",
-      description: "Diagnosing and fixing what actually drags down LCP, INP, and CLS — not a generic checklist, but the specific bottleneck on your stack.",
+      description: "Finding and fixing what actually drags down LCP, INP, and CLS. Not a generic checklist, but the specific bottleneck on your stack.",
       icon: Activity,
-      metrics: ["Database & query-level fixes", "Image optimization & lazy loading", "Render-blocking asset cleanup"]
+      metrics: ["Database and query-level fixes", "Image optimization and lazy loading", "Render-blocking asset cleanup"]
     },
     {
       title: "Technical SEO",
       description: "Schema markup, canonical tags, crawl structure, and migration-safe SEO for sites that can't afford to lose rankings.",
       icon: Search,
-      metrics: ["Schema & structured data", "Crawl & indexation audits", "Migration-safe redirects"]
+      metrics: ["Schema and structured data", "Crawl and indexation audits", "Migration-safe redirects"]
     },
     {
       title: "Performance Engineering",
       description: "Code splitting, caching strategy, and asset delivery decisions made at the architecture level, not bolted on after launch.",
       icon: Rocket,
-      metrics: ["Code splitting & lazy loading", "Caching & minification", "Rendering strategy (SSG/SSR/ISR)"]
+      metrics: ["Code splitting and lazy loading", "Caching and minification", "Rendering strategy, from SSG to SSR to ISR"]
     },
     {
       title: "Real-Time & Scalable Systems",
-      description: "Architecture for systems that need to hold state under concurrent load — live bidding, live chat, multi-role dashboards.",
+      description: "Architecture for systems that need to hold state under concurrent load, like live bidding, live chat, and multi-role dashboards.",
       icon: Network,
       metrics: ["WebSocket-based real-time state", "Role-based architecture", "Database optimization for scale"]
     }
@@ -42,21 +36,25 @@ export default function PerformanceExpertise() {
     <section className="py-20">
       <div className="container mx-auto px-4">
         <div className="max-w-4xl mx-auto text-center mb-16">
-          <motion.h2 
+          <motion.h2
             className="text-3xl md:text-4xl font-bold mb-4"
-            initial={{ opacity: 0, y: 20 }}
-            animate={isMounted ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.6 }}
+            variants={zoomIn}
+            initial="hidden"
+            whileInView="visible"
+            viewport={revealViewport}
+            transition={reveal()}
           >
             Performance Expertise
           </motion.h2>
-          <motion.p 
+          <motion.p
             className="text-xl text-secondaryText max-w-2xl mx-auto"
-            initial={{ opacity: 0, y: 20 }}
-            animate={isMounted ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.6, delay: 0.2 }}
+            variants={zoomIn}
+            initial="hidden"
+            whileInView="visible"
+            viewport={revealViewport}
+            transition={reveal(0.15)}
           >
-            Engineering solutions that deliver exceptional performance and SEO results
+            How I get sites fast and keep them ranking
           </motion.p>
         </div>
 
@@ -67,9 +65,11 @@ export default function PerformanceExpertise() {
               <motion.div
                 key={index}
                 className="card-hover bg-cardBackground p-8 rounded-2xl border border-border relative overflow-hidden group"
-                initial={{ opacity: 0, y: 20 }}
-                animate={isMounted ? { opacity: 1, y: 0 } : {}}
-                transition={{ duration: 0.6, delay: 0.1 * index }}
+                variants={slideByIndex(index)}
+                initial="hidden"
+                whileInView="visible"
+                viewport={revealViewport}
+                transition={reveal(0.1 * index)}
               >
                 {/* Decorative element */}
                 <div className="absolute top-0 right-0 w-20 h-20 bg-primaryAccent rounded-full opacity-10 -translate-y-10 translate-x-10"></div>
@@ -108,9 +108,11 @@ export default function PerformanceExpertise() {
                 <motion.div
                   key={index}
                   className="text-center"
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={isMounted ? { opacity: 1, y: 0 } : {}}
-                  transition={{ duration: 0.6, delay: 0.1 * index }}
+                  variants={zoomIn}
+                  initial="hidden"
+                  whileInView="visible"
+                  viewport={revealViewport}
+                  transition={reveal(0.1 * index)}
                 >
                   <div className="text-3xl font-bold text-primaryAccent mb-2">{item.step}</div>
                   <div className="text-secondaryText">{item.description}</div>

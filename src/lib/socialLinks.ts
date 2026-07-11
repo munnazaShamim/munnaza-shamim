@@ -1,5 +1,5 @@
 import { ComponentType } from 'react';
-import { WhatsappIcon, FacebookIcon, InstagramIcon, LinkedinIcon, GithubIcon } from '@/components/icons/BrandIcons';
+import { WhatsappIcon, FacebookIcon, InstagramIcon, LinkedinIcon, GithubIcon } from '@/lib/icons/BrandIcons';
 
 export const PHONE_DISPLAY = '+92 303 8489822';
 export const WHATSAPP_NUMBER = '923038489822';

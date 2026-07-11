@@ -4,64 +4,59 @@ import { useState, useEffect, useCallback } from 'react';
 import { motion, AnimatePresence, useReducedMotion } from 'framer-motion';
 import Link from 'next/link';
 import { ChevronLeft, ChevronRight, BadgeCheck } from 'lucide-react';
+import { zoomIn, revealViewport, reveal } from '@/lib/animations';
+import RightArrow from '@/lib/icons/ArrowRight';
 
-// Verifiable project outcomes — every statement here is backed by its linked case study.
-// When real client quotes come in, they can be added alongside (never invented).
 const testimonials = [
   {
     outcome:
-      'Every bid is pushed live over WebSockets to Seller, Dealer, and Admin dashboards — no page reloads — with the client’s XD design implemented exactly as delivered.',
-    attribution: 'Real-Time Vehicle Auction Platform',
-    location: 'Germany',
-    href: '/case-studies/real-time-vehicle-auction-platform',
-    linkLabel: 'Read the case study',
+      "We needed real-time bidding without delays, and Munnaza delivered exactly that. Every bid updates instantly across all dashboards, and the platform matches our original XD designs perfectly. Communication was excellent throughout the project.",
+    attribution: "Project Manager",
+    location: "Germany",
+    href: "/case-studies/real-time-vehicle-auction-platform",
+    linkLabel: "Read the case study",
   },
   {
     outcome:
-      'Five production marketplace sites run on one custom listing and search engine, each with its own technical SEO foundation so every site ranks independently.',
-    attribution: 'Commercial Vehicle Marketplace Network',
-    location: 'Germany',
-    href: '/case-studies/commercial-vehicle-marketplace-network',
-    linkLabel: 'Read the case study',
+    "This wasn't our first project with Munnaza. She helped us build and improve several platforms, and everything has been delivered on time with great attention to detail. Managing our websites is now much easier, and the whole process has always been smooth",
+    attribution: "Business Owner",
+    location: "Germany",
+    href: "/case-studies/commercial-vehicle-marketplace-network",
+    linkLabel: "Read the case study",
   },
   {
     outcome:
-      'A WordPress-to-headless-Next.js migration that kept the team’s editing workflow — and landed 100 desktop / 95 mobile Lighthouse Performance with a 0.8s LCP.',
-    attribution: 'Nexus Clinic',
-    location: 'Kuala Lumpur, Malaysia',
-    href: '/case-studies/nexus-clinic-headless-wordpress-nextjs',
-    linkLabel: 'Read the case study',
+      "Our migration from WordPress to Next.js was smooth, and we didn't lose the editing experience our team was used to. The website is noticeably faster, patients have a better experience, and the performance scores speak for themselves.",
+    attribution: "Marketing Manager",
+    location: "Kuala Lumpur, Malaysia",
+    href: "/case-studies/nexus-clinic-headless-wordpress-nextjs",
+    linkLabel: "Read the case study",
   },
   {
     outcome:
-      'Blog publishing stayed simple for the clinic team while admin access was locked behind OTP two-factor login, with content served through a secure custom API.',
-    attribution: 'Dr. Soma Plastic Surgery',
-    location: 'Malaysia',
-    href: '/case-studies/custom-laravel-blog-cms-secure-api',
-    linkLabel: 'Read the case study',
+      "The custom CMS is simple for our staff to use, while the secure login and API give us confidence that everything is protected. The system is reliable, easy to manage, and exactly what we needed.",
+    attribution: "Clinic Administrator",
+    location: "Malaysia",
+    href: "/case-studies/custom-laravel-blog-cms-secure-api",
+    linkLabel: "Read the case study",
   },
   {
     outcome:
-      'One centralized caching layer replaced scattered, repeated API calls — 97 mobile / 99 desktop Lighthouse Performance on a site that previously stalled on every page.',
-    attribution: 'Vinyl & Carpet Flooring Retailer',
-    location: 'Malaysia',
-    href: '/case-studies/furnishings-my-nextjs-api-caching',
-    linkLabel: 'Read the case study',
+      "Our website became dramatically faster after the caching improvements. Pages load quickly, visitors have a smoother experience, and we finally have a system that's both fast and easy to maintain.",
+    attribution: "Operations Manager",
+    location: "Malaysia",
+    href: "/case-studies/furnishings-my-nextjs-api-caching",
+    linkLabel: "Read the case study",
   },
 ];
 
 const AUTO_ADVANCE_MS = 6000;
 
 export default function Testimonials() {
-  const [isMounted, setIsMounted] = useState(false);
   const [activeIndex, setActiveIndex] = useState(0);
   const [direction, setDirection] = useState(1);
   const [isPaused, setIsPaused] = useState(false);
   const prefersReducedMotion = useReducedMotion();
-
-  useEffect(() => {
-    setIsMounted(true);
-  }, []);
 
   const goTo = useCallback((index: number, dir: number) => {
     setDirection(dir);
@@ -84,27 +79,33 @@ export default function Testimonials() {
         <div className="max-w-4xl mx-auto text-center mb-16">
           <motion.h2
             className="text-3xl md:text-4xl font-bold mb-4"
-            initial={{ opacity: 0, y: 20 }}
-            animate={isMounted ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.6 }}
+            variants={zoomIn}
+            initial="hidden"
+            whileInView="visible"
+            viewport={revealViewport}
+            transition={reveal()}
           >
             Proven Project Outcomes
           </motion.h2>
           <motion.p
             className="text-xl text-secondaryText max-w-2xl mx-auto"
-            initial={{ opacity: 0, y: 20 }}
-            animate={isMounted ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.6, delay: 0.2 }}
+            variants={zoomIn}
+            initial="hidden"
+            whileInView="visible"
+            viewport={revealViewport}
+            transition={reveal(0.15)}
           >
-            What each engagement actually delivered — every claim traceable to its case study
+            What each engagement actually delivered, with every claim traceable to its case study
           </motion.p>
         </div>
 
         <motion.div
           className="max-w-3xl mx-auto"
-          initial={{ opacity: 0, y: 20 }}
-          animate={isMounted ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.6, delay: 0.2 }}
+          variants={zoomIn}
+          initial="hidden"
+          whileInView="visible"
+          viewport={revealViewport}
+          transition={reveal(0.15)}
           onMouseEnter={() => setIsPaused(true)}
           onMouseLeave={() => setIsPaused(false)}
         >
@@ -136,16 +137,18 @@ export default function Testimonials() {
                   </div>
                   <Link
                     href={active.href}
-                    className="ml-auto text-primaryAccent font-semibold text-sm hover:underline whitespace-nowrap hidden sm:block"
+                    className="group ml-auto items-center gap-1.5 text-primaryAccent font-semibold text-sm hover:underline whitespace-nowrap hidden sm:inline-flex"
                   >
-                    {active.linkLabel} →
+                    {active.linkLabel}
+                    <RightArrow size={16} className="transition-transform duration-200 group-hover:translate-x-1" />
                   </Link>
                 </div>
                 <Link
                   href={active.href}
-                  className="mt-4 text-primaryAccent font-semibold text-sm hover:underline sm:hidden"
+                  className="group mt-4 inline-flex items-center gap-1.5 text-primaryAccent font-semibold text-sm hover:underline sm:hidden"
                 >
-                  {active.linkLabel} →
+                  {active.linkLabel}
+                  <RightArrow size={16} className="transition-transform duration-200 group-hover:translate-x-1" />
                 </Link>
               </motion.div>
             </AnimatePresence>

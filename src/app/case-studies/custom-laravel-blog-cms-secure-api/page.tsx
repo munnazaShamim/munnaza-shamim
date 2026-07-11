@@ -5,6 +5,8 @@ import { notFound } from 'next/navigation';
 import CaseStudyCTA from '@/components/CaseStudyCTA';
 import CaseStudyGallery from '@/components/CaseStudyGallery';
 import { getCaseStudy } from '@/lib/caseStudies';
+import LeftArrow from '@/lib/icons/ArrowLeft';
+import RightArrow from '@/lib/icons/ArrowRight';
 
 const SLUG = 'custom-laravel-blog-cms-secure-api';
 
@@ -12,7 +14,7 @@ export function generateMetadata(): Metadata {
   const study = getCaseStudy(SLUG);
   if (!study) return {};
 
-  const title = `${study.title} — Case Study | Munnaza Shamim`;
+  const title = `${study.title} | Case Study | Munnaza Shamim`;
 
   return {
     title,
@@ -60,8 +62,9 @@ export default function LaravelBlogCMSCaseStudy() {
 
       <div className="container mx-auto px-4">
         <div className="max-w-5xl mx-auto">
-          <Link href="/case-studies" className="text-primaryAccent text-sm font-semibold hover:underline">
-            ← All case studies
+          <Link href="/case-studies" className="group inline-flex items-center gap-1.5 text-primaryAccent text-sm font-semibold hover:underline">
+            <LeftArrow size={16} className="transition-transform duration-200 group-hover:-translate-x-1" />
+            All case studies
           </Link>
 
           <div className="mt-4 mb-10">
@@ -83,9 +86,10 @@ export default function LaravelBlogCMSCaseStudy() {
                 href={study.liveUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="btn-hover inline-flex items-center gap-2 mt-6 px-5 py-2.5 border border-primaryAccent/40 text-primaryAccent font-semibold rounded-lg hover:bg-primaryAccent hover:text-background transition-colors"
+                className="btn-hover group inline-flex items-center gap-1.5 mt-6 px-5 py-2.5 border border-primaryAccent/40 text-primaryAccent font-semibold rounded-lg hover:bg-primaryAccent hover:text-background transition-colors"
               >
-                Visit the live site ↗
+                Visit the live site
+                <RightArrow size={16} className="transition-transform duration-200 group-hover:translate-x-1" />
               </a>
             )}
           </div>
@@ -106,7 +110,7 @@ export default function LaravelBlogCMSCaseStudy() {
           <div className="mb-14">
             <h2 className="text-2xl font-bold mb-2">Secure by Design</h2>
             <p className="text-secondaryText mb-6 max-w-2xl">
-              A fully custom admin panel doesn&apos;t inherit a plugin ecosystem&apos;s hardening — so login
+              A fully custom admin panel doesn&apos;t inherit a plugin ecosystem&apos;s hardening, so login
               itself was locked down with two-factor authentication.
             </p>
             <div className="bg-cardBackground rounded-2xl border border-border p-8 flex flex-col sm:flex-row items-start sm:items-center gap-6">
@@ -118,7 +122,7 @@ export default function LaravelBlogCMSCaseStudy() {
                   </span>
                 </div>
                 <p className="text-secondaryText text-sm">
-                  Admin login requires a one-time OTP code in addition to credentials — the CMS cannot be
+                  Admin login requires a one-time OTP code in addition to credentials. The CMS cannot be
                   accessed with a password alone, from anywhere.
                 </p>
               </div>
@@ -128,7 +132,7 @@ export default function LaravelBlogCMSCaseStudy() {
           <div className="mb-14">
             <h2 className="text-2xl font-bold mb-2">Live Site Performance</h2>
             <p className="text-secondaryText mb-6">
-              PageSpeed Insights for the live site running on this CMS — mobile and desktop.
+              PageSpeed Insights for the live site running on this CMS, mobile and desktop.
             </p>
 
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
@@ -136,7 +140,7 @@ export default function LaravelBlogCMSCaseStudy() {
                 <div className="aspect-video w-full relative border-b border-border">
                   <Image
                     src="/soma-lcp.webp"
-                    alt="Live site — desktop PageSpeed audit"
+                    alt="Live site desktop PageSpeed audit"
                     fill
                     className="object-cover object-top"
                     sizes="(max-width: 1024px) 100vw, 50vw"
@@ -159,7 +163,7 @@ export default function LaravelBlogCMSCaseStudy() {
                 <div className="aspect-video w-full relative border-b border-border">
                   <Image
                     src="/soma-lcp-mobile.webp"
-                    alt="Live site — mobile PageSpeed audit"
+                    alt="Live site mobile PageSpeed audit"
                     fill
                     className="object-cover object-top"
                     sizes="(max-width: 1024px) 100vw, 50vw"
@@ -220,7 +224,7 @@ export default function LaravelBlogCMSCaseStudy() {
             </ul>
           </div>
 
-          <CaseStudyCTA text="I build custom CMS platforms and the APIs that feed them the same way — secured deliberately, not left to a plugin ecosystem to handle." />
+          <CaseStudyCTA text="I build custom CMS platforms and the APIs that feed them the same way. Security is something I design in deliberately, rather than leaving it to a plugin ecosystem to handle." />
         </div>
       </div>
     </main>
