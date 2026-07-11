@@ -139,7 +139,7 @@ export default function LaravelBlogCMSCaseStudy() {
               <div className="bg-cardBackground rounded-2xl border border-border overflow-hidden">
                 <div className="aspect-video w-full relative border-b border-border">
                   <Image
-                    src="/soma-lcp.webp"
+                    src="/soma-lcp.png"
                     alt="Live site desktop PageSpeed audit"
                     fill
                     className="object-cover object-top"
@@ -162,7 +162,7 @@ export default function LaravelBlogCMSCaseStudy() {
               <div className="bg-cardBackground rounded-2xl border border-border overflow-hidden">
                 <div className="aspect-video w-full relative border-b border-border">
                   <Image
-                    src="/soma-lcp-mobile.webp"
+                    src="/soma-lcp-mobile.png"
                     alt="Live site mobile PageSpeed audit"
                     fill
                     className="object-cover object-top"
