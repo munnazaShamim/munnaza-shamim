@@ -25,15 +25,15 @@ export function generateMetadata(): Metadata {
 }
 
 const desktopScores = [
-  { label: 'Performance', value: 91 },
-  { label: 'Accessibility', value: 85 },
+  { label: 'Performance', value: 98 },
+  { label: 'Accessibility', value: 96 },
   { label: 'Best Practices', value: 100 },
   { label: 'SEO', value: 100 },
 ];
 
 const mobileScores = [
-  { label: 'Performance', value: 95 },
-  { label: 'Accessibility', value: 85 },
+  { label: 'Performance', value: 99 },
+  { label: 'Accessibility', value: 96 },
   { label: 'Best Practices', value: 100 },
   { label: 'SEO', value: 100 },
 ];
