@@ -85,7 +85,7 @@ export default function Testimonials() {
             viewport={revealViewport}
             transition={reveal()}
           >
-            Proven Project Outcomes
+            What Clients Say
           </motion.h2>
           <motion.p
             className="text-xl text-secondaryText max-w-2xl mx-auto"
@@ -95,7 +95,7 @@ export default function Testimonials() {
             viewport={revealViewport}
             transition={reveal(0.15)}
           >
-            What each engagement actually delivered, with every claim traceable to its case study
+            Feedback from the projects above, and every quote links to the case study behind it
           </motion.p>
         </div>
 

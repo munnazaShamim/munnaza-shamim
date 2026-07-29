@@ -14,23 +14,47 @@ const iconBadgeMotion = {
   transition: { type: 'spring' as const, stiffness: 400, damping: 12 },
 };
 
+type SendStatus = 'idle' | 'sending' | 'sent' | 'error';
+
 export default function Contact() {
   const [formData, setFormData] = useState({
     name: '',
     email: '',
     message: ''
   });
+  const [status, setStatus] = useState<SendStatus>('idle');
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
     setFormData(prev => ({ ...prev, [name]: value }));
+    if (status === 'sent' || status === 'error') setStatus('idle');
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const composeMessage = () =>
+    `Hi Munnaza, I'm ${formData.name} (${formData.email}).\n\n${formData.message}`;
+
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    const composed = `Hi Munnaza, I'm ${formData.name} (${formData.email}).\n\n${formData.message}`;
-    window.open(getWhatsAppLink(composed), '_blank', 'noopener,noreferrer');
-    setFormData({ name: '', email: '', message: '' });
+    setStatus('sending');
+    try {
+      const res = await fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(formData),
+      });
+      if (!res.ok) throw new Error('send failed');
+      setStatus('sent');
+      setFormData({ name: '', email: '', message: '' });
+    } catch {
+      // Email path unavailable — keep what they typed and offer WhatsApp instead.
+      setStatus('error');
+    }
+  };
+
+  const handleWhatsApp = () => {
+    const message =
+      formData.name && formData.message ? composeMessage() : undefined;
+    window.open(getWhatsAppLink(message), '_blank', 'noopener,noreferrer');
   };
 
   return (
@@ -109,17 +133,50 @@ export default function Contact() {
                   ></textarea>
                 </div>
                 
+                {/* Honeypot — humans never see or fill this field */}
+                <input
+                  type="text"
+                  name="company"
+                  tabIndex={-1}
+                  autoComplete="off"
+                  aria-hidden="true"
+                  className="hidden"
+                />
+
                 <motion.button
                   type="submit"
-                  className="btn-hover-cta w-full inline-flex items-center justify-center gap-2 px-8 py-4 bg-ctaAccent text-background font-semibold rounded-lg hover:bg-ctaAccentHover transition-colors"
+                  disabled={status === 'sending' || status === 'sent'}
+                  className="btn-hover-cta w-full inline-flex items-center justify-center gap-2 px-8 py-4 bg-ctaAccent text-background font-semibold rounded-lg hover:bg-ctaAccentHover transition-colors disabled:opacity-60 disabled:cursor-not-allowed"
                   whileHover={{ scale: 1.02 }}
                   whileTap={{ scale: 0.98 }}
                 >
-                  <WhatsappIcon className="w-5 h-5" />
-                  Send via WhatsApp
+                  <Mail className="w-5 h-5" />
+                  {status === 'sending' ? 'Sending…' : status === 'sent' ? 'Message Sent' : 'Send Message'}
                 </motion.button>
+
+                {status === 'sent' && (
+                  <p className="text-sm text-primaryAccentLight text-center" role="status">
+                    Thanks, your message is in my inbox. I usually reply the same working day.
+                  </p>
+                )}
+                {status === 'error' && (
+                  <p className="text-sm text-secondaryText text-center" role="status">
+                    That didn&apos;t go through, and your message is still here. Try the WhatsApp
+                    button below, or email me directly.
+                  </p>
+                )}
+
+                <button
+                  type="button"
+                  onClick={handleWhatsApp}
+                  className="w-full inline-flex items-center justify-center gap-2 px-8 py-3 border border-border text-primaryText font-semibold rounded-lg hover:bg-cardBackground transition-colors"
+                >
+                  <WhatsappIcon className="w-5 h-5 text-[#25D366]" />
+                  {status === 'error' ? 'Send via WhatsApp instead' : 'Prefer WhatsApp? Message me there'}
+                </button>
+
                 <p className="text-sm text-secondaryText text-center">
-                  Opens WhatsApp with your message ready to send, or email me directly at{' '}
+                  Or email me directly at{' '}
                   <a href={EMAIL_LINK} className="text-primaryAccentLight underline underline-offset-2 hover:text-primaryAccent">
                     {EMAIL}
                   </a>

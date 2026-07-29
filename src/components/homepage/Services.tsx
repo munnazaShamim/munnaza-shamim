@@ -1,8 +1,10 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { Layers, Gauge, Blocks, Search, Zap, Globe, Plug, RefreshCw } from 'lucide-react';
+import Link from 'next/link';
+import { Layers, Gauge, Blocks, Search, Zap, Globe, Plug, RefreshCw, ServerCog } from 'lucide-react';
 import { zoomIn, slideByIndex, revealViewport, reveal } from '@/lib/animations';
+import RightArrow from '@/lib/icons/ArrowRight';
 
 export default function Services() {
   const services = [
@@ -100,6 +102,36 @@ export default function Services() {
             );
           })}
         </div>
+
+        <motion.div
+          className="mt-12 max-w-5xl mx-auto"
+          variants={zoomIn}
+          initial="hidden"
+          whileInView="visible"
+          viewport={revealViewport}
+          transition={reveal(0.2)}
+        >
+          <div className="bg-cardBackground rounded-2xl border border-primaryAccent/30 p-8 flex flex-col md:flex-row md:items-center gap-6">
+            <div className="w-12 h-12 shrink-0 rounded-xl bg-primaryAccent/10 border border-primaryAccent/20 flex items-center justify-center">
+              <ServerCog className="w-6 h-6 text-primaryAccent" />
+            </div>
+            <div className="flex-1">
+              <h3 className="text-xl font-bold mb-2">Ongoing Server Care</h3>
+              <p className="text-secondaryText text-sm max-w-2xl">
+                Beyond one-off builds, I keep production VPS servers hardened, patched, backed up
+                and monitored month after month, with a daily health report and a staging-first
+                deploy pipeline, so you never have to think about your server again.
+              </p>
+            </div>
+            <Link
+              href="/case-studies/vps-server-management-hardening"
+              className="group shrink-0 inline-flex items-center gap-1.5 text-primaryAccent font-semibold text-sm hover:underline"
+            >
+              See how I run servers
+              <RightArrow size={16} className="transition-transform duration-200 group-hover:translate-x-1" />
+            </Link>
+          </div>
+        </motion.div>
       </div>
     </section>
   );

@@ -6,7 +6,7 @@ import { slideLeft, slideRight, revealViewport, reveal } from '@/lib/animations'
 
 export default function About() {
   return (
-    <section id="about" className="pt-8 pb-20 md:pt-12">
+    <section id="about" className="py-20">
       <div className="container mx-auto px-4">
         <div className="max-w-5xl mx-auto grid grid-cols-1 lg:grid-cols-[280px_1fr] gap-12 items-start">
           <motion.div

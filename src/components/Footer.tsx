@@ -7,10 +7,10 @@ import { socialLinks, PHONE_DISPLAY, PHONE_LINK, EMAIL, EMAIL_LINK } from '@/lib
 import { reveal } from '@/lib/animations';
 
 const serviceLinks = [
-  { label: 'Next.js Development', href: '/case-studies/nexus-clinic-headless-wordpress-nextjs' },
-  { label: 'WordPress Engineering', href: '/case-studies/real-time-vehicle-auction-platform' },
-  { label: 'Laravel CMS Development', href: '/case-studies/custom-laravel-blog-cms-secure-api' },
-  { label: 'Technical SEO & Core Web Vitals', href: '/case-studies/furnishings-my-nextjs-api-caching' },
+  { label: 'Real-Time Auction Platform', href: '/case-studies/real-time-vehicle-auction-platform' },
+  { label: 'VPS Management & Hardening', href: '/case-studies/vps-server-management-hardening' },
+  { label: 'WordPress → Next.js Migration', href: '/case-studies/nexus-clinic-headless-wordpress-nextjs' },
+  { label: 'Custom Laravel CMS', href: '/case-studies/nexus-clinic-laravel-cms-migration' },
   { label: 'All Services', href: '/#services' },
 ];
 
@@ -50,7 +50,7 @@ export default function Footer() {
             viewport={{ once: true, amount: 0.2 }}
             transition={reveal(0.1)}
           >
-            <h3 className="font-bold mb-4">Services</h3>
+            <h3 className="font-bold mb-4">Featured Work</h3>
             <ul className="space-y-2 text-secondaryText">
               {serviceLinks.map((item) => (
                 <li key={item.label}>

@@ -70,6 +70,18 @@ export default function Hero() {
               </Link>
             </motion.div>
 
+            <motion.p
+              className="text-sm text-secondaryText"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={reveal(0.7)}
+            >
+              Not ready for a project yet?{' '}
+              <Link href="/#free-audit" className="text-primaryAccentLight font-semibold hover:text-primaryAccent underline underline-offset-2 transition-colors">
+                Send me your URL for a free site check
+              </Link>
+            </motion.p>
+
           </motion.div>
 
           {/* Right Column - Visual */}
